@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="T2ServiciosDatos">
+        <wb-resource deploy-path="/" source-path="/source" tag="defaultRootSource"/>
+        <property name="java-output-path" value="/T2ServiciosDatos/source"/>
+        <property name="ClientProject" value="T2ServiciosDatosClient"/>
+        <property name="ClientJARURI" value="T2ServiciosDatosClient.jar"/>
+    </wb-module>
+</project-modules>

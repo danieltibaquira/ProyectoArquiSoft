@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"> <h:head></h:head> 
+	
+	<h:body>
+	<h:form id="formSearchProduct">
+		<p:growl id="messages"></p:growl>
+		<p:panel id="pnlSearchProduct" header="Buscar Productos" style="width: 100%">
+			<p:panelGrid id="pGridSearch" columns="1" layout="grid">
+				<p:outputLabel id="lblsearchName" value="Nombre del producto: " for="@next"></p:outputLabel>
+				<p:inputText id="txtsearchName" required="true" value="#{productoBean1.product.nombre}"
+					requiredMessage="El nombre del producto es necesario" style="width: 100%"></p:inputText>
+
+				<p:commandButton id="btnBuscar" value="Buscar" outcome="/product"
+					update="messages, pGridSearch" style="width: 100%"
+					action="#{productoBean1.buscarProducto()}"
+					></p:commandButton>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+	<h:form id="formRegisterProduct">
+		<p:growl id="messages"></p:growl>
+		<p:panel id="pnlRegisterProduct" header="Registrar Productos" style="width: 100%">
+			<p:panelGrid id="pGridSave" columns="1" layout="grid">
+				<p:outputLabel id="lblsaveName" value="Nombre del producto: " for="@next"></p:outputLabel>
+				<p:inputText id="txtsaveName" required="true" value="#{productoBean1.product.nombre}"
+					requiredMessage="El nombre del producto es necesario" style="width: 100%"></p:inputText>
+				
+				<p:outputLabel id="lblsaveDesc" value="Descripcion del producto: " for="@next"></p:outputLabel>
+				<p:inputText id="txtsaveDesc" required="true" value="#{productoBean1.product.descripcion}"
+					requiredMessage="La descripcion del producto es necesaria" style="width: 100%"></p:inputText>
+				
+				<p:outputLabel id="lblsavePrice" value="Precio del producto: " for="@next"></p:outputLabel>
+				<p:inputText id="txtsavePrice" required="true" value="#{productoBean1.product.precio}"
+					requiredMessage="El nombre del producto es necesario" style="width: 100%"></p:inputText>
+					
+				
+				<p:commandButton id="btnGuardar" value="Guardar" outcome="/product"
+					update="messages, pGridSave" style="width: 100%"
+					action="#{productoBean1.registrarProducto()}"
+					></p:commandButton>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+	<p:button value="Volver" outcome="bienvenido" style="width: 100%"/>
+</h:body> </html>

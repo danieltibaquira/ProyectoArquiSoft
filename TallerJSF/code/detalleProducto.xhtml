@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+	<p:panelGrid columns="2">
+        <f:facet name="header">
+            <h1>Producto</h1>
+        </f:facet>
+
+        <h:outputText value="Nombre:"/>
+        <h:outputLabel value="#{productoBean1.product.nombre}"/>
+        
+        <h:outputText value="Descripcion"/>
+        <h:outputLabel value="#{productoBean1.product.descripcion}"/>
+
+        <h:outputText value="Precio"/>
+        <h:outputText value="#{productoBean1.product.precio}"/>
+    </p:panelGrid>
+    <p:button value="Volver" outcome="opcionesProducto" style="width: 100%"/>
+</body> 
+</html>

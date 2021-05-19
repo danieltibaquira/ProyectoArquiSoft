@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+            
+    
+    <wb-module deploy-name="T2EARLogica">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
+                        
+        
+        <dependent-module archiveName="T2Entidades.jar" deploy-path="/lib" handle="module:/resource/T2Entidades/T2Entidades">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="T2ServiciosNegocios.jar" deploy-path="/" handle="module:/resource/T2ServiciosNegocios/T2ServiciosNegocios">
+                                    
+            
+            <dependent-object/>
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="T2ServiciosNegociosClient.jar" deploy-path="/" handle="module:/resource/T2ServiciosNegociosClient/T2ServiciosNegociosClient">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                
+        <dependent-module archiveName="T2ServiciosDatosClient.jar" deploy-path="/lib" handle="module:/resource/T2ServiciosDatosClient/T2ServiciosDatosClient">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+                    
+    
+    </wb-module>
+        
+
+</project-modules>
