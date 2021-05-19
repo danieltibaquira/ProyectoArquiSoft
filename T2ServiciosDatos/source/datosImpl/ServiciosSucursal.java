@@ -47,7 +47,7 @@ public class ServiciosSucursal implements ServiciosSucursalRemote {
 	public Sucursal searchSucursal(Sucursal sucursal) {
 		String consulta = "SELECT u FROM Sucursal u WHERE u.nombre_sucursal=:nombre_sucursal";
 		TypedQuery<Sucursal> query = entityManager.createQuery(consulta, Sucursal.class);
-		query.setParameter("nombre", sucursal.getNombreSucursal());
+		query.setParameter("nombre_sucursal", sucursal.getNombreSucursal());
 		query.setMaxResults(1);
 		List<Sucursal> resultList = query.getResultList();
 

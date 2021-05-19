@@ -7,6 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import datosInterface.ServiciosUsuarioRemote;
+import datosInterface.ServicosPedidoRemote;
 import datosInterface.ServiciosProductoRemote;
 import datosInterface.ServiciosPromocionRemote;
 import datosInterface.ServiciosRepartidorRemote;
@@ -175,5 +176,33 @@ public class ServiceLocator {
 			e.printStackTrace();
 		}
 		return (ServiciosPromocionRemote)serviciosRepartidor;
+	}
+	
+	public ServicosPedidoRemote getServicioPedido(String servicio) {
+		ServicosPedidoRemote servicios = null;
+		if(servicio.equals("pedido")){
+			servicios = getServiciosPedidoConnect();
+		}
+		return (ServicosPedidoRemote) servicios;
+	}
+
+	
+	public ServicosPedidoRemote getServiciosPedidoConnect() {
+		Context ctx = crearContexto();
+		
+		String namespace = "ejb:";
+		String appName = "T2EARServiciosDatos";
+		String moduleName = "T2ServiciosDatos";
+		String beanName = "ServiciosRepartidor";
+		String viewClassName = ServicosPedidoRemote.class.getName();
+		
+		System.out.println(viewClassName);
+		ServicosPedidoRemote serviciosPedido = null;
+		try {
+			serviciosPedido = (ServicosPedidoRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServicosPedido!datosInterface.ServicosPedidoRemote");
+		} catch(NamingException e) {
+			e.printStackTrace();
+		}
+		return (ServicosPedidoRemote)serviciosPedido;
 	}
 }

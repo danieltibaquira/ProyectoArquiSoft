@@ -47,7 +47,7 @@ public class ServiciosPromocion implements ServiciosPromocionRemote {
 	public Promocion searchPromocion(Promocion promocion) {
 		String consulta = "SELECT u FROM Promocion u WHERE u.id_promocion=:id_promocion";
 		TypedQuery<Promocion> query = entityManager.createQuery(consulta, Promocion.class);
-		query.setParameter("descripcion", promocion.getDescripcion());
+		query.setParameter("id_promocion", promocion.getIdPromocion());
 		query.setMaxResults(1);
 		List<Promocion> resultList = query.getResultList();
 
