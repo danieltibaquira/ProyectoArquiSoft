@@ -1,0 +1,57 @@
+
+INSERTAR USUARIOS
+
+INSERT INTO Usuarios(Nombres, Apellidos, FechaNacimiento, Genero, Pais, Ciudad, Direccion, Celular, Cedula)VALUES('Pedro', 'Gonzales', '2020-01-01 10:10:10', 'M', 'Colombia','Bogota', 'cra 30', 3002112575, 1026595836);
+
+INSERT INTO Usuarios(Nombres, Apellidos, FechaNacimiento, Genero, Pais, Ciudad, Direccion, Celular, Cedula)VALUES('Juan', 'Aguilar', '2020-01-01 10:10:10', 'M', 'Colombia','Barranquilla', 'cra 31', 3002112575, 1026595837);
+
+INSERT INTO Usuarios(Nombres, Apellidos, FechaNacimiento, Genero, Pais, Ciudad, Direccion, Celular, Cedula)VALUES('Maria', 'Gonzales', '2020-01-01 10:10:10', 'F', 'Colombia','Cali', 'cra 32', 3002112575, 1026595838);
+
+INSERT INTO Usuarios(Nombres, Apellidos, FechaNacimiento, Genero, Pais, Ciudad, Direccion, Celular, Cedula)VALUES('Alejandra', 'Angarita', '2020-01-01 10:10:10', 'M', 'Colombia','Bogota', 'cra 33', 3002112575, 1026595839);
+
+INSERTAR TARJETAS
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(1234123412341234, 123, 12,21, 1000, 100, 5);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(2345234523452345, 234, 12,21, 1000, 100, 5);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(1234123412341234, 123, 12,21, 1000, 100, 6);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(2345234523452345, 234, 12,21, 1000, 100, 6);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(1234123412341234, 123, 12,21, 1000, 100, 7);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(2345234523452345, 234, 12,21, 1000, 100, 7);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(1234123412341234, 123, 12,21, 1000, 100, 8);
+
+INSERT INTO MastercardDB.dbo.Tarjetas(Numero, CVC, MesVencimiento, AnioVencimiento, Cupo, Monto, PropietarioId)VALUES(2345234523452345, 234, 12,21, 1000, 100, 8);
+
+API REST
+http://localhost:5000/api/mastercard/comprar
+{
+    "Numero":2345234523452345,
+    "CVC":234,
+    "MesVencimiento":12,
+    "AnioVencimiento":21,
+    "valorCompra":100.00
+}
+
+http://localhost:5000/api/mastercard/validar
+{
+    "Numero":1234123412341234,
+    "CVC":123,
+    "MesVencimiento":12,
+    "AnioVencimiento":21
+}
+
+Otros comandos
+-Mirar todas las bases de datos
+select name from sys.databases
+go
+
+-Usar la base de datos
+use MastercardDB
+go
+
+
