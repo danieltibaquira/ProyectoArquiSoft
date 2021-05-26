@@ -8,8 +8,8 @@ namespace Mastercard.Data
     {
         bool SaveChanges();
 
-        Tarjeta verificarTarjeta(long numero);
+        Tarjeta findTarjetabyNum(long numero);
 
-        void realizarCompra(Tarjeta tarjeta);
+        void updateTarjeta(Tarjeta tarjeta);
     }
 }

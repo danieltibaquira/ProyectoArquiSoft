@@ -15,7 +15,7 @@ namespace Mastercard.Data
             _context = context;
         }
 
-        public void realizarCompra(Tarjeta tarjeta)
+        public void updateTarjeta(Tarjeta tarjeta)
         {
             //nothing
         }
@@ -25,7 +25,7 @@ namespace Mastercard.Data
             return (_context.SaveChanges() >= 0);
         }
 
-        public Tarjeta verificarTarjeta(long numerotajeta)
+        public Tarjeta findTarjetabyNum(long numerotajeta)
         {
             Tarjeta card = _context.Tarjetas.FirstOrDefault(p => p.Numero == numerotajeta);
 
