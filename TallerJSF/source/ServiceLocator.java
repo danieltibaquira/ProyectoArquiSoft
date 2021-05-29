@@ -18,7 +18,7 @@ import logicaInterfaz.logicaProductosRemote;
 @RequestScoped
 public class ServiceLocator {
 	
-	
+	private String nombreEAR = "ProyectoEARLogica";
 	
 	public ServiceLocator() {
 		super();
@@ -29,9 +29,9 @@ public class ServiceLocator {
 		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.wildfly.naming.client.WildFlyInitialContextFactory.class.getName());
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
-		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8280");
-		jndlProperties.put(Context.SECURITY_PRINCIPAL, "daniel");
-		jndlProperties.put(Context.SECURITY_CREDENTIALS, "pablo2015");
+		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
+		jndlProperties.put(Context.SECURITY_PRINCIPAL, "juseanto");
+		jndlProperties.put(Context.SECURITY_CREDENTIALS, "juseanto");
 		jndlProperties.put("jboss.naming.client.ejb.context", true);
 		
 		Context ctx = null;
@@ -55,8 +55,8 @@ public class ServiceLocator {
 	public LogicaUsuariosRemote getServicioUsuarios() {
 		Context ctx = crearContexto();
 		String namespace = "ejb:";
-		String appName = "T2EARLogica";
-		String moduleName = "T2ServiciosNegocios";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosNegocios";
 		String beanName = "LogicaUsuarios";
 		String viewClassName = LogicaUsuariosRemote.class.getName();
 		
@@ -64,7 +64,7 @@ public class ServiceLocator {
 		try {
 			//serviciosUsuarios = (LogicaUsuariosRemote) ctx.lookup(
 					//namespace + appName + "/" + moduleName + "/" + beanName + "!" + viewClassName);
-			serviciosUsuarios = (LogicaUsuariosRemote) ctx.lookup("ejb:T2EARLogica/T2ServiciosNegocios/LogicaUsuarios!logicaInterfaz.LogicaUsuariosRemote");
+			serviciosUsuarios = (LogicaUsuariosRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaUsuarios!logicaInterfaz.LogicaUsuariosRemote");
 		} catch(NamingException e) {
 			System.out.print(e.getMessage());
 			//e.printStackTrace();
@@ -86,8 +86,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARLogica";
-		String moduleName = "T2ServiciosNegocios";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosNegocios";
 		String beanName = "logicaProductos";
 		String viewClassName = logicaProductosRemote.class.getName();
 		
@@ -95,7 +95,7 @@ public class ServiceLocator {
 		
 		logicaProductosRemote serviciosProductos = null;
 		try {
-			serviciosProductos = (logicaProductosRemote) ctx.lookup("ejb:T2EARLogica/T2ServiciosNegocios/logicaProductos!logicaInterfaz.logicaProductosRemote");
+			serviciosProductos = (logicaProductosRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/logicaProductos!logicaInterfaz.logicaProductosRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -115,8 +115,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARLogica";
-		String moduleName = "T2ServiciosNegocios";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosNegocios";
 		String beanName = "LogicaSucursales";
 		String viewClassName = LogicaSucursalesRemote.class.getName();
 		
@@ -124,7 +124,7 @@ public class ServiceLocator {
 		
 		LogicaSucursalesRemote serviciosProductos = null;
 		try {
-			serviciosProductos = (LogicaSucursalesRemote) ctx.lookup("ejb:T2EARLogica/T2ServiciosNegocios/LogicaSucursales!logicaInterfaz.LogicaSucursalesRemote");
+			serviciosProductos = (LogicaSucursalesRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaSucursales!logicaInterfaz.LogicaSucursalesRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -144,8 +144,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARLogica";
-		String moduleName = "T2ServiciosNegocios";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosNegocios";
 		String beanName = "LogicaSucursales";
 		String viewClassName = LogicaRepartidorRemote.class.getName();
 		
@@ -153,7 +153,7 @@ public class ServiceLocator {
 		
 		LogicaRepartidorRemote serviciosProductos = null;
 		try {
-			serviciosProductos = (LogicaRepartidorRemote) ctx.lookup("ejb:T2EARLogica/T2ServiciosNegocios/LogicaRepartidor!logicaInterfaz.LogicaRepartidorRemote");
+			serviciosProductos = (LogicaRepartidorRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaRepartidor!logicaInterfaz.LogicaRepartidorRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -173,8 +173,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARLogica";
-		String moduleName = "T2ServiciosNegocios";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosNegocios";
 		String beanName = "LogicaSucursales";
 		String viewClassName = LogicaRepartidorRemote.class.getName();
 		
@@ -182,7 +182,7 @@ public class ServiceLocator {
 		
 		LogicaPromocionRemote serviciosPromocion = null;
 		try {
-			serviciosPromocion = (LogicaPromocionRemote) ctx.lookup("ejb:T2EARLogica/T2ServiciosNegocios/LogicaPromocion!logicaInterfaz.LogicaPromocionRemote");
+			serviciosPromocion = (LogicaPromocionRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaPromocion!logicaInterfaz.LogicaPromocionRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -202,15 +202,15 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = "ProyectoEARServiciosDatos";
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosRepartidor";
 		String viewClassName = LogicaPedidoRemote.class.getName();
 		
 		System.out.println(viewClassName);
 		LogicaPedidoRemote logicaPedido = null;
 		try {
-			logicaPedido = (LogicaPedidoRemote) ctx.lookup("ejb:T2EARLogica/T2ServiciosNegocios/LogicaPedido!logicaInterfaz.LogicaPedidoRemote");
+			logicaPedido = (LogicaPedidoRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaPedido!logicaInterfaz.LogicaPedidoRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}

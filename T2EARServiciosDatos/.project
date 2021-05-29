@@ -3,9 +3,9 @@
 	<name>ProyectoEARServiciosDatos</name>
 	<comment></comment>
 	<projects>
-		<project>ProyectoEntidades</project>
 		<project>ProyectoServiciosDatos</project>
 		<project>ProyectoServiciosDatosClient</project>
+		<project>ProyectoEntidades</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

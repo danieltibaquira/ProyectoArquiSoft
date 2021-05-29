@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-            
+                    
+    
+    
     
     <wb-module deploy-name="ProyectoEARServiciosDatos">
-                        
+                                        
+        
+        
         
         <wb-resource deploy-path="/" source-path="/" tag="defaultRootSource"/>
-                
-        <dependent-module archiveName="ProyectoEntidades.jar" deploy-path="/lib" handle="module:/resource/ProyectoEntidades/ProyectoEntidades">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
         <dependent-module archiveName="ProyectoServiciosDatos.jar" deploy-path="/" handle="module:/resource/ProyectoServiciosDatos/ProyectoServiciosDatos">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="ProyectoServiciosDatosClient.jar" deploy-path="/" handle="module:/resource/ProyectoServiciosDatosClient/ProyectoServiciosDatosClient">
+        <dependent-module archiveName="ProyectoServiciosDatosClient.jar" deploy-path="/lib" handle="module:/resource/ProyectoServiciosDatosClient/ProyectoServiciosDatosClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-                    
+        <dependent-module archiveName="ProyectoEntidades.jar" deploy-path="/lib" handle="module:/resource/ProyectoEntidades/ProyectoEntidades">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+                                    
+    
+    
     
     </wb-module>
-        
+                
+
+
 
 </project-modules>

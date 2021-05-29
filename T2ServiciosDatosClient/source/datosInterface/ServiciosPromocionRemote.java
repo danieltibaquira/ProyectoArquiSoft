@@ -5,7 +5,6 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import model.Promocion;
-import model.Sucursal;
 
 @Remote
 public interface ServiciosPromocionRemote {

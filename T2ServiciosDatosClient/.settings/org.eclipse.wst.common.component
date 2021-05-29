@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-        
-    <wb-module deploy-name="ProyectoServiciosDatosClient">
-                
-        <wb-resource deploy-path="/" source-path="/source"/>
             
-    </wb-module>
     
+    <wb-module deploy-name="ProyectoServiciosDatosClient">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/source"/>
+        <wb-resource deploy-path="/" source-path="/src/test/java"/>
+                    
+    
+    </wb-module>
+        
+
 </project-modules>

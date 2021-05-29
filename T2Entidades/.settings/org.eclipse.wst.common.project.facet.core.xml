@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faceted-project>
-  <runtime name="WildFly 22.0 Datos"/>
-  <secondary-runtime name="Apache Tomcat v9.0 B"/>
-  <secondary-runtime name="WildFly 22.0 Logica"/>
+  <runtime name="WildFly 17.0 Runtime 1"/>
   <fixed facet="jpt.jpa"/>
   <fixed facet="java"/>
   <installed facet="java" version="11"/>

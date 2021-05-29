@@ -3,10 +3,10 @@
 	<name>ProyectoEARLogica</name>
 	<comment></comment>
 	<projects>
-		<project>ProyectoEntidades</project>
-		<project>ProyectoServiciosDatosClient</project>
 		<project>ProyectoServiciosNegocios</project>
 		<project>ProyectoNegociosClient</project>
+		<project>ProyectoServiciosDatosClient</project>
+		<project>ProyectoEntidades</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

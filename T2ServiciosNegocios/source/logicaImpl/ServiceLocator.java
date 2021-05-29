@@ -15,12 +15,14 @@ import datosInterface.ServiciosSucursalRemote;
 
 public class ServiceLocator {
 
+	private String nombreEAR = "ProyectoEARServiciosDatos";
+	
 	private Context crearContexto() {
 		Properties jndlProperties = new Properties();
 		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8180");
-		jndlProperties.put(Context.SECURITY_PRINCIPAL, "daniel");
-		jndlProperties.put(Context.SECURITY_CREDENTIALS, "pablo2015");
+		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8090");
+		jndlProperties.put(Context.SECURITY_PRINCIPAL, "juseanto");
+		jndlProperties.put(Context.SECURITY_CREDENTIALS, "juseanto");
 		jndlProperties.put("jboss.naning.client.ejb.context", true);
 		
 		Context ctx = null;
@@ -44,8 +46,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosUsuario";
 		String viewClassName = ServiciosUsuarioRemote.class.getName();
 		
@@ -53,7 +55,7 @@ public class ServiceLocator {
 		
 		ServiciosUsuarioRemote serviciosUsuarios = null;
 		try {
-			serviciosUsuarios = (ServiciosUsuarioRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServiciosUsuario!datosInterface.ServiciosUsuarioRemote");
+			serviciosUsuarios = (ServiciosUsuarioRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServiciosUsuario!datosInterface.ServiciosUsuarioRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -74,8 +76,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosProducto";
 		String viewClassName = ServiciosProductoRemote.class.getName();
 		
@@ -83,7 +85,7 @@ public class ServiceLocator {
 		
 		ServiciosProductoRemote serviciosProductos = null;
 		try {
-			serviciosProductos = (ServiciosProductoRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServiciosProducto!datosInterface.ServiciosProductoRemote");
+			serviciosProductos = (ServiciosProductoRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServiciosProducto!datosInterface.ServiciosProductoRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -103,8 +105,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosSucursal";
 		String viewClassName = ServiciosSucursalRemote.class.getName();
 		
@@ -112,7 +114,7 @@ public class ServiceLocator {
 		
 		ServiciosSucursalRemote serviciosSucursal = null;
 		try {
-			serviciosSucursal = (ServiciosSucursalRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServiciosSucursal!datosInterface.ServiciosSucursalRemote");
+			serviciosSucursal = (ServiciosSucursalRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServiciosSucursal!datosInterface.ServiciosSucursalRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -133,8 +135,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosRepartidor";
 		String viewClassName = ServiciosRepartidorRemote.class.getName();
 		
@@ -142,7 +144,7 @@ public class ServiceLocator {
 		
 		ServiciosRepartidorRemote serviciosRepartidor = null;
 		try {
-			serviciosRepartidor = (ServiciosRepartidorRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServiciosRepartidor!datosInterface.ServiciosRepartidorRemote");
+			serviciosRepartidor = (ServiciosRepartidorRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServiciosRepartidor!datosInterface.ServiciosRepartidorRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -162,8 +164,8 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosRepartidor";
 		String viewClassName = ServiciosPromocionRemote.class.getName();
 		
@@ -171,7 +173,7 @@ public class ServiceLocator {
 		
 		ServiciosPromocionRemote serviciosRepartidor = null;
 		try {
-			serviciosRepartidor = (ServiciosPromocionRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServiciosPromocion!datosInterface.ServiciosPromocionRemote");
+			serviciosRepartidor = (ServiciosPromocionRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServiciosPromocion!datosInterface.ServiciosPromocionRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
@@ -191,15 +193,15 @@ public class ServiceLocator {
 		Context ctx = crearContexto();
 		
 		String namespace = "ejb:";
-		String appName = "T2EARServiciosDatos";
-		String moduleName = "T2ServiciosDatos";
+		String appName = nombreEAR;
+		String moduleName = "ProyectoServiciosDatos";
 		String beanName = "ServiciosRepartidor";
 		String viewClassName = ServicosPedidoRemote.class.getName();
 		
 		System.out.println(viewClassName);
 		ServicosPedidoRemote serviciosPedido = null;
 		try {
-			serviciosPedido = (ServicosPedidoRemote) ctx.lookup("ejb:T2EARServiciosDatos/T2ServiciosDatos/ServicosPedido!datosInterface.ServicosPedidoRemote");
+			serviciosPedido = (ServicosPedidoRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServicosPedido!datosInterface.ServicosPedidoRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}

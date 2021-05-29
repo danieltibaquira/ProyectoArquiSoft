@@ -11,7 +11,6 @@ import javax.persistence.TypedQuery;
 
 import datosInterface.ServiciosProductoRemote;
 import model.Producto;
-import model.Usuario;
 
 /**
  * Session Bean implementation class ServiciosProducto
