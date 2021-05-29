@@ -24,7 +24,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/daniel/eclipse-workspace/Taller 4 JSF Multinivel/T2Entidades.jar">
+	<classpathentry kind="lib" path="/home/juseanto/Desktop/ProyectoArqui/T2Entidades.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -41,9 +41,9 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/daniel/Software/wildfly-22.0.0.Final/bin/client/jboss-client.jar"/>
+	<classpathentry kind="lib" path="/home/juseanto/Desktop/ProyectoArqui/jboss-client.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/WildFly 22.0 Logica"/>
-	<classpathentry kind="lib" path="/home/daniel/Software/wildfly-22.0.0.Final/jboss-modules.jar"/>
-	<classpathentry kind="lib" path="/home/daniel/eclipse-workspace/Taller 4 JSF Multinivel/T2Servicios.jar"/>
+	<classpathentry kind="lib" path="/home/juseanto/Desktop/ProyectoArqui/jboss-modules.jar"/>
+	<classpathentry kind="lib" path="/home/juseanto/Desktop/ProyectoArqui/T2Servicios.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

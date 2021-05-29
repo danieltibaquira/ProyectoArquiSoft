@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>T2EARServiciosDatos</name>
+	<name>ProyectoEARServiciosDatos</name>
 	<comment></comment>
 	<projects>
-		<project>T2ServiciosDatos</project>
-		<project>T2ServiciosDatosClient</project>
-		<project>T2Entidades</project>
+		<project>ProyectoEntidades</project>
+		<project>ProyectoServiciosDatos</project>
+		<project>ProyectoServiciosDatosClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

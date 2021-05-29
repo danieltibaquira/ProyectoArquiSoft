@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>T3EARMensajes</name>
+	<name>ProyectoEARMensajes</name>
 	<comment></comment>
 	<projects>
-		<project>T3Mensajes</project>
+		<project>ProyectoMensajes</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

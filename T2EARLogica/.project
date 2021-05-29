@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>T2EARLogica</name>
+	<name>ProyectoEARLogica</name>
 	<comment></comment>
 	<projects>
-		<project>T2Entidades</project>
-		<project>T2ServiciosNegocios</project>
-		<project>T2ServiciosNegociosClient</project>
-		<project>T2ServiciosDatosClient</project>
+		<project>ProyectoEntidades</project>
+		<project>ProyectoServiciosDatosClient</project>
+		<project>ProyectoServiciosNegocios</project>
+		<project>ProyectoNegociosClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

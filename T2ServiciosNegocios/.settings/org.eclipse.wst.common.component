@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="T2ServiciosNegocios">
+            
+    
+    <wb-module deploy-name="ProyectoServiciosNegocios">
+                        
+        
         <wb-resource deploy-path="/" source-path="/source" tag="defaultRootSource"/>
-        <property name="java-output-path" value="/T2ServiciosNegocios/source"/>
-        <property name="ClientProject" value="T2ServiciosNegociosClient"/>
-        <property name="ClientJARURI" value="T2ServiciosNegociosClient.jar"/>
+        <property name="ClientJARURI" value="ProyectoNegociosClient.jar"/>
+        <property name="ClientProject" value="ProyectoNegociosClient"/>
+                        
+        
+        <property name="java-output-path" value="/ProyectoServiciosNegocios/source"/>
+                    
+    
     </wb-module>
+        
+
 </project-modules>
