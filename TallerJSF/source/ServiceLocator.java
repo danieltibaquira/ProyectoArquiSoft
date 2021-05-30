@@ -13,9 +13,6 @@ import logicaInterfaz.LogicaSucursalesRemote;
 import logicaInterfaz.LogicaUsuariosRemote;
 import logicaInterfaz.logicaProductosRemote;
 
-
-@ManagedBean(name = "serviceBean")
-@RequestScoped
 public class ServiceLocator {
 	
 	private String nombreEAR = "ProyectoEARLogica";

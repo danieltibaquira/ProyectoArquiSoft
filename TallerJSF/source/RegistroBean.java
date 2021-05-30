@@ -1,16 +1,11 @@
-//import javax.annotation.ManagedBean;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
+
 
 import model.Usuario;
 
-@ManagedBean(name ="registroBean1")
-@SessionScoped
 public class RegistroBean {
 
 	private Usuario user;
+	private DelegadoBean delegado;
 	
 	public Usuario getUser() {
 		return user;
@@ -23,15 +18,21 @@ public class RegistroBean {
 	public RegistroBean() {
 		super();
 		user = new Usuario();
+		//delegadoBean = new DelegadoBean();
 	}
-	
 
+	public DelegadoBean getDelegado() {
+		return delegado;
+	}
+
+	public void setDelegado(DelegadoBean delegado) {
+		this.delegado = delegado;
+	}
 
 	public String validarUsuario() {
-		DelegadoBean delegadoBean = new DelegadoBean();
-		user = delegadoBean.validateUser(user);
+		user = delegado.validateUser(user);
 		if(user != null) {
-			return "bienvenido?faces-redirect=true";
+			return "Exito";
 		}else {
 			return "";
 		}
@@ -39,11 +40,10 @@ public class RegistroBean {
 	}
 	
 	public String registrarUsuario(){
-		DelegadoBean delegadoBean = new DelegadoBean();
-		user = delegadoBean.createUser(user);
+		user = delegado.createUser(user);
 		System.out.print("Usuario creado: " + user.getCorreo());
 		if(user != null) {
-			return "bienvenido?faces-redirect=true";
+			return "Exito";
 		}else {
 			return "";
 		}

@@ -5,18 +5,54 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
     version="2.3">
 	<managed-bean>
-		<managed-bean-name>delegadoBean1</managed-bean-name>
+		<managed-bean-name>delegadoBean</managed-bean-name>
 		<managed-bean-class>DelegadoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>registroBean1</managed-bean-name>
+		<managed-bean-name>registroBean</managed-bean-name>
 		<managed-bean-class>RegistroBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+		<property-name>delegado</property-name>
+			<value>#{delegadoBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>productoBean</managed-bean-name>
+		<managed-bean-class>ProductoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+		<property-name>delegado</property-name>
+			<value>#{delegadoBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>productBean</managed-bean-name>
+		<managed-bean-class>ProductBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>productoBean1</managed-bean-name>
-		<managed-bean-class>ProductoBean</managed-bean-class>
+		<managed-bean-name>carritoBean</managed-bean-name>
+		<managed-bean-class>CarritoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<navigation-rule>
+		<display-name>signin.xhtml</display-name>
+		<from-view-id>/signin.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{registroBean.validarUsuario()}</from-action>
+	        <from-outcome>Exito</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>signup.xhtml</display-name>
+		<from-view-id>/signup.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{registroBean.registrarUsuario()}</from-action>
+	        <from-outcome>Exito</from-outcome>
+			<to-view-id>/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

@@ -62,7 +62,7 @@ public class ServiciosProducto implements ServiciosProductoRemote {
 
 	@Override
 	public List<Producto> getAllProductos() {
-		List<Producto> productos = entityManager.createQuery("SELECT p FROM Usuario p", Producto.class).getResultList();
+		List<Producto> productos = entityManager.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
 		return productos;
 	}
 

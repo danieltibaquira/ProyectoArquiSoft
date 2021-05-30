@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      > 
+<f:metadata>
+          <f:event type="preRenderView" listener="#{productBean.cargarProductos()}"/>
+      </f:metadata>
+<h:head>
+	<link rel="stylesheet" href="home.css"></link>
+				
+	
+</h:head> 
+<h:body>
+		<div id="header">
+			<h1 class="titulo">Sandwich</h1>
+			<h:button  outcome="signup" class="authButton" type="button" value="Registrarse" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			<h:button outcome="signin" class="authButton" type="button" value="Ingresar" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			<h:outputText style="color: white" value="#{delegadoBean.userFound.correo}" rendered="#{delegadoBean.userFound ne null}" /> 
+		</div>
+		<h1 >Promociones</h1>
+		<h1>Populares</h1>	
+		
+		<p:dataGrid value="#{productBean.productos}" var="product" layout="grid" columns="4">
+			<div class="productList" >
+			<div class="product">
+				<img  width="150" height="150" class="imgProduct" src="https://www.petitchef.es/imgupl/recipe/club-sandwich-americano--459975p722167.jpg"/>
+				<p class="titleProduct">Nombre del producto</p>
+				<div class="descProduct">#{product.descripcion}</div>
+				<div class="productBar">
+					<p>$#{product.precio}</p>
+					<h:commandButton  value="Comprar" class="comprarButton" onclick = "showMessage();"/>
+				</div>
+			</div>
+		</div>
+		</p:dataGrid>
+
+    </h:body>
+</html>
+	

@@ -1,7 +1,5 @@
 //import javax.annotation.ManagedBean;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 import java.util.List;
@@ -11,19 +9,34 @@ import logicaInterfaz.logicaProductosRemote;
 import model.Producto;
 import model.Usuario;
 
-@ManagedBean(name = "delegadoBean1")
+@ManagedBean(eager = true)
 @SessionScoped
 public class DelegadoBean {
-	//@ManagedProperty(value="#{servicebean}")
 	ServiceLocator sl = new ServiceLocator();
 	LogicaUsuariosRemote servicioUsuario = sl.getServicio("usuario");
 	logicaProductosRemote serviciosProducto = sl.getServicioProducto("producto");
-
+	Usuario userFound;
+	
+	
+	
+	public Usuario getUserFound() {
+		return userFound;
+	}
+	public void setUserFound(Usuario userFound) {
+		this.userFound = userFound;
+	}
 	public DelegadoBean() {
 		super();
+		//userFound=new Usuario();
 	}
 	public Usuario validateUser(Usuario user) {
-		Usuario userFound = servicioUsuario.validar(user.getUsername(), user.getPassword());
+		if(userFound == null) {
+			System.out.println("usuario vacio");
+		}else {
+			System.out.println("usuario lleno");
+			System.out.println(userFound.getApellidos());
+		}
+		userFound = servicioUsuario.validar(user.getUsername(), user.getPassword());
 		if(userFound != null) { 
 			return userFound;
 		}else {
@@ -39,6 +52,7 @@ public class DelegadoBean {
 			System.out.print("Usuario ya existe");
 			return null;
 		}else {*/
+		userFound = user;
 		servicioUsuario.addUsuario(user);
 		return user;
 		//}
@@ -68,6 +82,10 @@ public class DelegadoBean {
 	public Producto createProduct(Producto product) {
 		serviciosProducto.addProducto(product);
 		return product;
+	}
+	
+	public List<Producto> buscarProductos() {
+		return serviciosProducto.getAllProductos();
 	}
 	
 }

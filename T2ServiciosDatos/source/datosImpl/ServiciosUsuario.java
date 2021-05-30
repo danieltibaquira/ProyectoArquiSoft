@@ -64,7 +64,7 @@ public class ServiciosUsuario implements ServiciosUsuarioRemote {
 
 	@Override
 	public Usuario validar(String userName, String password) {
-		String consulta = "SELECT u FROM Usuario u WHERE u.username=:userName AND u.password=:password";
+		String consulta = "SELECT u FROM Usuario u WHERE u.username=:userName AND u.contrasena=:password";
 		TypedQuery<Usuario> query = entityManager.createQuery(consulta, Usuario.class);
 		query.setParameter("userName", userName);
 		query.setParameter("password", password);

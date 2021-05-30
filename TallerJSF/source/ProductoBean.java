@@ -3,8 +3,6 @@ import javax.faces.bean.SessionScoped;
 
 import model.Producto;
 
-@ManagedBean(name ="productoBean1")
-@SessionScoped
 public class ProductoBean {
 	
 	private Producto product;

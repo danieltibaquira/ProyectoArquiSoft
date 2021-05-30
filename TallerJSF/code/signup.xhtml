@@ -11,30 +11,30 @@
 		<p:panel id="pnlLogin" header="Signup" style="width: 80%">
 			<p:panelGrid id="pGridLogin" columns="1" layout="grid">
 				<p:outputLabel id="lblUsuario" value="Nombre de Usuario: " for="@next"></p:outputLabel>
-				<p:inputText id="txtUsuario" required="true" value="#{registroBean1.user.username}"
+				<p:inputText id="txtUsuario" required="true" value="#{registroBean.user.username}"
 					requiredMessage="El nombre de usuario es obligatorio" style="width: 100%"></p:inputText>
 
 				<p:outputLabel id="lblPassword" value="Contraseña: " for="@next"></p:outputLabel>
-				<p:password id="txtPassword" required="true" value="#{registroBean1.user.password}"
+				<p:password id="txtPassword" required="true" value="#{registroBean.user.password}"
 					requiredMessage="La contraseña es obligatoria" style="width: 100%"></p:password>
 					
 				<p:outputLabel id="lblNombres" value="Nombres: " for="@next"></p:outputLabel>
-				<p:inputText id="txtNombres" required="false" value="#{registroBean1.user.nombres}"
+				<p:inputText id="txtNombres" required="false" value="#{registroBean.user.nombres}"
 					requiredMessage="Los nombres son obligatorios" style="width: 100%"></p:inputText>
 					
 				<p:outputLabel id="lblApellidos" value="Apellidos: " for="@next"></p:outputLabel>
-				<p:inputText id="txtApellidos" required="false" value="#{registroBean1.user.apellidos}"
+				<p:inputText id="txtApellidos" required="false" value="#{registroBean.user.apellidos}"
 					requiredMessage="Los apellidos son obligatorios" style="width: 100%"></p:inputText>
 				
 				<p:outputLabel id="lblCorreo" value="Correo: " for="@next"></p:outputLabel>
-				<p:inputText id="txtCorreo" required="false" value="#{registroBean1.user.correo}"
+				<p:inputText id="txtCorreo" required="false" value="#{registroBean.user.correo}"
 					requiredMessage="El correo es obligatorio" style="width: 100%"></p:inputText>
 
 				<p:commandButton id="btnEntrar" value="Registrar" outcome="/user"
 					update="messages, pGridLogin" style="width: 100%"
-					action="#{registroBean1.registrarUsuario()}"
+					action="#{registroBean.registrarUsuario()}"
 					></p:commandButton>
-				<p:button value="Ir a ingreso" outcome="validar" style="width: 100%"/>
+				<p:button value="Ir a ingreso" outcome="signin" style="width: 100%"/>
 			</p:panelGrid>
 		</p:panel>
 	</h:form>
