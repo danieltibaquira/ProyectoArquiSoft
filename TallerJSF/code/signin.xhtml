@@ -3,26 +3,27 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"> <h:head></h:head> 
-	
-	<h:body>
+	xmlns:p="http://primefaces.org/ui"> <h:head></h:head> <h:body>
 	<h:form id="formSignin">
 		<p:growl id="messages"></p:growl>
 		<p:panel id="pnlSignin" header="Signin" style="width: 80%">
 			<p:panelGrid id="pGridLogin" columns="1" layout="grid">
-				<p:outputLabel id="lblUsuario" value="Nombre de Usuario: " for="@next"></p:outputLabel>
-				<p:inputText id="txtUsuario" required="true" value="#{registroBean.user.username}"
-					requiredMessage="El nombre de usuario es obligatorio" style="width: 100%"></p:inputText>
+				<p:outputLabel id="lblUsuario" value="Nombre de Usuario: "
+					for="@next"></p:outputLabel>
+				<p:inputText id="txtUsuario" required="true"
+					value="#{registroBean.user.username}"
+					requiredMessage="El nombre de usuario es obligatorio"
+					style="width: 100%"></p:inputText>
 
 				<p:outputLabel id="lblPassword" value="Contraseña: " for="@next"></p:outputLabel>
-				<p:password id="txtPassword" required="true" value="#{registroBean.user.password}"
+				<p:password id="txtPassword" required="true"
+					value="#{registroBean.user.password}"
 					requiredMessage="La contraseña es obligatoria" style="width: 100%"></p:password>
 
 				<p:commandButton id="btnEntrar" value="Entrar" outcome="/user"
 					update="messages, pGridLogin" style="width: 100%"
-					action="#{registroBean.validarUsuario()}"
-					></p:commandButton>
-				<p:button value="Ir a registro" outcome="signup" style="width: 100%"/>
+					action="#{registroBean.validarUsuario()}"></p:commandButton>
+				<p:button value="Ir a registro" outcome="signup" style="width: 100%" />
 			</p:panelGrid>
 		</p:panel>
 	</h:form>

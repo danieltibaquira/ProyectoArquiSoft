@@ -11,8 +11,33 @@ body {
 	align-items: center;
 	padding: 5px;
 }
-.userEmail{
-	color: white;
+
+
+body .ui-button{
+	background: #006491;
+	border: none;
+	border-radius:0px;
+}
+
+body .ui-button.ui-button-text-icon-right .ui-button-text{
+	padding: 0.5rem 1rem;
+	font-size: medium;
+	text-decoration: none;
+}
+
+body .ui-button.ui-state-hover{
+	background: #006491;
+	background-color: #006491;
+}
+
+body .ui-button.ui-state-focus{
+	background: #006491;
+	background-color: #006491;
+	box-shadow: 0 0 0 0;
+}
+body .ui-button.ui-state-active{
+	background: #006491;
+	background-color: #006491;
 }
 .titulo{
 	flex: 1;
@@ -55,15 +80,7 @@ body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-}
-
-.comprarButton{
-	background-color: #5E8F32;
-	margin: 5px;
-	color: white;
-	border-radius: 4px;
-	border: none;
-	padding: 5px;
+	margin-top: 6px;
 }
 
 .productList{

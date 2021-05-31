@@ -44,6 +44,7 @@
 			<from-action>#{registroBean.validarUsuario()}</from-action>
 	        <from-outcome>Exito</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -53,6 +54,7 @@
 			<from-action>#{registroBean.registrarUsuario()}</from-action>
 	        <from-outcome>Exito</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 </faces-config>

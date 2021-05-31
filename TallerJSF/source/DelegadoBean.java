@@ -1,7 +1,11 @@
 //import javax.annotation.ManagedBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
+import java.io.IOException;
 import java.util.List;
 
 import logicaInterfaz.LogicaUsuariosRemote;
@@ -56,6 +60,12 @@ public class DelegadoBean {
 		servicioUsuario.addUsuario(user);
 		return user;
 		//}
+	}
+	
+	public void cerrarSesion() throws IOException {
+		userFound = null;
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 	}
 	
 	public boolean userExist(String userName) {
