@@ -1,7 +1,3 @@
-//import javax.annotation.ManagedBean;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import java.util.List;
 
 import logicaInterfaz.LogicaUsuariosRemote;
@@ -9,9 +5,7 @@ import logicaInterfaz.logicaProductosRemote;
 import model.Producto;
 import model.Usuario;
 
-@ManagedBean(eager = true)
-@SessionScoped
-public class DelegadoBean {
+public class DProductoBean {
 	ServiceLocator sl = new ServiceLocator();
 	LogicaUsuariosRemote servicioUsuario = sl.getServicio("usuario");
 	logicaProductosRemote serviciosProducto = sl.getServicioProducto("producto");
@@ -25,7 +19,7 @@ public class DelegadoBean {
 	public void setUserFound(Usuario userFound) {
 		this.userFound = userFound;
 	}
-	public DelegadoBean() {
+	public DProductoBean() {
 		super();
 		//userFound=new Usuario();
 	}
@@ -79,9 +73,18 @@ public class DelegadoBean {
 		return null;
 	}
 	
+	public boolean deleteProduct(int id) {
+		return serviciosProducto.deleteProducto(id);
+	}
+	
 	public Producto createProduct(Producto product) {
 		serviciosProducto.addProducto(product);
 		return product;
+	}
+	
+	public Producto updateProduct(Producto product) {
+		return serviciosProducto.editProducto(product);
+		//return (product);
 	}
 	
 	public List<Producto> buscarProductos() {
@@ -89,5 +92,4 @@ public class DelegadoBean {
 		System.out.println(serviciosProducto.getAllProductos().size());
 		return serviciosProducto.getAllProductos();
 	}
-	
 }

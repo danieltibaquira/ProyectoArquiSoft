@@ -43,6 +43,33 @@ public class ServiciosProducto implements ServiciosProductoRemote {
 			return null;
 		}
 	}
+	
+	@Override
+	public Producto editProducto(Producto product) {
+		try {
+			Producto nProduct = entityManager.find(Producto.class, product.getIdProducto());
+			if (nProduct == null) {
+				System.out.println("No hay producto");
+				return product;
+			} else {
+				System.out.println("Preparando Query ");
+				String consulta = "UPDATE Producto SET nombre_producto=:nombre_producto, precio=:precio, descripcion=:descripcion, Pedido_id_pedido=NULL, Promocion_id_promocion=NULL WHERE id_producto=:id_producto";
+				TypedQuery<Producto> query = entityManager.createQuery(consulta, Producto.class);
+				System.out.println("Query creado ");
+				query.setParameter("id_producto", product.getIdProducto());
+				query.setParameter("nombre_producto", product.getNombreProducto());
+				query.setParameter("precio", product.getPrecio());
+				query.setParameter("descripcion", product.getDescripcion());
+				System.out.println("Creados los parametros");
+				query.executeUpdate();
+				System.out.println("Ejecutado el query");
+				return product;
+			}
+		} catch (Exception e) {
+			System.out.println("error");
+			return null;
+		}
+	}
 
 	@Override
 	public boolean deleteProducto(Integer id) {
@@ -70,7 +97,7 @@ public class ServiciosProducto implements ServiciosProductoRemote {
 	public Producto searchProducto(Producto producto) {
 		String consulta = "SELECT u FROM Producto u WHERE u.nombre=:nombre";
 		TypedQuery<Producto> query = entityManager.createQuery(consulta, Producto.class);
-		query.setParameter("nombre", producto.getNombre());
+		query.setParameter("nombre", producto.getNombreProducto());
 		query.setMaxResults(1);
 		List<Producto> resultList = query.getResultList();
 

@@ -31,6 +31,14 @@ public class logicaProductos implements logicaProductosRemote {
 		Producto productDB = servicio.addProducto(product);
 		return productDB;
 	}
+	
+	@Override
+	public Producto editProducto(Producto product) {
+		ServiceLocator sl = new ServiceLocator();
+		ServiciosProductoRemote servicio = sl.getServicioProducto("producto");
+		Producto productDB = servicio.editProducto(product);
+		return productDB;
+	}
 
 	@Override
 	public boolean deleteProducto(Integer id) {
