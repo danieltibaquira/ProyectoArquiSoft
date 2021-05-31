@@ -18,11 +18,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="/home/juseanto/Desktop/ProyectoArqui/jboss-client.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -36,5 +31,22 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/daniel/Software/wildfly-17.0.0.Final/bin/client/jboss-client.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/daniel/Software/wildfly-17.0.0.Final/jboss-modules.jar">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ProyectoEntidades">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ProyectoServiciosDatosClient"/>
+	<classpathentry kind="src" path="/ProyectoNegociosClient"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
