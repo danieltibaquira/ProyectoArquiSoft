@@ -1,4 +1,3 @@
-//import javax.annotation.ManagedBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -6,8 +5,7 @@ import java.util.List;
 
 import logicaInterfaz.LogicaUsuariosRemote;
 import logicaInterfaz.logicaProductosRemote;
-import model.Producto;
-import model.Usuario;
+import model.*;
 
 @ManagedBean(eager = true)
 @SessionScoped
