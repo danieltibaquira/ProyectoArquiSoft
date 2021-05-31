@@ -32,9 +32,9 @@ public class DelegadoBean {
 			System.out.println("usuario vacio");
 		}else {
 			System.out.println("usuario lleno");
-			System.out.println(userFound.getApellidos());
+			System.out.println(userFound.getApellidoUsuario());
 		}
-		userFound = servicioUsuario.validar(user.getUsername(), user.getPassword());
+		userFound = servicioUsuario.validar(user.getUsername(), user.getContrasena());
 		if(userFound != null) { 
 			return userFound;
 		}else {
