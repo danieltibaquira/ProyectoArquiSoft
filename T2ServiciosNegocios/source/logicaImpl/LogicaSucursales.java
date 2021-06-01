@@ -57,10 +57,21 @@ public class LogicaSucursales implements LogicaSucursalesRemote {
 
 	@Override
 	public Sucursal updateSucursal(Sucursal sucursal) {
+		System.out.println("Interesting 2!!!!!!!!");
+		System.out.println("Interesting 2!!!!!!!!");
+		System.out.println("Interesting 2!!!!!!!!");
+		ServiceLocator sl = new ServiceLocator();
+		ServiciosSucursalRemote servicio = sl.getServicioSucursal("sucursal");
+		Sucursal sucursalDB = servicio.updateSucursal(sucursal);
+		return sucursalDB;
+	}
+
+	/*@Override
+	public Sucursal updateSucursal2(String nombre, String password, String direccion, String telefono) {
 		ServiceLocator sl = new ServiceLocator();
 		ServiciosSucursalRemote servicio = sl.getServicioSucursal("sucursal");
 		Sucursal sucursalDB = servicio.searchSucursal(sucursal);
 		return sucursalDB;
-	}
+	}*/
 
 }

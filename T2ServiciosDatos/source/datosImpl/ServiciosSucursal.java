@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -82,6 +83,7 @@ public class ServiciosSucursal implements ServiciosSucursalRemote {
 
 	@Override
 	public Sucursal updateSucursal(Sucursal sucursal) {
+		System.out.println("OMG llego a la BD");
 		try {
 			Sucursal nSucursal = entityManager.find(Sucursal.class, sucursal.getIdSucursal());
 			if (nSucursal == null) {
@@ -89,9 +91,12 @@ public class ServiciosSucursal implements ServiciosSucursalRemote {
 				return sucursal;
 			} else {
 				System.out.println("Preparando Query ");
-				String consulta = "UPDATE Sucursal SET contrasena_sucursal=:contrasena_sucursal, direccion_sucursal=:direccion_sucursal, nombre_sucursal=:nombre_sucursal, telefono=telefono WHERE id_sucursal=:id_sucursal";
-				TypedQuery<Sucursal> query = entityManager.createQuery(consulta, Sucursal.class);
+				String consulta = "UPDATE Sucursal SET contrasena_sucursal=:contrasena_sucursal, direccion_sucursal=:direccion_sucursal, nombre_sucursal=:nombre_sucursal, telefono=:telefono WHERE id_sucursal=:id_sucursal";
+				System.out.println("Preparando Query 2");
+				//TypedQuery<Sucursal> query = entityManager.createQuery(consulta, Sucursal.class);
+				Query query = entityManager.createQuery(consulta);
 				System.out.println("Query creado ");
+				query.setParameter("id_sucursal", sucursal.getIdSucursal());
 				query.setParameter("contrasena_sucursal", sucursal.getContrasenaSucursal());
 				query.setParameter("direccion_sucursal", sucursal.getDireccionSucursal());
 				query.setParameter("nombre_sucursal", sucursal.getNombreSucursal());
@@ -102,7 +107,7 @@ public class ServiciosSucursal implements ServiciosSucursalRemote {
 				return sucursal;
 			}
 		} catch (Exception e) {
-			System.out.println("error");
+			System.out.println("error: " + e);
 			return null;
 		}
 	}

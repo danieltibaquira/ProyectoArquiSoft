@@ -94,11 +94,12 @@ public class SucursalBean {
 			delegado.createSucursal(this.selectedSucursal);
 			
 		}else {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sucursal Updated"));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sucursal actualizada"));
+			this.selectedSucursal.setPedidos(null);
 			delegado.updateSucursal(this.selectedSucursal);
 		}
 		PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
-		PrimeFaces.current().ajax().update("form:messages", "form:dt-products");
+		PrimeFaces.current().ajax().update("form:messages", "form:dt-sucursales");
 	}
 	
 	public void deleteSucursal() {
@@ -106,7 +107,7 @@ public class SucursalBean {
 		this.sucursales.remove(this.selectedSucursal);
 		this.selectedSucursal = null;
 		 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sucursal Removed"));
-	     PrimeFaces.current().ajax().update("form:messages", "form:dt-products");
+	     PrimeFaces.current().ajax().update("form:messages", "form:dt-sucursales");
 	}
 	
 	public String getDeleteButtonMessage() {
