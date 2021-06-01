@@ -55,4 +55,12 @@ public class LogicaSucursales implements LogicaSucursalesRemote {
 		return false;
 	}
 
+	@Override
+	public Sucursal updateSucursal(Sucursal sucursal) {
+		ServiceLocator sl = new ServiceLocator();
+		ServiciosSucursalRemote servicio = sl.getServicioSucursal("sucursal");
+		Sucursal sucursalDB = servicio.searchSucursal(sucursal);
+		return sucursalDB;
+	}
+
 }

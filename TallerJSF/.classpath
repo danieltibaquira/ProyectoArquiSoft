@@ -18,7 +18,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/wildfly-17.0.1.Final/bin/client/jboss-client.jar">
+	<classpathentry kind="lib" path="E:/wildfly-17.0.1.Final/bin/client/jboss-client.jar" sourcepath="C:/Users/johan/.m2/repository/org/wildfly/wildfly-client-all/17.0.1.Final/wildfly-client-all-17.0.1.Final-sources.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>

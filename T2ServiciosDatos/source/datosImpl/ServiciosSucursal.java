@@ -80,4 +80,31 @@ public class ServiciosSucursal implements ServiciosSucursalRemote {
 		}
 	}
 
+	@Override
+	public Sucursal updateSucursal(Sucursal sucursal) {
+		try {
+			Sucursal nSucursal = entityManager.find(Sucursal.class, sucursal.getIdSucursal());
+			if (nSucursal == null) {
+				System.out.println("No hay sucursal");
+				return sucursal;
+			} else {
+				System.out.println("Preparando Query ");
+				String consulta = "UPDATE Sucursal SET contrasena_sucursal=:contrasena_sucursal, direccion_sucursal=:direccion_sucursal, nombre_sucursal=:nombre_sucursal, telefono=telefono WHERE id_sucursal=:id_sucursal";
+				TypedQuery<Sucursal> query = entityManager.createQuery(consulta, Sucursal.class);
+				System.out.println("Query creado ");
+				query.setParameter("contrasena_sucursal", sucursal.getContrasenaSucursal());
+				query.setParameter("direccion_sucursal", sucursal.getDireccionSucursal());
+				query.setParameter("nombre_sucursal", sucursal.getNombreSucursal());
+				query.setParameter("telefono", sucursal.getTelefono());
+				System.out.println("Creados los parametros");
+				query.executeUpdate();
+				System.out.println("Ejecutado el query");
+				return sucursal;
+			}
+		} catch (Exception e) {
+			System.out.println("error");
+			return null;
+		}
+	}
+
 }

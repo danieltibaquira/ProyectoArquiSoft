@@ -37,6 +37,20 @@
 		<managed-bean-class>CarritoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dSucursalBean</managed-bean-name>
+		<managed-bean-class>DSucursalBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sucursalBean</managed-bean-name>
+		<managed-bean-class>SucursalBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+		<property-name>delegado</property-name>
+			<value>#{dSucursalBean}</value>
+		</managed-property>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>signin.xhtml</display-name>
 		<from-view-id>/signin.xhtml</from-view-id>
