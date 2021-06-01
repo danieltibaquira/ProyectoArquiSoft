@@ -11,6 +11,7 @@
       </f:metadata>
 <h:head>
 	<link rel="stylesheet" href="home.css"></link>		
+	<link rel="stylesheet" href="menuSuperior.css"></link>		
 </h:head> 
 <h:body>
 		<div id="header">
@@ -43,9 +44,9 @@
 				<div class="descProduct">#{product.descripcion}</div>
 				<div class="productBar">
 					<p style="margin:5px;">$#{product.precio}</p>
-					<p:linkButton outcome="detalleProducto" value="Comprar" style="background:#5E8F32;border-radius:5px;">
-				        <f:param name="productId" value="{product.id_producto}"/>
-				    </p:linkButton>
+					<p:commandButton type="submit" value="Agregar" action="#{carritoBean.agregarProducto()}" >
+						<f:setPropertyActionListener target="#{carritoBean.producto}" value="#{product}" />
+					</p:commandButton>
 				</div>
 			</div>
 		</div>

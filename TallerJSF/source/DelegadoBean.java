@@ -31,16 +31,15 @@ public class DelegadoBean {
 	}
 	public DelegadoBean() {
 		super();
-		//userFound=new Usuario();
 	}
 	public Usuario validateUser(Usuario user) {
 		if(userFound == null) {
 			System.out.println("usuario vacio");
 		}else {
 			System.out.println("usuario lleno");
-			System.out.println(userFound.getApellidos());
+			System.out.println(userFound.getApellidoUsuario());
 		}
-		userFound = servicioUsuario.validar(user.getUsername(), user.getPassword());
+		userFound = servicioUsuario.validar(user.getUsername(), user.getApellidoUsuario());
 		if(userFound != null) { 
 			return userFound;
 		}else {
@@ -95,6 +94,7 @@ public class DelegadoBean {
 	}
 	
 	public List<Producto> buscarProductos() {
+		System.out.println("hola");
 		return serviciosProducto.getAllProductos();
 	}
 	

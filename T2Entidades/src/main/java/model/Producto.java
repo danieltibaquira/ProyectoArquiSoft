@@ -2,36 +2,49 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 
 
 /**
- * The persistent class for the producto database table.
+ * The persistent class for the Producto database table.
  * 
  */
 @Entity
-@Table(name="Producto")
 @NamedQuery(name="Producto.findAll", query="SELECT p FROM Producto p")
 public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id_producto;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_producto")
+	private int idProducto;
 
 	private String descripcion;
 
-	private String nombre_producto;
+	@Column(name="nombre_producto")
+	private String nombreProducto;
 
-	private int precio;
+	private BigDecimal precio;
+
+	//bi-directional many-to-many association to Pedido
+	@ManyToMany(mappedBy="productos")
+	private List<Pedido> pedidos;
+
+	//bi-directional many-to-one association to Promocion
+	@ManyToOne
+	@JoinColumn(name="Promocion_id_promocion")
+	private Promocion promocion;
 
 	public Producto() {
 	}
 
 	public int getIdProducto() {
-		return this.id_producto;
+		return this.idProducto;
 	}
 
 	public void setIdProducto(int idProducto) {
-		this.id_producto = idProducto;
+		this.idProducto = idProducto;
 	}
 
 	public String getDescripcion() {
@@ -42,20 +55,36 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getNombre() {
-		return this.nombre_producto;
+	public String getNombreProducto() {
+		return this.nombreProducto;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre_producto = nombre;
+	public void setNombreProducto(String nombreProducto) {
+		this.nombreProducto = nombreProducto;
 	}
 
-	public int getPrecio() {
+	public BigDecimal getPrecio() {
 		return this.precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
+	}
+
+	public List<Pedido> getPedidos() {
+		return this.pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public Promocion getPromocion() {
+		return this.promocion;
+	}
+
+	public void setPromocion(Promocion promocion) {
+		this.promocion = promocion;
 	}
 
 }

@@ -185,6 +185,7 @@ public class ServiceLocator {
 	}
 	
 	public LogicaPedidoRemote getLogicaPedido(String servicio) {
+		System.out.println("AYUDA");
 		LogicaPedidoRemote servicios = null;
 		if(servicio.equals("pedido")){
 			servicios = getLogicaPedidoConnect();

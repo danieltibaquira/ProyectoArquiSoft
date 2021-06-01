@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 0;
+}
+#header {
+	text-align: center;
+	background-color: #006491;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 5px;
+}
+
+.authButton{
+	height: 40px;
+	color: white;
+	background-color: #006491;
+	border: none;
+}
+
+body .ui-button{
+	background: #006491;
+	border: none;
+	border-radius:0px;
+}
+
+body .ui-button.ui-button-text-icon-right .ui-button-text{
+	padding: 0.5rem 1rem;
+	font-size: medium;
+	text-decoration: none;
+}
+
+.titulo{
+	flex: 1;
+	margin: 0px;
+	color: white;
+	margin: 4px;
+}
+
+body .ui-button.ui-state-hover{
+	background: #006491;
+	background-color: #006491;
+}
+
+body .ui-button.ui-state-focus{
+	background: #006491;
+	background-color: #006491;
+	box-shadow: 0 0 0 0;
+}
+body .ui-button.ui-state-active{
+	background: #006491;
+	background-color: #006491;
+}

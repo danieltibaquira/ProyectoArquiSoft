@@ -36,6 +36,28 @@
 		<managed-bean-name>carritoBean</managed-bean-name>
 		<managed-bean-class>CarritoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dcarrito</property-name>
+			<value>#{dPedidoBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dPedidoBean</managed-bean-name>
+		<managed-bean-class>DPedidoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>pagoBean</managed-bean-name>
+		<managed-bean-class>PagoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>carritoBean</property-name>
+			<value>#{carritoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>dPedidoBean</property-name>
+			<value>#{dPedidoBean}</value>
+		</managed-property>
 	</managed-bean>
 	<navigation-rule>
 		<display-name>signin.xhtml</display-name>
@@ -46,6 +68,16 @@
 			<to-view-id>/home.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>pagar.xhtml</display-name>
+		<from-view-id>/pagar.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{pagoBean.conexionAPI()}</from-action>
+	        <from-outcome>Exito</from-outcome>
+			<to-view-id>/pagoAceptado.xhtml</to-view-id>
+		<redirect />
+	</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>signup.xhtml</display-name>

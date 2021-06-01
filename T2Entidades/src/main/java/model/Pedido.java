@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -16,10 +17,13 @@ public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_pedido")
 	private int idPedido;
 
 	private String direccion;
+
+	private int estado;
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
@@ -30,9 +34,6 @@ public class Pedido implements Serializable {
 	@Column(name="tipo_pago")
 	private int tipoPago;
 
-	@Column(name="Usuario_id_usuario")
-	private int usuario_id_usuario;
-
 	//bi-directional many-to-one association to Repartidor
 	@ManyToOne
 	@JoinColumn(name="Repartidor_id_repartidor")
@@ -42,6 +43,25 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="Sucursal_id_sucursal")
 	private Sucursal sucursal;
+
+	//bi-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="Usuario_id_usuario")
+	private Usuario usuario;
+
+	//bi-directional many-to-many association to Producto
+	
+	@ManyToMany
+	@JoinTable(
+		name="Pedido_has_Producto"
+		, joinColumns={
+			@JoinColumn(name="Producto_id_producto")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Pedido_id_pedido")
+			}
+		)
+	private List<Producto> productos;
 
 	public Pedido() {
 	}
@@ -60,6 +80,14 @@ public class Pedido implements Serializable {
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
+	}
+
+	public int getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
 	}
 
 	public Date getFecha() {
@@ -86,14 +114,6 @@ public class Pedido implements Serializable {
 		this.tipoPago = tipoPago;
 	}
 
-	public int getUsuario_id_usuario() {
-		return this.usuario_id_usuario;
-	}
-
-	public void setUsuario_id_usuario(int usuario_id_usuario) {
-		this.usuario_id_usuario = usuario_id_usuario;
-	}
-
 	public Repartidor getRepartidor() {
 		return this.repartidor;
 	}
@@ -108,6 +128,22 @@ public class Pedido implements Serializable {
 
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public List<Producto> getProductos() {
+		return this.productos;
+	}
+
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 
 }

@@ -30,14 +30,10 @@ public class ServiciosProducto implements ServiciosProductoRemote {
 
 	@Override
 	public Producto addProducto(Producto product) {
+		System.out.println("LLLLLLLLLLLUEGUE");
 		try {
-			Producto nProduct = entityManager.find(Producto.class, product.getIdProducto());
-			if (nProduct == null) {
-				entityManager.persist(product);
-				return product;
-			} else {
-				return null;
-			}
+			entityManager.persist(product);
+			return product;
 		} catch (Exception e) {
 			System.out.println("error");
 			return null;
@@ -70,7 +66,7 @@ public class ServiciosProducto implements ServiciosProductoRemote {
 	public Producto searchProducto(Producto producto) {
 		String consulta = "SELECT u FROM Producto u WHERE u.nombre=:nombre";
 		TypedQuery<Producto> query = entityManager.createQuery(consulta, Producto.class);
-		query.setParameter("nombre", producto.getNombre());
+		query.setParameter("nombre", producto.getNombreProducto());
 		query.setMaxResults(1);
 		List<Producto> resultList = query.getResultList();
 

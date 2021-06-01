@@ -13,23 +13,18 @@ import java.util.List;
 @NamedQuery(name="Repartidor.findAll", query="SELECT r FROM Repartidor r")
 public class Repartidor implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name="id_repartidor")
 	private int idRepartidor;
-
-	@Column(name="nombre_repartidor")
 	private String nombreRepartidor;
-
 	private String numero;
-
-	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="repartidor")
 	private List<Pedido> pedidos;
 
 	public Repartidor() {
 	}
 
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_repartidor")
 	public int getIdRepartidor() {
 		return this.idRepartidor;
 	}
@@ -38,6 +33,8 @@ public class Repartidor implements Serializable {
 		this.idRepartidor = idRepartidor;
 	}
 
+
+	@Column(name="nombre_repartidor")
 	public String getNombreRepartidor() {
 		return this.nombreRepartidor;
 	}
@@ -45,6 +42,7 @@ public class Repartidor implements Serializable {
 	public void setNombreRepartidor(String nombreRepartidor) {
 		this.nombreRepartidor = nombreRepartidor;
 	}
+
 
 	public String getNumero() {
 		return this.numero;
@@ -54,6 +52,9 @@ public class Repartidor implements Serializable {
 		this.numero = numero;
 	}
 
+
+	//bi-directional many-to-one association to Pedido
+	@OneToMany(mappedBy="repartidor")
 	public List<Pedido> getPedidos() {
 		return this.pedidos;
 	}

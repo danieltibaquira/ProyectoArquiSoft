@@ -2,48 +2,66 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
- * The persistent class for the usuario database table.
+ * The persistent class for the Usuario database table.
  * 
  */
 @Entity
-@Table(name="Usuario")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int id_usuario;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_usuario")
+	private int idUsuario;
 
-	private String apellido_usuario;
-
-	private String correo;
-
-	private String nombre_usuario;
+	@Column(name="apellido_usuario")
+	private String apellidoUsuario;
 
 	private String contrasena;
 
+	private String correo;
+
+	@Column(name="nombre_usuario")
+	private String nombreUsuario;
+
+	private int rol;
+
 	private String username;
+
+	//bi-directional many-to-one association to Pedido
+	@OneToMany(mappedBy="usuario")
+	private List<Pedido> pedidos;
 
 	public Usuario() {
 	}
 
 	public int getIdUsuario() {
-		return this.id_usuario;
+		return this.idUsuario;
 	}
 
 	public void setIdUsuario(int idUsuario) {
-		this.id_usuario = idUsuario;
+		this.idUsuario = idUsuario;
 	}
 
-	public String getApellidos() {
-		return this.apellido_usuario;
+	public String getApellidoUsuario() {
+		return this.apellidoUsuario;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellido_usuario = apellidos;
+	public void setApellidoUsuario(String apellidoUsuario) {
+		this.apellidoUsuario = apellidoUsuario;
+	}
+
+	public String getContrasena() {
+		return this.contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getCorreo() {
@@ -54,20 +72,20 @@ public class Usuario implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getNombres() {
-		return this.nombre_usuario;
+	public String getNombreUsuario() {
+		return this.nombreUsuario;
 	}
 
-	public void setNombres(String nombres) {
-		this.nombre_usuario = nombres;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getPassword() {
-		return this.contrasena;
+	public int getRol() {
+		return this.rol;
 	}
 
-	public void setPassword(String password) {
-		this.contrasena = password;
+	public void setRol(int rol) {
+		this.rol = rol;
 	}
 
 	public String getUsername() {
@@ -76,6 +94,28 @@ public class Usuario implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public List<Pedido> getPedidos() {
+		return this.pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public Pedido addPedido(Pedido pedido) {
+		getPedidos().add(pedido);
+		pedido.setUsuario(this);
+
+		return pedido;
+	}
+
+	public Pedido removePedido(Pedido pedido) {
+		getPedidos().remove(pedido);
+		pedido.setUsuario(null);
+
+		return pedido;
 	}
 
 }

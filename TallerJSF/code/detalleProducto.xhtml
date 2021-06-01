@@ -4,23 +4,27 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"> 
-
+<f:metadata>
+          <f:event type="preRenderView" listener="#{productBean.detalleProducto()}"/>
+     </f:metadata>
 <h:head></h:head> 
 <body> 
-	<p:panelGrid columns="2">
+ <p:panelGrid columns="2">
         <f:facet name="header">
-            <h1>Producto</h1>
+            <img  width="150" height="150" class="imgProduct" src="https://www.petitchef.es/imgupl/recipe/club-sandwich-americano--459975p722167.jpg"/>
         </f:facet>
 
-        <h:outputText value="Nombre:"/>
-        <h:outputLabel value="#{productoBean1.product.nombre}"/>
-        
-        <h:outputText value="Descripcion"/>
-        <h:outputLabel value="#{productoBean1.product.descripcion}"/>
+        <h:outputText value="Name:"/>
+        <h:outputText value="Kobe Bryant"/>
 
-        <h:outputText value="Precio"/>
-        <h:outputText value="#{productoBean1.product.precio}"/>
+        <h:outputText value="Team:"/>
+        <h:outputText value="Los Angeles Lakers"/>
+
+        <h:outputText value="Position:"/>
+        <h:outputText value="Shooting Guard"/>
+
+        <h:outputText value="Number:"/>
+        <h:outputText value="24"/>
     </p:panelGrid>
-    <p:button value="Volver" outcome="opcionesProducto" style="width: 100%"/>
 </body> 
 </html>

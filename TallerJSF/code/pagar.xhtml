@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+</h:head> 
+<body> 
+	<h:messages globalOnly="true" />
+	<h:form id="formPagar">
+		<p:growl id="messages"></p:growl>
+		<p:panel id="pnlPago" header="PSU" style="width: 80%">
+			<p:panelGrid id="pGridPago" columns="1" layout="grid">
+				<p:outputLabel id="lblNumero" value="Número de tarjeta: " for="@next"></p:outputLabel>
+				<p:inputText id="txtNumero" required="true" value="#{pagoBean.tarjeta.numero}"
+					requiredMessage="El número de tarjeta es obligatorio" style="width: 100%"></p:inputText>
+
+				<p:outputLabel id="lblCVC" value="CVC: " for="@next"></p:outputLabel>
+				<p:password id="txtCVC" required="true" value="#{pagoBean.tarjeta.CVC}"
+					requiredMessage="El CVC es obligatorio" style="width: 100%"></p:password>
+					
+				<p:outputLabel id="lblMes" value="Mes vencimiento: " for="@next"></p:outputLabel>
+				<p:inputText id="txtMes" required="false" value="#{pagoBean.tarjeta.mesVencimiento}"
+					requiredMessage="Ingrese todos los datos" style="width: 100%"></p:inputText>
+					
+				<p:outputLabel id="lblAnio" value="Año vencimiento: " for="@next"></p:outputLabel>
+				<p:inputText id="txtAnio" required="false" value="#{pagoBean.tarjeta.anioVencimiento}"
+					requiredMessage="Ingrese todos los datos" style="width: 100%"></p:inputText>
+
+				<p:commandButton id="btnEntrar" value="Pagar" outcome="home"
+					update="messages, pGridPago" style="width: 50%"
+					action="#{pagoBean.conexionAPI()}"
+					></p:commandButton>
+				<p:button value="Cancelar" outcome="carrito" style="width: 50%"/>
+			</p:panelGrid>
+		</p:panel>
+	</h:form>
+</body> 
+</html>

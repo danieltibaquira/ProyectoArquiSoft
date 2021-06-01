@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -6,7 +7,7 @@ import javax.faces.context.FacesContext;
 
 import model.Producto;
 
-public class ProductBean {
+public class ProductBean implements Serializable {
 
 	private List<Producto> productos;
 	private DelegadoBean delegadoBean;
@@ -60,7 +61,7 @@ public class ProductBean {
 		this.arrayProdutos = arrayProdutos;
 	}
 
-	public String detalleUsuario() {
+	public String detalleProducto() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
 		id = params.get("productId");
@@ -71,8 +72,8 @@ public class ProductBean {
 	public String cargarProductos() {
 		System.out.println("cargando productos");
 		productos = delegadoBean.buscarProductos();
-		System.out.println(productos.size());
-		System.out.println(productos.get(0).getNombre());
+		//System.out.println(productos.size());
+		//System.out.println(productos.get(0).getNombreProducto());
 		return "<h:button  outcome=\"signup\" class=\"authButton\" type=\"button\" value=\"Registrarse\" icon=\"pi pi-check\" ></h:button>";
 	}
 
