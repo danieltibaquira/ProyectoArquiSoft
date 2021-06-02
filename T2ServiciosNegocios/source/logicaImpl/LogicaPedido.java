@@ -9,6 +9,7 @@ import datosInterface.ServicosPedidoRemote;
 import logicaInterfaz.LogicaPedidoRemote;
 import model.Pedido;
 import model.Sucursal;
+import model.Usuario;
 
 /**
  * Session Bean implementation class LogicaPedido
@@ -44,6 +45,14 @@ public class LogicaPedido implements LogicaPedidoRemote {
 		ServiceLocator sl = new ServiceLocator();
 		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
 		List<Pedido> pedidos = servicio.getAllPedidos();
+		return pedidos;
+	}
+
+	@Override
+	public List<Pedido> getPedidosUsuario(Usuario usuario) {
+		ServiceLocator sl = new ServiceLocator();
+		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
+		List<Pedido> pedidos = servicio.getPedidosUsuario(usuario);
 		return pedidos;
 	}
 

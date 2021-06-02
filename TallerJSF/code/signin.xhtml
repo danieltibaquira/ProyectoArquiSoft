@@ -17,7 +17,7 @@
 
 				<p:outputLabel id="lblPassword" value="Contraseña: " for="@next"></p:outputLabel>
 				<p:password id="txtPassword" required="true"
-					value="#{registroBean.user.password}"
+					value="#{registroBean.user.contrasena}"
 					requiredMessage="La contraseña es obligatoria" style="width: 100%"></p:password>
 
 				<p:commandButton id="btnEntrar" value="Entrar" outcome="/user"

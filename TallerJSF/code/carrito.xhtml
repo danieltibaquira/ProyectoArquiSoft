@@ -20,7 +20,7 @@
 			        <p:growl id="messages" showDetail="true"/>
 					
 			        <p:menuButton value="#{delegadoBean.userFound.correo}" rendered="#{delegadoBean.userFound ne null}">
-			            <p:menuitem value="Pedidos" action="#{menuView.update}" update="messages" icon="pi pi-bell"/>
+			            <p:menuitem value="Pedidos" outcome="misPedidos" update="messages" icon="pi pi-bell"/>
 			            <p:menuitem value="Mi cuenta" action="#{menuView.delete}" update="messages" icon="pi pi-user"/>
 			            <p:divider/>
 			            <p:menuitem value="Salir" action="#{delegadoBean.cerrarSesion()}"  icon="pi pi-external-link"/>
@@ -31,8 +31,6 @@
 		</div>
 		
 	<p:dataView var="product" value="#{carritoBean.pedido.productos}" rows="12">
-
-
             <p:dataViewListItem>
                 <div class="product-list-item">
                     <img  width="130" height="130" class="imgProduct" src="https://www.petitchef.es/imgupl/recipe/club-sandwich-americano--459975p722167.jpg"/>
@@ -62,11 +60,11 @@
         <div class="pagar">
         	
         	<h:outputText value="Total: $#{carritoBean.pedido.precioTotal}"></h:outputText>
-           <p:button 
+           <p:commandButton
         	value="Pagar"
         	icon="pi pi-sign-in"
         	style="font-size: x-large;"
-        	outcome="pagar"
+        	action="#{carritoBean.confirmarPedido()}"
         	/>   
         </div>
 

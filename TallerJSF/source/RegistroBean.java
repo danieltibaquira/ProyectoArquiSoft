@@ -30,6 +30,7 @@ public class RegistroBean {
 	}
 
 	public String validarUsuario() {
+		System.out.println("Validando usuario");
 		user = delegado.validateUser(user);
 		if(user != null) {
 			return "Exito";

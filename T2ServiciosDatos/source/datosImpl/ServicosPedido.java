@@ -2,6 +2,7 @@ package datosImpl;
 
 import model.Pedido;
 import model.Sucursal;
+import model.Usuario;
 import datosInterface.ServicosPedidoRemote;
 
 import java.util.List;
@@ -62,6 +63,23 @@ public class ServicosPedido implements ServicosPedidoRemote {
 	public List<Pedido> getAllPedidos() {
 		List<Pedido> pedidos = entityManager.createQuery("SELECT p FROM Pedido p", Pedido.class).getResultList();
 		return pedidos;
+	}
+
+	@Override
+	public List<Pedido> getPedidosUsuario(Usuario usuario) {
+		System.out.println("ENTRE");
+		String consulta = "SELECT u FROM Pedido u WHERE u.usuario=:usuario";
+		TypedQuery<Pedido> query = entityManager.createQuery(consulta, Pedido.class);
+		query.setParameter("usuario", usuario);
+		List<Pedido> resultList = query.getResultList();
+		if (resultList.size() == 0) {
+			System.out.println("NO hay resultados");
+			return null;
+		} else {
+			System.out.println("hay resultados");
+			System.out.println(resultList.get(0).getIdPedido());
+			return resultList;
+		}
 	}
 
 }

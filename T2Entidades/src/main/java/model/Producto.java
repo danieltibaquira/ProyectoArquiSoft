@@ -22,12 +22,16 @@ public class Producto implements Serializable {
 
 	private String descripcion;
 
+	@Column(name="foto_producto")
+	private String fotoProducto;
+
 	@Column(name="nombre_producto")
 	private String nombreProducto;
 
 	private BigDecimal precio;
 
 	//bi-directional many-to-many association to Pedido
+	//bi-directional many-to-many association to Producto
 	@ManyToMany(mappedBy="productos")
 	private List<Pedido> pedidos;
 
@@ -53,6 +57,14 @@ public class Producto implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getFotoProducto() {
+		return this.fotoProducto;
+	}
+
+	public void setFotoProducto(String fotoProducto) {
+		this.fotoProducto = fotoProducto;
 	}
 
 	public String getNombreProducto() {

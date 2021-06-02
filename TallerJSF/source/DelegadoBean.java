@@ -6,10 +6,12 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import logicaInterfaz.LogicaUsuariosRemote;
 import logicaInterfaz.logicaProductosRemote;
+import model.Pedido;
 import model.Producto;
 import model.Usuario;
 
@@ -33,14 +35,10 @@ public class DelegadoBean {
 		super();
 	}
 	public Usuario validateUser(Usuario user) {
-		if(userFound == null) {
-			System.out.println("usuario vacio");
-		}else {
-			System.out.println("usuario lleno");
-			System.out.println(userFound.getApellidoUsuario());
-		}
-		userFound = servicioUsuario.validar(user.getUsername(), user.getApellidoUsuario());
+		userFound = servicioUsuario.validar(user.getUsername(), user.getContrasena());
 		if(userFound != null) { 
+			userFound.setPedidos(null);
+			//userFound.setPedidos(new ArrayList<Pedido>());
 			return userFound;
 		}else {
 			if(!userExist(user.getUsername())) {
@@ -51,10 +49,6 @@ public class DelegadoBean {
 	}
 	
 	public Usuario createUser(Usuario user) {
-		/*if(!userExist(user.getUsername())) {
-			System.out.print("Usuario ya existe");
-			return null;
-		}else {*/
 		userFound = user;
 		servicioUsuario.addUsuario(user);
 		return user;

@@ -17,7 +17,7 @@ public class CarritoBean implements Serializable {
 	private Producto producto;
 	private DPedidoBean dcarrito;
 	private Pedido pedido;
-	
+	private DelegadoBean delegado;
 	public CarritoBean() {
 		super();
 	}
@@ -47,9 +47,24 @@ public class CarritoBean implements Serializable {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
+	
 
-	public void confirmarPedido() {
-		
+	public DelegadoBean getDelegado() {
+		return delegado;
+	}
+
+	public void setDelegado(DelegadoBean delegado) {
+		this.delegado = delegado;
+	}
+
+	public String confirmarPedido() {
+		if(delegado.getUserFound()==null) {
+			return "Autenticarse";
+		}else {;
+			pedido.setUsuario(delegado.getUserFound());
+			//delegado.getUserFound().addPedido(pedido);
+			return "Pagar";
+		}
 	}
 	
 	public void vaciarCarrito() {
@@ -57,7 +72,6 @@ public class CarritoBean implements Serializable {
 	}
 	
 	public void eliminarProducto() throws IOException {
-		System.out.println("Elimando producto");
 		pedido.getProductos().remove(producto);
 		pedido.setPrecioTotal(pedido.getPrecioTotal().subtract(producto.getPrecio()));
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
@@ -70,13 +84,10 @@ public class CarritoBean implements Serializable {
 			pedido = new Pedido();
 			pedido.setProductos(new ArrayList<Producto>());
 			pedido.setPrecioTotal(new BigDecimal(0));
-
 		}
 		producto.setPedidos(new ArrayList<Pedido>());
 		producto.getPedidos().add(pedido);
 		pedido.getProductos().add(producto);
-		//pedido.setUsuario(null);
-		System.out.println(producto.getIdProducto());
 		pedido.setPrecioTotal(pedido.getPrecioTotal().add(producto.getPrecio()));
 	}
 }

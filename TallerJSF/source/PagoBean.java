@@ -2,6 +2,7 @@ import API.RestClient;
 import DTOs.VerificarTarjeta;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -53,7 +54,7 @@ public class PagoBean implements Serializable {
 
 	public String conexionAPI() {
 		RestClient client = new RestClient();
-		tarjeta.setValorCompra(0);
+		tarjeta.setValorCompra( carritoBean.getPedido().getPrecioTotal().floatValue());
 		Response response = client.comprar(tarjeta);
 		respuesta = response.readEntity(String.class);
 		if(respuesta.equals("\"Compra rechazada\"")) {
@@ -61,10 +62,9 @@ public class PagoBean implements Serializable {
 			context.addMessage(null, new FacesMessage("La transacción ha sido rechazada."));
 		}else {
 			//llevar pedido a la bd
-			//System.out.println(carritoBean.getPedido().getProductos2().get(0).getNombreProducto());
 			dPedidoBean.enviarPedido(carritoBean.getPedido());
 			
-			//carritoBean.vaciarCarrito();
+			carritoBean.vaciarCarrito();
 			return "Exito";
 		}
 		return "";

@@ -15,15 +15,15 @@
 					requiredMessage="El nombre de usuario es obligatorio" style="width: 100%"></p:inputText>
 
 				<p:outputLabel id="lblPassword" value="Contraseña: " for="@next"></p:outputLabel>
-				<p:password id="txtPassword" required="true" value="#{registroBean.user.password}"
+				<p:password id="txtPassword" required="true" value="#{registroBean.user.contrasena}"
 					requiredMessage="La contraseña es obligatoria" style="width: 100%"></p:password>
 					
 				<p:outputLabel id="lblNombres" value="Nombres: " for="@next"></p:outputLabel>
-				<p:inputText id="txtNombres" required="false" value="#{registroBean.user.nombres}"
+				<p:inputText id="txtNombres" required="false" value="#{registroBean.user.nombreUsuario}"
 					requiredMessage="Los nombres son obligatorios" style="width: 100%"></p:inputText>
 					
 				<p:outputLabel id="lblApellidos" value="Apellidos: " for="@next"></p:outputLabel>
-				<p:inputText id="txtApellidos" required="false" value="#{registroBean.user.apellidos}"
+				<p:inputText id="txtApellidos" required="false" value="#{registroBean.user.apellidoUsuario}"
 					requiredMessage="Los apellidos son obligatorios" style="width: 100%"></p:inputText>
 				
 				<p:outputLabel id="lblCorreo" value="Correo: " for="@next"></p:outputLabel>

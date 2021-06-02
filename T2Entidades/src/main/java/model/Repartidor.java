@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -14,9 +15,14 @@ import java.util.List;
 public class Repartidor implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idRepartidor;
+	private String fotoRepartidor;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	private String nombreRepartidor;
 	private String numero;
+	private String password;
 	private List<Pedido> pedidos;
+	private Sucursal sucursal;
 
 	public Repartidor() {
 	}
@@ -31,6 +37,34 @@ public class Repartidor implements Serializable {
 
 	public void setIdRepartidor(int idRepartidor) {
 		this.idRepartidor = idRepartidor;
+	}
+
+
+	@Column(name="foto_repartidor")
+	public String getFotoRepartidor() {
+		return this.fotoRepartidor;
+	}
+
+	public void setFotoRepartidor(String fotoRepartidor) {
+		this.fotoRepartidor = fotoRepartidor;
+	}
+
+
+	public BigDecimal getLatitude() {
+		return this.latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public BigDecimal getLongitude() {
+		return this.longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
 	}
 
 
@@ -50,6 +84,15 @@ public class Repartidor implements Serializable {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
@@ -75,6 +118,18 @@ public class Repartidor implements Serializable {
 		pedido.setRepartidor(null);
 
 		return pedido;
+	}
+
+
+	//bi-directional many-to-one association to Sucursal
+	@ManyToOne
+	@JoinColumn(name="Sucursal_id_sucursal")
+	public Sucursal getSucursal() {
+		return this.sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
 	}
 
 }

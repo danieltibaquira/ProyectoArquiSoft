@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.TypedQuery;
 
 import datosInterface.ServiciosUsuarioRemote;
+import model.Pedido;
 import model.Usuario;
 
 /**
@@ -71,7 +72,9 @@ public class ServiciosUsuario implements ServiciosUsuarioRemote {
 		query.setMaxResults(1);
 		List<Usuario> resultList = query.getResultList();
 
+		
 		if (resultList.size() == 0) {
+
 			return null;
 		} else {
 			return resultList.get(0);

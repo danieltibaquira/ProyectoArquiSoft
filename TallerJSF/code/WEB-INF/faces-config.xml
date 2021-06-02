@@ -40,11 +40,19 @@
 			<property-name>dcarrito</property-name>
 			<value>#{dPedidoBean}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>delegado</property-name>
+			<value>#{delegadoBean}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>dPedidoBean</managed-bean-name>
 		<managed-bean-class>DPedidoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>delegado</property-name>
+			<value>#{delegadoBean}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>pagoBean</managed-bean-name>
@@ -86,6 +94,22 @@
 			<from-action>#{registroBean.registrarUsuario()}</from-action>
 	        <from-outcome>Exito</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>carrito.xhtml</display-name>
+		<from-view-id>/carrito.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{carritoBean.confirmarPedido()}</from-action>
+	        <from-outcome>Autenticarse</from-outcome>
+			<to-view-id>/signin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{carritoBean.confirmarPedido()}</from-action>
+	        <from-outcome>Pagar</from-outcome>
+			<to-view-id>/pagar.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

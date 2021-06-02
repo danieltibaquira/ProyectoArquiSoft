@@ -2,10 +2,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
+<f:metadata>
+          <f:event type="preRenderView" listener="#{dPedidoBean.getPedidosUsuario()}"/>
+      </f:metadata>
+<h:head>
+	<link rel="stylesheet" href="menuSuperior.css"></link>
+	<link rel="stylesheet" href="misPedidos.css"></link>
+</h:head> 
 <body> 
-
+		<div id="header">
+			<h1 class="titulo">Mis pedidos</h1>
+			<h:button  outcome="signup" class="authButton" type="button" value="Registrarse" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			<h:button outcome="signin" class="authButton" type="button" value="Ingresar" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			
+			<div class="card">
+			    <h:form>
+			        <p:growl id="messages" showDetail="true"/>
+					
+			        <p:menuButton value="#{delegadoBean.userFound.correo}" rendered="#{delegadoBean.userFound ne null}">
+			            <p:menuitem value="Pedidos" outcome="misPedidos" update="messages" icon="pi pi-bell"/>
+			            <p:menuitem value="Mi cuenta" action="#{menuView.delete}" update="messages" icon="pi pi-user"/>
+			            <p:divider/>
+			            <p:menuitem value="Salir" action="#{delegadoBean.cerrarSesion()}"  icon="pi pi-external-link"/>
+			        </p:menuButton>
+			    </h:form>
+			</div>
+			<p:commandButton action="carrito?faces-redirect=true"  icon="pi pi-shopping-cart" style="color:white;background-color: #006491; border-style: none;"/>
+		</div>
+	
+	
+		<p:dataView var="pedido" value="#{dPedidoBean.pedidos}" rows="12"   class="lista">
+            <p:dataViewListItem >
+                <div class="pedido-list-item">
+                    <img  width="150" height="150" class="imgPedido" src="https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2016/08/09165704/new-subway%C2%AE-retaurants-logo-5-HR.jpg"/>
+                    
+                    <div class="pedido-list-detail">
+                        <div class="pedido-id text">#{pedido.idPedido}</div>
+                        <div class="pedido-hora text">#{pedido.fecha}</div>
+                        <div class="text">Estado #{pedido.estado}</div>
+                       <div class="text">Sucursal: Nueva granada</div>
+                    </div>
+                </div>
+            </p:dataViewListItem>
+        </p:dataView>
+		
+		
 </body> 
 </html>
