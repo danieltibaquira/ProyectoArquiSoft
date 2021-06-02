@@ -87,18 +87,32 @@ public class SucursalBean {
 		this.selectedSucursal = new Sucursal();
 	}
 	
+	public void hideForm() {
+		this.selectedSucursal = new Sucursal();
+		PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
+		PrimeFaces.current().ajax().update("form:messages", "form:dt-sucursales");
+	}
+	
+	public void hideFormEdit() {
+		this.selectedSucursal = new Sucursal();
+		PrimeFaces.current().executeScript("PF('editSucursalDialog').hide()");
+		PrimeFaces.current().ajax().update("form:messages", "form:dt-sucursales");
+	}
+	
 	public void saveSucursal() {
 		if(this.selectedSucursal.getIdSucursal() == 0) {
 			this.sucursales.add(this.selectedSucursal);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sucursal agregada correctamente"));
 			delegado.createSucursal(this.selectedSucursal);
-			
 		}else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sucursal actualizada"));
 			this.selectedSucursal.setPedidos(null);
+			this.selectedSucursal.setRepartidors(null);
 			delegado.updateSucursal(this.selectedSucursal);
 		}
+		this.selectedSucursal = new Sucursal();
 		PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
+		PrimeFaces.current().executeScript("PF('editSucursalDialog').hide()");
 		PrimeFaces.current().ajax().update("form:messages", "form:dt-sucursales");
 	}
 	
@@ -123,9 +137,6 @@ public class SucursalBean {
     }
 	
 	public void deleteSelectedSucursales() {
-		System.out.println("***************************************");
-		System.out.println("Eliminando Mas de una sucursal!!!!!!");
-		System.out.println("***************************************");
 		for(Sucursal s: selectedsucursales) {
 			delegado.deleteSucursal(s.getIdSucursal());
 		}
@@ -133,6 +144,6 @@ public class SucursalBean {
         this.selectedsucursales = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Products Removed"));
         PrimeFaces.current().ajax().update("form:messages", "form:dt-sucursales");
-        PrimeFaces.current().executeScript("PF('dtProducts').clearFilters()");
+        PrimeFaces.current().executeScript("PF('dtSucursales').clearFilters()");
     }
 }
