@@ -31,7 +31,16 @@ public class Producto implements Serializable {
 	private BigDecimal precio;
 
 	//bi-directional many-to-many association to Pedido
-	@ManyToMany(mappedBy="productos")
+	@ManyToMany
+	@JoinTable(
+		name="Pedido_has_Producto"
+		, joinColumns={
+			@JoinColumn(name="Producto_id_producto")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Pedido_id_pedido")
+			}
+		)
 	private List<Pedido> pedidos;
 
 	//bi-directional many-to-one association to Promocion

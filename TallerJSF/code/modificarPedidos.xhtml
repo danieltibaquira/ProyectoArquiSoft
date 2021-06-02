@@ -90,16 +90,23 @@
 					<h:outputText value="Orden creada" style="font-weight: 700"
 						class="infoDialog" rendered="#{pedido.estado eq 0}">
 					</h:outputText>
-
 					<h:outputText value="Orden recibida" style="font-weight: 700"
 						class="infoDialog" rendered="#{pedido.estado eq 1}">
 					</h:outputText>
 					<h:outputText value="Orden en preparacion" style="font-weight: 700"
 						class="infoDialog" rendered="#{pedido.estado eq 2}">
 					</h:outputText>
-					<h:outputText value="Orden lista para entregar"
+					<h:outputText value="Orden en camino"
 						style="font-weight: 700" class="infoDialog"
 						rendered="#{pedido.estado eq 3}">
+					</h:outputText>
+					<h:outputText value="Orden finalizada" style="font-weight: 700"
+						class="infoDialog"
+						rendered="#{pedido.estado eq 4}">
+					</h:outputText>
+					<h:outputText value="Orden lista para recoger"
+						style="font-weight: 700" class="infoDialog"
+						rendered="#{pedido.estado eq 5}">
 					</h:outputText>
 				</p:column>
 				<p:column exportable="false">
@@ -132,32 +139,42 @@
 						<div style="text-align: center">
 							<h3 class="titulo">Estado Actual</h3>
 							<h:outputText value="Orden creada" style="font-weight: 700"
-								class="infoDialog" rendered="#{actualizarPedidoBean.selectedPedido.estado eq 0}">
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 0}">
 							</h:outputText>
-
 							<h:outputText value="Orden recibida" style="font-weight: 700"
-								class="infoDialog" rendered="#{actualizarPedidoBean.selectedPedido.estado eq 1}">
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 1}">
 							</h:outputText>
 							<h:outputText value="Orden en preparacion"
 								style="font-weight: 700" class="infoDialog"
 								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 2}">
 							</h:outputText>
-							<h:outputText value="Orden lista para entregar"
-								style="font-weight: 700" class="infoDialog"
+							<h:outputText value="Orden en camino" style="font-weight: 700"
+								class="infoDialog"
 								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 3}">
+							</h:outputText>
+							<h:outputText value="Orden finalizada" style="font-weight: 700"
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 4}">
+							</h:outputText>
+							<h:outputText value="Orden lista para recoger"
+								style="font-weight: 700" class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 5}">
 							</h:outputText>
 						</div>
 						<div class="p-field">
 							<h3 class="titulo">Nuevo estado</h3>
 							<p:selectOneRadio id="console"
 								value="#{actualizarPedidoBean.radioButtonValue}"
-								unselectable="true" layout="grid" columns="2"
+								unselectable="true" layout="grid" columns="3"
 								styleClass="grid-radio">
 								<f:selectItem itemLabel="Orden creada" itemValue="0" />
 								<f:selectItem itemLabel="Orden recibida" itemValue="1" />
 								<f:selectItem itemLabel="Orden en preparacion" itemValue="2" />
-								<f:selectItem itemLabel="Orden lista para entregar"
-									itemValue="3" />
+								<f:selectItem itemLabel="Orden en camino" itemValue="3" />
+								<f:selectItem itemLabel="Orden finalizada" itemValue="4" />
+								<f:selectItem itemLabel="Orden lista para recoger" itemValue="5" />
 							</p:selectOneRadio>
 						</div>
 					</p:outputPanel>
@@ -165,7 +182,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Save" icon="pi pi-check"
-						actionListener="#{productBean.savePedido}"
+						actionListener="#{actualizarPedidoBean.savePedido}"
 						update="manage-product-content"
 						process="manage-product-content @this" />
 					<p:commandButton value="Cancel" icon="pi pi-times"

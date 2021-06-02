@@ -7,7 +7,6 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 
 import model.Pedido;
-import model.Sucursal;
 
 public class ActualizarPedidoBean {
 	private int idSucursal;
@@ -21,7 +20,7 @@ public class ActualizarPedidoBean {
 	public ActualizarPedidoBean() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.idSucursal = 16;
+		this.idSucursal = 28;
 		this.pedido = new Pedido();
 		pedidos = new ArrayList<Pedido>();
 		delegado = new DActualizarPedidoBean();
@@ -86,7 +85,7 @@ public class ActualizarPedidoBean {
 	}
 
 	public String cargarPedidos() {
-		this.idSucursal = 16;
+		this.idSucursal = 28;
 		System.out.println("cargando Pedidos");
 		pedidos = delegado.buscarPedidosSucursal(idSucursal);
 		System.out.println("Cantidad pedidos sucursal 16: " + pedidos.size());
@@ -107,9 +106,18 @@ public class ActualizarPedidoBean {
 	}
 
 	public void savePedido() {
-		this.pedidos.add(this.selectedPedido);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Estado del pedido actualizado correctamente"));
+		//Logica para actualizar pedidos
+		int nuevoValorPedido = -1;
+		nuevoValorPedido = Integer.parseInt(radioButtonValue); 
+		System.out.println("RADIO BUTTON VALUE!!!!! "+radioButtonValue);
+		this.selectedPedido.setEstado(nuevoValorPedido);
+		this.selectedPedido.setProductos(null);
+		this.selectedPedido.setRepartidor(null);
+		this.selectedPedido.setSucursal(null);
+		this.selectedPedido.setUsuario(null);
+		
 		delegado.updatePedido(this.selectedPedido);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Estado del pedido actualizado correctamente"));
 		PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
 		PrimeFaces.current().ajax().update("form:messages", "form:dt-pedidos");
 	}

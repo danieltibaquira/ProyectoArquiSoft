@@ -74,11 +74,12 @@ public class ServicosPedido implements ServicosPedidoRemote {
 				return pedido;
 			} else {
 				System.out.println("Preparando Query ");
-				String consulta = "UPDATE Pedido SET direccion=:direccion, estado=:estado, fecha=:fecha, precioTotal=:precioTotal, tipoPago=:tipoPago WHERE id_sucursal=:id_sucursal";
+				String consulta = "UPDATE Pedido SET direccion=:direccion, estado=:estado, fecha=:fecha, precioTotal=:precioTotal, tipoPago=:tipoPago WHERE id_pedido=:id_pedido";
 				System.out.println("Preparando Query 2");
 				//TypedQuery<Sucursal> query = entityManager.createQuery(consulta, Sucursal.class);
 				Query query = entityManager.createQuery(consulta);
 				System.out.println("Query creado ");
+				query.setParameter("id_pedido", pedido.getIdPedido());
 				query.setParameter("direccion", pedido.getDireccion());
 				query.setParameter("estado", pedido.getEstado());
 				query.setParameter("fecha", pedido.getFecha());
