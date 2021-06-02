@@ -130,7 +130,7 @@ public class ServiceLocator {
 	
 	public LogicaRepartidorRemote getLogicaRepartidor(String servicio) {
 		LogicaRepartidorRemote servicios = null;
-		if(servicio.equals("sucursal")){
+		if(servicio.equals("repartior")){
 			servicios = getLogicaRepartidorConnect();
 		}
 		return (LogicaRepartidorRemote) servicios;

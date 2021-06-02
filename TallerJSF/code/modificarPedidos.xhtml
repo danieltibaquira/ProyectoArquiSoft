@@ -96,13 +96,11 @@
 					<h:outputText value="Orden en preparacion" style="font-weight: 700"
 						class="infoDialog" rendered="#{pedido.estado eq 2}">
 					</h:outputText>
-					<h:outputText value="Orden en camino"
-						style="font-weight: 700" class="infoDialog"
-						rendered="#{pedido.estado eq 3}">
+					<h:outputText value="Orden en camino" style="font-weight: 700"
+						class="infoDialog" rendered="#{pedido.estado eq 3}">
 					</h:outputText>
 					<h:outputText value="Orden finalizada" style="font-weight: 700"
-						class="infoDialog"
-						rendered="#{pedido.estado eq 4}">
+						class="infoDialog" rendered="#{pedido.estado eq 4}">
 					</h:outputText>
 					<h:outputText value="Orden lista para recoger"
 						style="font-weight: 700" class="infoDialog"
@@ -136,6 +134,7 @@
 						rendered="#{not empty actualizarPedidoBean.selectedPedido}">
 						<img width="80" height="80" class="imgProduct"
 							src="https://www.iconpacks.net/icons/2/free-delivery-truck-icon-2049-thumb.png" />
+						<!-- TITULO -->
 						<div style="text-align: center">
 							<h3 class="titulo">Estado Actual</h3>
 							<h:outputText value="Orden creada" style="font-weight: 700"
@@ -163,6 +162,7 @@
 								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 5}">
 							</h:outputText>
 						</div>
+						<!-- RADIO BUTTONS -->
 						<div class="p-field">
 							<h3 class="titulo">Nuevo estado</h3>
 							<p:selectOneRadio id="console"
@@ -176,6 +176,16 @@
 								<f:selectItem itemLabel="Orden finalizada" itemValue="4" />
 								<f:selectItem itemLabel="Orden lista para recoger" itemValue="5" />
 							</p:selectOneRadio>
+						</div>
+						<!-- LISTA DESPLEGABLE DE REPARTIDORES -->
+						<div class="p-field p-col-12 p-md-4" rendered="#{actualizarPedidoBean.radioButtonValue eq 2}">
+							<h3 class="titulo">Seleccionar un repartidor</h3>
+							<p:selectOneMenu id="longItemLabel"
+								value="Selecciona un repartio">
+								<f:selectItems value="#{actualizarPedidoBean.repartidoresDisponibles}"
+									var="repartidor" itemLabel="#{repartidor.nombreRepartidor}"
+									itemValue="#{actualizarPedidoBean.repartidor}" />
+							</p:selectOneMenu>
 						</div>
 					</p:outputPanel>
 				</p:outputPanel>
