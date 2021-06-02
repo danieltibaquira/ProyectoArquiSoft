@@ -83,7 +83,6 @@ public class ServiciosSucursal implements ServiciosSucursalRemote {
 
 	@Override
 	public Sucursal updateSucursal(Sucursal sucursal) {
-		System.out.println("OMG llego a la BD");
 		try {
 			Sucursal nSucursal = entityManager.find(Sucursal.class, sucursal.getIdSucursal());
 			if (nSucursal == null) {
