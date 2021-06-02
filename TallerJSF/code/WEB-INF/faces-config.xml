@@ -51,6 +51,20 @@
 			<value>#{dSucursalBean}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dActualizarPedidoBean</managed-bean-name>
+		<managed-bean-class>DActualizarPedidoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>actualizarPedidoBean</managed-bean-name>
+		<managed-bean-class>ActualizarPedidoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+		<property-name>delegado</property-name>
+			<value>#{dActualizarPedidoBean}</value>
+		</managed-property>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>signin.xhtml</display-name>
 		<from-view-id>/signin.xhtml</from-view-id>
