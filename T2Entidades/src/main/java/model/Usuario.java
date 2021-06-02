@@ -34,7 +34,7 @@ public class Usuario implements Serializable {
 	private String username;
 
 	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="usuario", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy="usuario")
 	private List<Pedido> pedidos;
 
 	public Usuario() {

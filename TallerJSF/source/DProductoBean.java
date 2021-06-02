@@ -1,23 +1,11 @@
-//import javax.annotation.ManagedBean;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import logicaInterfaz.LogicaUsuariosRemote;
 import logicaInterfaz.logicaProductosRemote;
-import model.Pedido;
 import model.Producto;
 import model.Usuario;
 
-@ManagedBean(eager = true)
-@SessionScoped
-public class DelegadoBean {
+public class DProductoBean {
 	ServiceLocator sl = new ServiceLocator();
 	LogicaUsuariosRemote servicioUsuario = sl.getServicio("usuario");
 	logicaProductosRemote serviciosProducto = sl.getServicioProducto("producto");
@@ -31,14 +19,19 @@ public class DelegadoBean {
 	public void setUserFound(Usuario userFound) {
 		this.userFound = userFound;
 	}
-	public DelegadoBean() {
+	public DProductoBean() {
 		super();
+		//userFound=new Usuario();
 	}
 	public Usuario validateUser(Usuario user) {
+		if(userFound == null) {
+			System.out.println("usuario vacio");
+		}else {
+			System.out.println("usuario lleno");
+			System.out.println(userFound.getApellidoUsuario());
+		}
 		userFound = servicioUsuario.validar(user.getUsername(), user.getContrasena());
 		if(userFound != null) { 
-			userFound.setPedidos(null);
-			//userFound.setPedidos(new ArrayList<Pedido>());
 			return userFound;
 		}else {
 			if(!userExist(user.getUsername())) {
@@ -49,16 +42,14 @@ public class DelegadoBean {
 	}
 	
 	public Usuario createUser(Usuario user) {
+		/*if(!userExist(user.getUsername())) {
+			System.out.print("Usuario ya existe");
+			return null;
+		}else {*/
 		userFound = user;
 		servicioUsuario.addUsuario(user);
 		return user;
 		//}
-	}
-	
-	public void cerrarSesion() throws IOException {
-		userFound = null;
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-	    ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 	}
 	
 	public boolean userExist(String userName) {
@@ -82,9 +73,18 @@ public class DelegadoBean {
 		return null;
 	}
 	
+	public boolean deleteProduct(int id) {
+		return serviciosProducto.deleteProducto(id);
+	}
+	
 	public Producto createProduct(Producto product) {
 		serviciosProducto.addProducto(product);
 		return product;
+	}
+	
+	public Producto updateProduct(Producto product) {
+		return serviciosProducto.editProducto(product);
+		//return (product);
 	}
 	
 	public List<Producto> buscarProductos() {
@@ -92,5 +92,4 @@ public class DelegadoBean {
 		System.out.println(serviciosProducto.getAllProductos().size());
 		return serviciosProducto.getAllProductos();
 	}
-	
 }

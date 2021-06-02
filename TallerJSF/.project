@@ -6,8 +6,6 @@
 		<project>T2Entidades</project>
 		<project>T2ServiciosNegocios</project>
 		<project>T2ServiciosNegociosClient</project>
-		<project>ProyectoNegociosClient</project>
-		<project>ProyectoEntidades</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

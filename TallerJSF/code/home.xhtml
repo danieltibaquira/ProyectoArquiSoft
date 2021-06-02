@@ -12,6 +12,7 @@
 <h:head>
 	<link rel="stylesheet" href="home.css"></link>		
 	<link rel="stylesheet" href="menuSuperior.css"></link>		
+	
 </h:head> 
 <h:body>
 		<div id="header">
@@ -33,8 +34,6 @@
 			</div>
 			<p:commandButton action="carrito?faces-redirect=true"  icon="pi pi-shopping-cart" style="color:white;background-color: #006491; border-style: none;"/>
 		</div>
-		<h1 >Promociones</h1>
-		<h1>Populares</h1>	
 		
 		<p:dataGrid value="#{productBean.productos}" var="product" layout="grid" columns="4">
 			<div class="productList" >
@@ -51,6 +50,7 @@
 			</div>
 		</div>
 		</p:dataGrid>
+		
 
     </h:body>
 </html>

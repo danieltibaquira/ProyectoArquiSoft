@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      > 
+<f:metadata>
+          <f:event type="preRenderView" listener="#{productBean.cargarProductos()}"/>
+      </f:metadata>
+<h:head>
+	<link rel="stylesheet" href="home.css"></link>		
+	<link rel="stylesheet" href="menuSuperior.css"></link>		
+	<script type="application/javascript">
+	function getLocation() {
+	  if (navigator.geolocation) {
+		  navigator.geolocation.getCurrentPosition(
+                  function(position) {
+                      console.log(position.coords.latitude, position.coords.longitude);
+                      repartidorBean.selectedRepartidor.setLatitude(position.coords.latitude);
+                  },
+                  function(error){
+                	  console.log(error.message);
+                  }, {
+                      enableHighAccuracy: true
+                      ,timeout : 55000
+                  }
+          );
+	    
+	  } else {
+	  }
+	}
+
+    </script>
+	
+</h:head> 
+<h:body>
+		<div id="header">
+			<h1 class="titulo">Sandwich</h1>
+			<h:button  outcome="signup" class="authButton" type="button" value="Registrarse" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			<h:button outcome="signin" class="authButton" type="button" value="Ingresar" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			
+			<div class="card">
+			    <h:form>
+			        <p:growl id="messages" showDetail="true"/>
+					
+			        <p:menuButton value="#{delegadoBean.userFound.correo}" rendered="#{delegadoBean.userFound ne null}">
+			            <p:menuitem value="Pedidos" outcome="misPedidos" update="messages" icon="pi pi-bell"/>
+			            <p:menuitem value="Mi cuenta" action="#{menuView.delete}" update="messages" icon="pi pi-user"/>
+			            <p:divider/>
+			            <p:menuitem value="Salir" action="#{delegadoBean.cerrarSesion()}"  icon="pi pi-external-link"/>
+			        </p:menuButton>
+			    </h:form>
+			</div>
+			<p:commandButton action="carrito?faces-redirect=true"  icon="pi pi-shopping-cart" style="color:white;background-color: #006491; border-style: none;"/>
+		</div>
+		
+		
+		<h:form id="form">
+    <div class="card crud-demo">
+        <p:growl id="messages" showDetail="true"/>
+
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{productBean.openNew}"
+                                 update=":form:manage-product-content" oncomplete="PF('manageProductDialog').show()"
+                                 styleClass="ui-button-success" style="margin-right: .5rem">
+                    <p:resetInput target=":form:manage-product-content"/>
+                </p:commandButton>
+                <p:commandButton id="delete-products-button" value="#{productBean.deleteButtonMessage}"
+                                 icon="pi pi-trash" actionListener="#{productBean.deleteSelectedProducts}"
+                                 styleClass="ui-button-danger" disabled="#{!productBean.hasSelectedProducts()}"
+                                 update="@this">
+                    <p:confirm header="Confirmation" message="Delete the selected products?"
+                               icon="pi pi-exclamation-triangle"/>
+                </p:commandButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+
+        <p:dataTable id="dt-products" widgetVar="dtProducts" var="product" value="#{productBean.productos}"
+                     reflow="true" styleClass="products-table"
+                     selection="#{productBean.selectedProducts}" rowKey="#{product.idProducto}" paginator="true"
+                     rows="10" rowSelectMode="add" paginatorPosition="bottom">
+            <f:facet name="header">
+                <div class="products-table-header">
+                    <span style="font-weight: bold">SANDWICHES</span>
+
+                    <span class="filter-container ui-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <p:inputText id="globalFilter" onkeyup="PF('dtProducts').filter()" placeholder="Search"/>
+                    </span>
+
+                </div>
+            </f:facet>
+
+            <p:ajax event="rowSelect" update=":form:delete-products-button"/>
+            <p:ajax event="rowUnselect" update=":form:delete-products-button"/>
+            <p:ajax event="rowSelectCheckbox" update=":form:delete-products-button"/>
+            <p:ajax event="rowUnselectCheckbox" update=":form:delete-products-button"/>
+            <p:ajax event="toggleSelect" update=":form:delete-products-button"/>
+
+            <p:column selectionMode="multiple" exportable="false"></p:column>
+
+            <p:column headerText="Code" sortBy="#{product.idProducto}" >
+                <h:outputText value="#{product.idProducto}"/>
+            </p:column>
+            <p:column headerText="Name" sortBy="#{product.nombreProducto}">
+                <h:outputText value="#{product.nombreProducto}"/>
+            </p:column>
+            <p:column headerText="Image" exportable="false">
+                <img  width="80" height="80" class="imgProduct" src="#{product.fotoProducto}"/>
+            </p:column>
+            <p:column headerText="Price" sortBy="#{product.precio}">
+                <h:outputText value="#{product.precio}" style="font-weight: 700">
+                    <f:convertNumber currencySymbol="$" type="currency"/>
+                </h:outputText>
+            </p:column>
+            <p:column exportable="false">
+                <p:commandButton icon="pi pi-pencil" update=":form:manage-product-content"
+                                 oncomplete="PF('manageProductDialog').show()"
+                                 styleClass="edit-button rounded-button ui-button-success" process="@this">
+                    <f:setPropertyActionListener value="#{product}" target="#{productBean.selectedProduct}"/>
+                    <p:resetInput target=":form:manage-product-content"/>
+                </p:commandButton>
+                <p:commandButton class="ui-button-warning rounded-button" icon="pi pi-trash" process="@this"
+                                 oncomplete="PF('deleteProductDialog').show()">
+                    <f:setPropertyActionListener value="#{product}" target="#{productBean.selectedProduct}"/>
+                </p:commandButton>
+            </p:column>
+
+        </p:dataTable>
+
+        <p:dialog header="Product Details" showEffect="fade" modal="true"
+                  widgetVar="manageProductDialog" responsive="true">
+            <p:outputPanel id="manage-product-content" class="ui-fluid">
+                <p:outputPanel rendered="#{not empty productBean.selectedProduct}">
+                    <img  width="80" height="80" class="imgProduct" src="#{product.fotoProducto}"/>
+                    <div class="p-field">
+                        <p:outputLabel for="name">Name</p:outputLabel>
+                        <p:inputText id="name" value="#{productBean.selectedProduct.nombreProducto}" required="true"/>
+                    </div>
+                    <div class="p-field">
+                        <p:outputLabel for="description">Description</p:outputLabel>
+                        <p:inputTextarea id="description" value="#{productBean.selectedProduct.descripcion}"/>
+                    </div>
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <p:outputLabel for="price">Price</p:outputLabel>
+                            <p:inputNumber id="price" value="#{productBean.selectedProduct.precio}"
+                                           decimalSeparator="." thousandSeparator=","/>
+                        </div>
+                    </div>
+                </p:outputPanel>
+            </p:outputPanel>
+
+            <f:facet name="footer">
+                <p:commandButton value="Save" icon="pi pi-check" actionListener="#{productBean.saveProduct}"
+                                 update="manage-product-content" process="manage-product-content @this"/>
+                <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('manageProductDialog').hide()"
+                                 class="ui-button-secondary"/>
+            </f:facet>
+        </p:dialog>
+
+        <p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade" width="300"
+                         message="Delete the product?" header="Confirm" severity="warn">
+            <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{productBean.deleteProduct}"
+                             process="@this" oncomplete="PF('deleteProductDialog').hide()"/>
+            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                             onclick="PF('deleteProductDialog').hide()"/>
+        </p:confirmDialog>
+
+        <p:confirmDialog global="true" showEffect="fade" width="300">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                             icon="pi pi-times"/>
+        </p:confirmDialog>
+    </div>
+</h:form>
+
+    </h:body>
+</html>
+	

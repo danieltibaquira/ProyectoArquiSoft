@@ -1,5 +1,6 @@
 package datosImpl;
 
+import model.Producto;
 import model.Repartidor;
 import model.Sucursal;
 import datosInterface.ServiciosRepartidorRemote;
@@ -10,6 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 /**
@@ -32,13 +34,43 @@ public class ServiciosRepartidor implements ServiciosRepartidorRemote {
 		try {
 			Repartidor nRepartidor = entityManager.find(Repartidor.class, repartidor.getIdRepartidor());
 			if (nRepartidor == null) {
+				entityManager.flush();
 				entityManager.persist(repartidor);
 				return repartidor;
 			} else {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.println("error creando sucursal");
+			System.out.println("error creando repartidor");
+			return null;
+		}
+	}
+	
+	@Override
+	public Repartidor editRepartidor(Repartidor repartidor) {
+		try {
+			Repartidor nRepartidor= entityManager.find(Repartidor.class, repartidor.getIdRepartidor());
+			if (nRepartidor == null) {
+				System.out.println("No hay repartidor");
+				return repartidor;
+			} else {
+				System.out.println("Preparando Query ");
+				String consulta = "UPDATE Repartidor SET nombre_repartidor=:nombre_repartidor, numero=:numero, latitude=:latitude, longitude=:longitude WHERE id_repartidor=:id_repartidor";
+				Query query = entityManager.createQuery(consulta);
+				System.out.println("Query creado ");
+				query.setParameter("id_repartidor", repartidor.getIdRepartidor());
+				query.setParameter("nombre_repartidor", repartidor.getNombreRepartidor());
+				query.setParameter("numero", repartidor.getNumero());
+				query.setParameter("latitude", repartidor.getLatitude());
+				query.setParameter("longitude", repartidor.getLongitude());
+				System.out.println("Creados los parametros");
+				entityManager.flush();
+				query.executeUpdate();
+				System.out.println("Ejecutado el query");
+				return repartidor;
+			}
+		} catch (Exception e) {
+			System.out.println("error");
 			return null;
 		}
 	}
@@ -60,6 +92,7 @@ public class ServiciosRepartidor implements ServiciosRepartidorRemote {
 
 	@Override
 	public List<Repartidor> getAllRepartidores() {
+		System.out.println("Buscando repartidores");
 		List<Repartidor> repartidores = entityManager.createQuery("SELECT p FROM Repartidor p", Repartidor.class).getResultList();
 		return repartidores;
 	}

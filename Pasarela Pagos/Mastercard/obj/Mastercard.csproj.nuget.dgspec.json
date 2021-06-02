@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/juseanto/Documents/pasarelaPagos/Mastercard/Mastercard.csproj": {}
+    "/home/juseanto/Desktop/ProyectoArqui/Pasarela Pagos/Mastercard/Mastercard.csproj": {}
   },
   "projects": {
-    "/home/juseanto/Documents/pasarelaPagos/Mastercard/Mastercard.csproj": {
+    "/home/juseanto/Desktop/ProyectoArqui/Pasarela Pagos/Mastercard/Mastercard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/juseanto/Documents/pasarelaPagos/Mastercard/Mastercard.csproj",
+        "projectUniqueName": "/home/juseanto/Desktop/ProyectoArqui/Pasarela Pagos/Mastercard/Mastercard.csproj",
         "projectName": "Mastercard",
-        "projectPath": "/home/juseanto/Documents/pasarelaPagos/Mastercard/Mastercard.csproj",
+        "projectPath": "/home/juseanto/Desktop/ProyectoArqui/Pasarela Pagos/Mastercard/Mastercard.csproj",
         "packagesPath": "/home/juseanto/.nuget/packages/",
-        "outputPath": "/home/juseanto/Documents/pasarelaPagos/Mastercard/obj/",
+        "outputPath": "/home/juseanto/Desktop/ProyectoArqui/Pasarela Pagos/Mastercard/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/juseanto/.nuget/NuGet/NuGet.Config"

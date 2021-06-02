@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NDGu/K1kh6gOH3zWK7ygV0uCt+/D5FXyMTxRSpkbT0ehdSN21aAmZWC3IvlgXKg+PF3UF4xSbKkdW71N5n4jGw==",
+  "dgSpecHash": "Cdx6QGeIGJw+7GlWW2tj/gIwjRWsyBDFuxUTUlAzYNKfdLOsl8J49+ClEpPq/Ka7dnGw0IJw5oqRvgYmviCEDA==",
   "success": true,
-  "projectFilePath": "/home/juseanto/Documents/pasarelaPagos/Mastercard/Mastercard.csproj",
+  "projectFilePath": "/home/juseanto/Desktop/ProyectoArqui/Pasarela Pagos/Mastercard/Mastercard.csproj",
   "expectedPackageFiles": [
     "/home/juseanto/.nuget/packages/automapper/10.1.1/automapper.10.1.1.nupkg.sha512",
     "/home/juseanto/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.1/automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

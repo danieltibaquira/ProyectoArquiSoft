@@ -21,12 +21,12 @@ public class ServiceLocator {
 
 	private Context crearContexto() {
 		Properties jndlProperties = new Properties();
-		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.wildfly.naming.client.WildFlyInitialContextFactory.class.getName());
+		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
 		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
-		jndlProperties.put(Context.SECURITY_PRINCIPAL, "juseanto");
-		jndlProperties.put(Context.SECURITY_CREDENTIALS, "juseanto");
+		jndlProperties.put(Context.SECURITY_PRINCIPAL, "daniel");
+		jndlProperties.put(Context.SECURITY_CREDENTIALS, "pablo2015");
 		jndlProperties.put("jboss.naming.client.ejb.context", true);
 		
 		Context ctx = null;
@@ -128,7 +128,7 @@ public class ServiceLocator {
 	
 	public LogicaRepartidorRemote getLogicaRepartidor(String servicio) {
 		LogicaRepartidorRemote servicios = null;
-		if(servicio.equals("sucursal")){
+		if(servicio.equals("repartidor")){
 			servicios = getLogicaRepartidorConnect();
 		}
 		return (LogicaRepartidorRemote) servicios;
@@ -148,7 +148,9 @@ public class ServiceLocator {
 		
 		LogicaRepartidorRemote serviciosProductos = null;
 		try {
+			System.out.println("Antes de lookup");
 			serviciosProductos = (LogicaRepartidorRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaRepartidor!logicaInterfaz.LogicaRepartidorRemote");
+			System.out.println("Despues de lookup");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}
