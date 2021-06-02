@@ -22,28 +22,17 @@ public class Producto implements Serializable {
 
 	private String descripcion;
 
+	@Column(name="foto_producto")
+	private String fotoProducto;
+
 	@Column(name="nombre_producto")
 	private String nombreProducto;
 
 	private BigDecimal precio;
 
 	//bi-directional many-to-many association to Pedido
-	@ManyToMany
-	@JoinTable(
-		name="Pedido_has_Producto"
-		, joinColumns={
-			@JoinColumn(name="Producto_id_producto")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="Pedido_id_pedido")
-			}
-		)
+	@ManyToMany(mappedBy="productos")
 	private List<Pedido> pedidos;
-
-	//bi-directional many-to-one association to Pedido
-	@ManyToOne
-	@JoinColumn(name="Pedido_id_pedido")
-	private Pedido pedido;
 
 	//bi-directional many-to-one association to Promocion
 	@ManyToOne
@@ -69,6 +58,14 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	public String getFotoProducto() {
+		return this.fotoProducto;
+	}
+
+	public void setFotoProducto(String fotoProducto) {
+		this.fotoProducto = fotoProducto;
+	}
+
 	public String getNombreProducto() {
 		return this.nombreProducto;
 	}
@@ -91,14 +88,6 @@ public class Producto implements Serializable {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-
-	public Pedido getPedido() {
-		return this.pedido;
-	}
-
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
 	}
 
 	public Promocion getPromocion() {

@@ -30,7 +30,6 @@ public class DSucursalBean {
 	
 	public Sucursal updateSucursal(Sucursal sucursal) {
 		return servicioSucursales.updateSucursal(sucursal);
-		//return (product);
 	}
 	
 	public List<Sucursal> buscarSucursales() {

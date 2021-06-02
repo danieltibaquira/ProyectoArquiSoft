@@ -50,12 +50,17 @@ public class Pedido implements Serializable {
 	private Usuario usuario;
 
 	//bi-directional many-to-many association to Producto
-	@ManyToMany(mappedBy="pedidos")
-	private List<Producto> productos1;
-
-	//bi-directional many-to-one association to Producto
-	@OneToMany(mappedBy="pedido")
-	private List<Producto> productos2;
+	@ManyToMany
+	@JoinTable(
+		name="Pedido_has_Producto"
+		, joinColumns={
+			@JoinColumn(name="Pedido_id_pedido")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="Producto_id_producto")
+			}
+		)
+	private List<Producto> productos;
 
 	public Pedido() {
 	}
@@ -132,34 +137,12 @@ public class Pedido implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public List<Producto> getProductos1() {
-		return this.productos1;
+	public List<Producto> getProductos() {
+		return this.productos;
 	}
 
-	public void setProductos1(List<Producto> productos1) {
-		this.productos1 = productos1;
-	}
-
-	public List<Producto> getProductos2() {
-		return this.productos2;
-	}
-
-	public void setProductos2(List<Producto> productos2) {
-		this.productos2 = productos2;
-	}
-
-	public Producto addProductos2(Producto productos2) {
-		getProductos2().add(productos2);
-		productos2.setPedido(this);
-
-		return productos2;
-	}
-
-	public Producto removeProductos2(Producto productos2) {
-		getProductos2().remove(productos2);
-		productos2.setPedido(null);
-
-		return productos2;
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 
 }
