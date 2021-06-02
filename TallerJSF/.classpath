@@ -31,12 +31,12 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/daniel/Software/wildfly-17.0.0.Final/bin/client/jboss-client.jar">
+	<classpathentry exported="true" kind="lib" path="/home/daniel/Software/wildfly-17.0.0.Final/bin/client/jboss-client.jar" sourcepath="/home/daniel/.m2/repository/org/wildfly/wildfly-client-all/17.0.0.Final/wildfly-client-all-17.0.0.Final-sources.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/daniel/Software/wildfly-17.0.0.Final/jboss-modules.jar">
+	<classpathentry exported="true" kind="lib" path="/home/daniel/Software/wildfly-17.0.0.Final/jboss-modules.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>

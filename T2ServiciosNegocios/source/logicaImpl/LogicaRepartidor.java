@@ -30,6 +30,14 @@ public class LogicaRepartidor implements LogicaRepartidorRemote {
 		Repartidor repartidorDB = servicio.addRepartidor(repartidor);
 		return repartidorDB;
 	}
+	
+	@Override
+	public Repartidor editRepartidor(Repartidor repartidor) {
+		ServiceLocator sl = new ServiceLocator();
+		ServiciosRepartidorRemote servicio = sl.getServicioRepartidor("repartidor");
+		Repartidor repartidorDB = servicio.editRepartidor(repartidor);
+		return repartidorDB;
+	}
 
 	@Override
 	public Repartidor searchRepartidor(Repartidor repartidor) {

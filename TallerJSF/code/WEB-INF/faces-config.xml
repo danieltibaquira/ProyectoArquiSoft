@@ -42,6 +42,16 @@
 		<managed-bean-class>DProductoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>repartidorBean</managed-bean-name>
+		<managed-bean-class>RepartidorBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dRepartidorBean</managed-bean-name>
+		<managed-bean-class>DRepartidorBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>signin.xhtml</display-name>
 		<from-view-id>/signin.xhtml</from-view-id>

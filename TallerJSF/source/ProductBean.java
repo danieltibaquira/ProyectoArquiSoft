@@ -6,6 +6,7 @@ import javax.faces.context.FacesContext;
 
 import org.primefaces.PrimeFaces;
 
+import model.Pedido;
 import model.Producto;
 import net.bytebuddy.asm.Advice.This;
 
@@ -68,21 +69,30 @@ public class ProductBean {
 		productos = delegadoBean.buscarProductos();
 		System.out.println(productos.size());
 		System.out.println(productos.get(0).getNombreProducto());
+		PrimeFaces.current().executeScript("getLocation()");
 		return "<h:button  outcome=\"signup\" class=\"authButton\" type=\"button\" value=\"Registrarse\" icon=\"pi pi-check\" ></h:button>";
 	}
 	
 	public void openNew() {
 		this.selectedProduct = new Producto();
+
 	}
 	
 	public void saveProduct() {
+		System.out.println(this.selectedProduct.getIdProducto());
+
 		if(this.selectedProduct.getIdProducto() == 0) {
+			System.out.println("Agregando producto");
 			this.productos.add(this.selectedProduct);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sandwich añadido correctamente"));
+			this.selectedProduct.setFotoProducto("https://source.unsplash.com/random/?sandwich");
 			delegadoBean.createProduct(this.selectedProduct);
 			
 		}else {
+			System.out.println("Actualizando producto");
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Product Updated"));
+			this.selectedProduct.setPedidos(null);
+			this.selectedProduct.setPromocion(null);
 			delegadoBean.updateProduct(this.selectedProduct);
 		}
 		PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");

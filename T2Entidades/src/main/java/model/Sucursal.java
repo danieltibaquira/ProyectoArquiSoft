@@ -25,6 +25,9 @@ public class Sucursal implements Serializable {
 	@Column(name="direccion_sucursal")
 	private String direccionSucursal;
 
+	@Column(name="foto_sucursal")
+	private String fotoSucursal;
+
 	@Column(name="nombre_sucursal")
 	private String nombreSucursal;
 
@@ -33,6 +36,10 @@ public class Sucursal implements Serializable {
 	//bi-directional many-to-one association to Pedido
 	@OneToMany(mappedBy="sucursal")
 	private List<Pedido> pedidos;
+
+	//bi-directional many-to-one association to Repartidor
+	@OneToMany(mappedBy="sucursal")
+	private List<Repartidor> repartidors;
 
 	public Sucursal() {
 	}
@@ -59,6 +66,14 @@ public class Sucursal implements Serializable {
 
 	public void setDireccionSucursal(String direccionSucursal) {
 		this.direccionSucursal = direccionSucursal;
+	}
+
+	public String getFotoSucursal() {
+		return this.fotoSucursal;
+	}
+
+	public void setFotoSucursal(String fotoSucursal) {
+		this.fotoSucursal = fotoSucursal;
 	}
 
 	public String getNombreSucursal() {
@@ -97,6 +112,28 @@ public class Sucursal implements Serializable {
 		pedido.setSucursal(null);
 
 		return pedido;
+	}
+
+	public List<Repartidor> getRepartidors() {
+		return this.repartidors;
+	}
+
+	public void setRepartidors(List<Repartidor> repartidors) {
+		this.repartidors = repartidors;
+	}
+
+	public Repartidor addRepartidor(Repartidor repartidor) {
+		getRepartidors().add(repartidor);
+		repartidor.setSucursal(this);
+
+		return repartidor;
+	}
+
+	public Repartidor removeRepartidor(Repartidor repartidor) {
+		getRepartidors().remove(repartidor);
+		repartidor.setSucursal(null);
+
+		return repartidor;
 	}
 
 }

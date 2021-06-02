@@ -11,7 +11,27 @@
       </f:metadata>
 <h:head>
 	<link rel="stylesheet" href="home.css"></link>
-				
+	<script type="application/javascript">
+	function getLocation() {
+	  if (navigator.geolocation) {
+		  navigator.geolocation.getCurrentPosition(
+                  function(position) {
+                      console.log(position.coords.latitude, position.coords.longitude);
+                      repartidorBean.selectedRepartidor.setLatitude(position.coords.latitude);
+                  },
+                  function(error){
+                	  console.log(error.message);
+                  }, {
+                      enableHighAccuracy: true
+                      ,timeout : 55000
+                  }
+          );
+	    
+	  } else {
+	  }
+	}
+
+    </script>
 	
 </h:head> 
 <h:body>
@@ -74,7 +94,7 @@
                 <h:outputText value="#{product.nombreProducto}"/>
             </p:column>
             <p:column headerText="Image" exportable="false">
-                <img  width="80" height="80" class="imgProduct" src="https://www.petitchef.es/imgupl/recipe/club-sandwich-americano--459975p722167.jpg"/>
+                <img  width="80" height="80" class="imgProduct" src="#{product.fotoProducto}"/>
             </p:column>
             <p:column headerText="Price" sortBy="#{product.precio}">
                 <h:outputText value="#{product.precio}" style="font-weight: 700">
@@ -100,7 +120,7 @@
                   widgetVar="manageProductDialog" responsive="true">
             <p:outputPanel id="manage-product-content" class="ui-fluid">
                 <p:outputPanel rendered="#{not empty productBean.selectedProduct}">
-                    <img  width="80" height="80" class="imgProduct" src="https://www.petitchef.es/imgupl/recipe/club-sandwich-americano--459975p722167.jpg"/>
+                    <img  width="80" height="80" class="imgProduct" src="#{product.fotoProducto}"/>
                     <div class="p-field">
                         <p:outputLabel for="name">Name</p:outputLabel>
                         <p:inputText id="name" value="#{productBean.selectedProduct.nombreProducto}" required="true"/>

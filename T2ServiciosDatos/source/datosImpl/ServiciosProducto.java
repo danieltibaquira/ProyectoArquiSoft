@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import datosInterface.ServiciosProductoRemote;
@@ -53,14 +54,15 @@ public class ServiciosProducto implements ServiciosProductoRemote {
 				return product;
 			} else {
 				System.out.println("Preparando Query ");
-				String consulta = "UPDATE Producto SET nombre_producto=:nombre_producto, precio=:precio, descripcion=:descripcion, Pedido_id_pedido=NULL, Promocion_id_promocion=NULL WHERE id_producto=:id_producto";
-				TypedQuery<Producto> query = entityManager.createQuery(consulta, Producto.class);
+				String consulta = "UPDATE Producto SET nombre_producto=:nombre_producto, precio=:precio, descripcion=:descripcion WHERE id_producto=:id_producto";
+				Query query = entityManager.createQuery(consulta);
 				System.out.println("Query creado ");
 				query.setParameter("id_producto", product.getIdProducto());
 				query.setParameter("nombre_producto", product.getNombreProducto());
 				query.setParameter("precio", product.getPrecio());
 				query.setParameter("descripcion", product.getDescripcion());
 				System.out.println("Creados los parametros");
+				entityManager.flush();
 				query.executeUpdate();
 				System.out.println("Ejecutado el query");
 				return product;
