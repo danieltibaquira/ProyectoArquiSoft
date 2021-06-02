@@ -41,6 +41,11 @@ public class Sucursal implements Serializable {
 	@OneToMany(mappedBy="sucursal")
 	private List<Repartidor> repartidors;
 
+	//uni-directional many-to-one association to Usuario
+	@ManyToOne
+	@JoinColumn(name="Usuario_id_usuario")
+	private Usuario usuario;
+
 	public Sucursal() {
 	}
 
@@ -134,6 +139,14 @@ public class Sucursal implements Serializable {
 		repartidor.setSucursal(null);
 
 		return repartidor;
+	}
+
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

@@ -49,17 +49,8 @@ public class Pedido implements Serializable {
 	@JoinColumn(name="Usuario_id_usuario")
 	private Usuario usuario;
 
-
-	@ManyToMany
-	@JoinTable(
-		name="Pedido_has_Producto"
-		, inverseJoinColumns={
-			@JoinColumn(name="Producto_id_producto")
-			}
-		, joinColumns={
-			@JoinColumn(name="Pedido_id_pedido")
-			}
-		)
+	//bi-directional many-to-many association to Producto
+	@ManyToMany(mappedBy="pedidos")
 	private List<Producto> productos;
 
 	public Pedido() {
