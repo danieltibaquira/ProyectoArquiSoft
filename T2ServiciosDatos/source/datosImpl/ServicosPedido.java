@@ -31,16 +31,19 @@ public class ServicosPedido implements ServicosPedidoRemote {
 
 	@Override
 	public Pedido addPedido(Pedido pedido) {
+		System.out.println("AYUDA 1");
 		try {
 			Pedido nPedido = entityManager.find(Pedido.class, pedido.getIdPedido());
 			if (nPedido == null) {
+				System.out.println("AYUDA 2");
 				entityManager.persist(pedido);
+				System.out.println("AYUDA 3");
 				return pedido;
 			} else {
 				return null;
 			}
 		} catch (Exception e) {
-			System.out.println("error creando sucursal");
+			System.out.println("error creando pedido");
 			return null;
 		}
 	}

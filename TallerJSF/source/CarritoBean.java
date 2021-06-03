@@ -115,6 +115,7 @@ public class CarritoBean {
 			}
 		}
 		pedido.setSucursal(sucursal);
+		pedido.setDireccion("cra 100 #19-28");
 		sucursal.setPedidos(null);
 		sucursal.setRepartidors(null);
 		sucursal.setUsuario(null);

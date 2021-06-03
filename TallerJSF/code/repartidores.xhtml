@@ -1,4 +1,4 @@
-s<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -36,12 +36,29 @@ s<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.o
 	
 </h:head> 
 <h:body>
-		<div id="header">
-			<h1 class="titulo">Sandwich</h1>
-			<h:button  outcome="signup" class="authButton" type="button" value="Registrarse" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
-			<h:button outcome="signin" class="authButton" type="button" value="Ingresar" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
-			<h:outputText style="color: white" value="#{delegadoBean.userFound.correo}" rendered="#{delegadoBean.userFound ne null}" /> 
-		</div>
+	<div id="header">
+		<h1 class="titulo">Pedidos de la Sucursal</h1>
+		<h:button outcome="signup" class="authButton" type="button"
+			value="Registrarse" icon="pi pi-check"
+			rendered="#{delegadoBean.userFound eq null}" />
+		<h:button outcome="signin" class="authButton" type="button"
+			value="Ingresar" icon="pi pi-check"
+			rendered="#{delegadoBean.userFound eq null}" />
+		<h:form>
+			<p:growl id="messages" showDetail="true" />
+			<p:menuButton value="#{delegadoBean.userFound.correo}"
+				rendered="#{delegadoBean.userFound ne null}">
+				<p:menuitem value="Mis pedidos" outcome="sucursalHome" update="messages"
+					icon="pi pi-eye" />
+				<p:divider />
+								<p:menuitem value="Repartidores" outcome="repartidores"
+					update="messages" icon="pi pi-users" />
+				<p:divider />
+				<p:menuitem value="Salir" action="#{delegadoBean.cerrarSesion()}" outcome="signin"
+					icon="pi pi-external-link" />
+			</p:menuButton>
+		</h:form>
+	</div>
 		
 		<h:form id="form">
     <div class="card crud-demo">

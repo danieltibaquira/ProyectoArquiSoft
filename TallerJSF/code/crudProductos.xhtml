@@ -44,25 +44,24 @@
 		<h:button outcome="signin" class="authButton" type="button"
 			value="Ingresar" icon="pi pi-check"
 			rendered="#{delegadoBean.userFound eq null}" />
-
-		<div class="card">
-			<h:form>
-				<p:growl id="messages" showDetail="true" />
-				<p:menuButton value="#{delegadoBean.userFound.correo}"
-					rendered="#{delegadoBean.userFound ne null}">
-					<p:menuitem value="Mis Productos" outcome="crudProductos"
-						update="messages" icon="pi pi-palette" />
-					<p:menuitem value="Mis sucursales" outcome="crudSucursal"
-						update="messages" icon="pi pi-globe" />
-					<p:divider />
-					<p:menuitem value="Salir" action="#{delegadoBean.cerrarSesion()}" outcome="signin"
-						icon="pi pi-external-link" />
-				</p:menuButton>
-			</h:form>
-		</div>
-		<p:commandButton action="carrito?faces-redirect=true"
-			icon="pi pi-shopping-cart"
-			style="color:white;background-color: #006491; border-style: none;" />
+		<h:form>
+			<p:growl id="messages" showDetail="true" />
+			<p:menuButton value="#{delegadoBean.userFound.correo}"
+				rendered="#{delegadoBean.userFound ne null}">
+				<p:menuitem value="Mis Productos" outcome="crudProductos" update="messages"
+					icon="pi pi-palette" />
+				<p:menuitem value="Mis sucursales" outcome="crudSucursal"
+					update="messages" icon="pi pi-globe" />
+				<p:menuitem value="Promociones" outcome="crudPromociones"
+					update="messages" icon="pi pi-globe" />
+				<p:divider />
+				<p:menuitem value="Salir" action="#{delegadoBean.cerrarSesion()}" outcome="signin"
+					icon="pi pi-external-link" />
+			</p:menuButton>
+		</h:form>
+		<!-- <h:outputText style="color: white"
+			value="#{delegadoBean.userFound.correo}"
+			rendered="#{delegadoBean.userFound ne null}" />  -->
 	</div>
 
 
