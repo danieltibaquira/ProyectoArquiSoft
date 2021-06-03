@@ -37,6 +37,10 @@ public class Usuario implements Serializable {
 	@OneToMany(mappedBy="usuario")
 	private List<Pedido> pedidos;
 
+	//bi-directional many-to-one association to Sucursal
+	@OneToMany(mappedBy="usuario")
+	private List<Sucursal> sucursals;
+
 	public Usuario() {
 	}
 
@@ -116,6 +120,28 @@ public class Usuario implements Serializable {
 		pedido.setUsuario(null);
 
 		return pedido;
+	}
+
+	public List<Sucursal> getSucursals() {
+		return this.sucursals;
+	}
+
+	public void setSucursals(List<Sucursal> sucursals) {
+		this.sucursals = sucursals;
+	}
+
+	public Sucursal addSucursal(Sucursal sucursal) {
+		getSucursals().add(sucursal);
+		sucursal.setUsuario(this);
+
+		return sucursal;
+	}
+
+	public Sucursal removeSucursal(Sucursal sucursal) {
+		getSucursals().remove(sucursal);
+		sucursal.setUsuario(null);
+
+		return sucursal;
 	}
 
 }

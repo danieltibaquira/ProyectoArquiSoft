@@ -34,14 +34,14 @@ public class Sucursal implements Serializable {
 	private String telefono;
 
 	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="sucursal")
+	@OneToMany(mappedBy="sucursal", fetch = FetchType.EAGER)
 	private List<Pedido> pedidos;
 
 	//bi-directional many-to-one association to Repartidor
 	@OneToMany(mappedBy="sucursal")
 	private List<Repartidor> repartidors;
 
-	//uni-directional many-to-one association to Usuario
+	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="Usuario_id_usuario")
 	private Usuario usuario;

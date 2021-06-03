@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
-    version="2.3">
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
+	version="2.3">
 	<managed-bean>
 		<managed-bean-name>delegadoBean</managed-bean-name>
 		<managed-bean-class>DelegadoBean</managed-bean-class>
@@ -14,7 +13,7 @@
 		<managed-bean-class>RegistroBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-		<property-name>delegado</property-name>
+			<property-name>delegado</property-name>
 			<value>#{delegadoBean}</value>
 		</managed-property>
 	</managed-bean>
@@ -23,7 +22,7 @@
 		<managed-bean-class>ProductoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-		<property-name>delegado</property-name>
+			<property-name>delegado</property-name>
 			<value>#{delegadoBean}</value>
 		</managed-property>
 	</managed-bean>
@@ -31,7 +30,12 @@
 		<managed-bean-name>productBean</managed-bean-name>
 		<managed-bean-class>ProductBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>sucursalBean</property-name>
+			<value>#{SucursalBean}</value>
+		</managed-property>
 	</managed-bean>
+
 	<managed-bean>
 		<managed-bean-name>repartidorBean</managed-bean-name>
 		<managed-bean-class>RepartidorBean</managed-bean-class>
@@ -48,6 +52,10 @@
 		<managed-property>
 			<property-name>delegado</property-name>
 			<value>#{delegadoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sucursalBean</property-name>
+			<value>#{sucursalBean}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
@@ -86,13 +94,57 @@
 		<managed-bean-class>DPromocionBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dSucursalBean</managed-bean-name>
+		<managed-bean-class>DSucursalBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>sucursalBean</managed-bean-name>
+		<managed-bean-class>SucursalBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>delegado</property-name>
+			<value>#{dSucursalBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dActualizarPedidoBean</managed-bean-name>
+		<managed-bean-class>DActualizarPedidoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>actualizarPedidoBean</managed-bean-name>
+		<managed-bean-class>ActualizarPedidoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>delegado</property-name>
+			<value>#{dActualizarPedidoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>delegado2</property-name>
+			<value>#{delegadoBean}</value>
+		</managed-property>
+	</managed-bean>
 	<navigation-rule>
 		<display-name>signin.xhtml</display-name>
 		<from-view-id>/signin.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{registroBean.validarUsuario()}</from-action>
-	        <from-outcome>Exito</from-outcome>
+			<from-outcome>Exito</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{registroBean.validarUsuario()}</from-action>
+			<from-outcome>Admin</from-outcome>
+			<to-view-id>/sucursalHome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{registroBean.validarUsuario()}</from-action>
+			<from-outcome>AdminAdmin</from-outcome>
+			<to-view-id>/crudSucursal.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -101,17 +153,17 @@
 		<from-view-id>/pagar.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{pagoBean.conexionAPI()}</from-action>
-	        <from-outcome>Exito</from-outcome>
+			<from-outcome>Exito</from-outcome>
 			<to-view-id>/pagoAceptado.xhtml</to-view-id>
-		<redirect />
-	</navigation-case>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>signup.xhtml</display-name>
 		<from-view-id>/signup.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{registroBean.registrarUsuario()}</from-action>
-	        <from-outcome>Exito</from-outcome>
+			<from-outcome>Exito</from-outcome>
 			<to-view-id>/home.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
@@ -121,13 +173,13 @@
 		<from-view-id>/carrito.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{carritoBean.confirmarPedido()}</from-action>
-	        <from-outcome>Autenticarse</from-outcome>
+			<from-outcome>Autenticarse</from-outcome>
 			<to-view-id>/signin.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{carritoBean.confirmarPedido()}</from-action>
-	        <from-outcome>Pagar</from-outcome>
+			<from-action>#{carritoBean.enviarPedido()}</from-action>
+			<from-outcome>Pagar</from-outcome>
 			<to-view-id>/pagar.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>

@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf16194435463810" configfile="/ProyectoJSF/code/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="signin.xhtml" x="338" y="178" id="pf16223497246320" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf16223543372888" inlinks="pf16226649595630" path="/signin.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" x="554" y="370" id="pf16223497246322" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf16223543372888 pf16223543372889" path="/home.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" x="338" y="562" id="pf16223529899187" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf16223543372889" path="/signup.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pagar.xhtml" x="338" y="946" id="pf16226649595631" referenceLink="//@navigationRule.3/@navigationCase.1/@toViewId|" outlinks="pf16226649595632" inlinks="pf16226649595633" path="/pagar.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pagoAceptado.xhtml" x="554" y="946" id="pf16226649595634" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf16226649595632" path="/pagoAceptado.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="carrito.xhtml" x="122" y="562" id="pf16226649595635" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf16226649595630 pf16226649595633" path="/carrito.xhtml"/>
-  <links id="pf16223543372888" target="pf16223497246322" source="pf16223497246320" outcome="Exito" redirect="true" fromaction="#{registroBean.validarUsuario()}"/>
-  <links id="pf16223543372889" target="pf16223497246322" source="pf16223529899187" outcome="Exito" redirect="true" fromaction="#{registroBean.registrarUsuario()}"/>
-  <links id="pf16226649595632" target="pf16226649595634" source="pf16226649595631" outcome="Exito" redirect="true" fromaction="#{pagoBean.conexionAPI()}"/>
-  <links id="pf16226649595630" target="pf16223497246320" source="pf16226649595635" outcome="Autenticarse" redirect="true" fromaction="#{carritoBean.confirmarPedido()}"/>
-  <links id="pf16226649595633" target="pf16226649595631" source="pf16226649595635" outcome="Pagar" redirect="true" fromaction="#{carritoBean.confirmarPedido()}"/>
+  <nodes xsi:type="pageflow:PFPage" name="signin.xhtml" x="276" y="108" id="pf16223497246320" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf16223543372888" path="/signin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="home.xhtml" x="80" y="312" id="pf16223497246322" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf16223543372888 pf16223543372889" path="/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="signup.xhtml" x="288" y="312" id="pf16223529899187" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf16223543372889" path="/signup.xhtml"/>
+  <links id="pf16223543372888" target="pf16223497246322" source="pf16223497246320" outcome="Exito" fromaction="#{registroBean.validarUsuario()}"/>
+  <links id="pf16223543372889" target="pf16223497246322" source="pf16223529899187" outcome="Exito" fromaction="#{registroBean.registrarUsuario()}"/>
 </pageflow:Pageflow>

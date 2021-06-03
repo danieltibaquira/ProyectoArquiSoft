@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import datosInterface.ServiciosUsuarioRemote;
 import model.Pedido;
+import model.Sucursal;
 import model.Usuario;
 
 /**
@@ -102,6 +103,19 @@ public class ServiciosUsuario implements ServiciosUsuarioRemote {
 		} catch (Exception e) {
 			System.out.println("error");
 			return false;
+		}
+	}
+
+	@Override
+	public Sucursal buscarSucursal(Usuario usuario) {
+		String consulta = "SELECT u FROM Sucursal u WHERE u.usuario=:usuario";
+		TypedQuery<Sucursal> query = entityManager.createQuery(consulta, Sucursal.class);
+		query.setParameter("usuario", usuario);
+		List<Sucursal> resultList =query.getResultList();
+		if (resultList.size() == 0) {
+			return null;
+		} else {
+			return resultList.get(0);
 		}
 	}
 

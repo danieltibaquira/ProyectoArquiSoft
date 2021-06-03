@@ -50,6 +50,7 @@ body .ui-button.ui-state-active{
 	color: white;
 	background-color: #006491;
 	border: none;
+
 }
 .product{
 	border-color: black;
@@ -63,12 +64,12 @@ body .ui-button.ui-state-active{
 }
 
 .titleProduct{
-	font-size: small;
+	font-size: medium;
 	text-align: center;
 }
 
 .descProduct{
-	font-size: x-small;
+	font-size: small;
 	text-align: center;
 }
 .imgProduct{
@@ -87,6 +88,9 @@ body .ui-button.ui-state-active{
 	display: flex;
 	flex-direction: row;
 }
+.subtitulo{
+	text-align: center;
+}
 .ui-panelgrid.showcase-text-align-center .ui-grid-responsive .ui-panelgrid-cell {
         text-align: center;
     }
@@ -94,4 +98,5 @@ body .ui-button.ui-state-active{
     .customPanelGrid .ui-panelgrid-content {
         align-items: center;
     }
+    
     

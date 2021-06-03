@@ -34,8 +34,25 @@
 			</div>
 			<p:commandButton action="carrito?faces-redirect=true"  icon="pi pi-shopping-cart" style="color:white;background-color: #006491; border-style: none;"/>
 		</div>
-		
-		<p:dataGrid value="#{productBean.productos}" var="product" layout="grid" columns="4">
+		<h1 class="subtitulo">Promociones</h1>
+		<p:dataGrid value="#{productBean.productosProm}" var="product" layout="grid" columns="4">
+			<div class="productList" >
+			<div class="product">
+				<img  width="150" height="150" class="imgProduct" src="#{product.fotoProducto}"/>
+				<div class="titleProduct">#{product.nombreProducto}</div>
+				<div class="titleProduct">(%#{product.promocion.descuento})</div>
+				<div class="descProduct">#{product.descripcion}</div>
+				<div class="productBar">
+					<p style="margin:5px;">$#{product.precio}</p>
+					<p:commandButton type="submit" value="Agregar" action="#{carritoBean.agregarProducto()}" >
+						<f:setPropertyActionListener target="#{carritoBean.producto}" value="#{product}" />
+					</p:commandButton>
+				</div>
+			</div>
+		</div>
+		</p:dataGrid>
+		<h1 class="subtitulo">Populares</h1>
+		<p:dataGrid value="#{productBean.productosSinProm}" var="product" layout="grid" columns="4">
 			<div class="productList" >
 			<div class="product">
 				<img  width="150" height="150" class="imgProduct" src="#{product.fotoProducto}"/>

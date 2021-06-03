@@ -40,9 +40,14 @@
                     <img  width="150" height="150" class="imgPedido" src="https://centaur-wp.s3.eu-central-1.amazonaws.com/designweek/prod/content/uploads/2016/08/09165704/new-subway%C2%AE-retaurants-logo-5-HR.jpg"/>
                     
                     <div class="pedido-list-detail">
-                        <div class="pedido-id text">#{pedido.idPedido}</div>
-                        <div class="pedido-hora text">#{pedido.fecha}</div>
-                        <div class="text">Estado #{pedido.estado}</div>
+                        <div class="pedido-id text">ID:#{pedido.idPedido}</div>
+                        <div class="pedido-hora text">Fecha:#{pedido.fecha}</div>
+                        <h:outputLabel value="Estado: Esperando confirmación" rendered="#{pedido.estado == 0}" /> 
+                        <h:outputLabel value="Estado: Recibido" rendered="#{pedido.estado == 1}" /> 
+                        <h:outputLabel value="Estado: Preparando" rendered="#{pedido.estado == 2}" /> 
+                        <h:outputLabel value="Estado: En camino" rendered="#{pedido.estado == 3}" /> 
+                        <h:outputLabel value="Estado: Entregado" rendered="#{pedido.estado == 4}" /> 
+                        <h:outputLabel value="Estado: Listo para recoger" rendered="#{pedido.estado == 5}" /> 
                        <div class="text">Sucursal: Nueva granada</div>
                     </div>
                 </div>

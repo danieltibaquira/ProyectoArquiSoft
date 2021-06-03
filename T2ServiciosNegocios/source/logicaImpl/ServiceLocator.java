@@ -20,10 +20,12 @@ public class ServiceLocator {
 	private Context crearContexto() {
 		Properties jndlProperties = new Properties();
 		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
+		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
 		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8090");
 		jndlProperties.put(Context.SECURITY_PRINCIPAL, "juseanto");
 		jndlProperties.put(Context.SECURITY_CREDENTIALS, "juseanto");
-		jndlProperties.put("jboss.naning.client.ejb.context", true);
+		jndlProperties.put("jboss.naming.client.ejb.context", true);
 		
 		Context ctx = null;
 		try {

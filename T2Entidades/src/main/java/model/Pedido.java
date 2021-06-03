@@ -31,11 +31,14 @@ public class Pedido implements Serializable {
 	@Column(name="precio_total")
 	private BigDecimal precioTotal;
 
+	@Column(name="tipo_entrega")
+	private int tipoEntrega;
+
 	@Column(name="tipo_pago")
 	private int tipoPago;
 
 	//bi-directional many-to-one association to Repartidor
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="Repartidor_id_repartidor")
 	private Repartidor repartidor;
 
@@ -50,7 +53,17 @@ public class Pedido implements Serializable {
 	private Usuario usuario;
 
 	//bi-directional many-to-many association to Producto
-	@ManyToMany(mappedBy="pedidos")
+
+	@ManyToMany
+	@JoinTable(
+		name="Pedido_has_Producto"
+		, inverseJoinColumns={
+			@JoinColumn(name="Producto_id_producto")
+			}
+		, joinColumns={
+			@JoinColumn(name="Pedido_id_pedido")
+			}
+		)
 	private List<Producto> productos;
 
 	public Pedido() {
@@ -94,6 +107,14 @@ public class Pedido implements Serializable {
 
 	public void setPrecioTotal(BigDecimal precioTotal) {
 		this.precioTotal = precioTotal;
+	}
+
+	public int getTipoEntrega() {
+		return this.tipoEntrega;
+	}
+
+	public void setTipoEntrega(int tipoEntrega) {
+		this.tipoEntrega = tipoEntrega;
 	}
 
 	public int getTipoPago() {

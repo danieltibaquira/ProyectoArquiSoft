@@ -4,3 +4,8 @@ T2Entidades/.settings/org.eclipse.wst.common.project.facet.core.xml
 TallerJSF/.classpath
 Pasarela Pagos/ClienteREST/target/classes/META-INF/maven/jav.edu/ClienteREST/pom.properties
 TallerJSF/target/m2e-wtp/web-resources/META-INF/maven/jav.edu/TallerJSF/pom.properties
+TallerJSF/.classpath
+TallerJSF/.project
+TallerJSF/.metadata/code/WEB-INF/faces-config.pageflow
+TallerJSF/source/ServiceLocator.java
+TallerJSF/.classpath

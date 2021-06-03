@@ -40,12 +40,9 @@ public class DPedidoBean implements Serializable {
 
 	public Pedido enviarPedido(Pedido pedido) {
 		pedido.setFecha(new Date());
-		pedido.setDireccion("cra");
-		pedido.setEstado(1);
-		pedido.setSucursal(null);
+		pedido.setEstado(0);
+		System.out.println("TIPO DE PAGO " +pedido.getTipoPago());
 		Pedido respuesta = serviciosPedido.addPedido(pedido);
-		//delegado.getUserFound().addPedido(respuesta);
-		//pedidos.add(respuesta);
 		return respuesta;
 	}
 	

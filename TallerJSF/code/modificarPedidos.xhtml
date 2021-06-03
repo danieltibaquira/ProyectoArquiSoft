@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<f:metadata>
+	<f:event type="preRenderView"
+		listener="#{actualizarPedidoBean.cargarPedidos()}" />
+</f:metadata>
+<h:head>
+	<link rel="stylesheet" href="modificar.css"></link>
+
+
+</h:head>
+<h:body>
+	<div id="header">
+		<h1 class="titulo">Pedidos de la Sucursal</h1>
+		<h:button outcome="signup" class="authButton" type="button"
+			value="Registrarse" icon="pi pi-check"
+			rendered="#{delegadoBean.userFound eq null}" />
+		<h:button outcome="signin" class="authButton" type="button"
+			value="Ingresar" icon="pi pi-check"
+			rendered="#{delegadoBean.userFound eq null}" />
+		<h:outputText style="color: white"
+			value="#{delegadoBean.userFound.correo}"
+			rendered="#{delegadoBean.userFound ne null}" />
+	</div>
+
+	<h:form id="form">
+		<div class="card crud-demo">
+			<p:growl id="messages" showDetail="true" />
+
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton id="delete-products-button"
+						value="#{actualizarPedidoBean.deleteButtonMessage}"
+						icon="pi pi-trash" styleClass="ui-button-danger"
+						disabled="#{!actualizarPedidoBean.hasSelectedPedidos()}"
+						update="@this">
+						<p:confirm header="Confirmation"
+							message="Modificar los pedidos seleccionados?"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:dataTable id="dt-pedidos" widgetVar="dtPedidos" var="pedido"
+				value="#{actualizarPedidoBean.pedidos}" reflow="true"
+				styleClass="products-table"
+				selection="#{actualizarPedidoBean.selectedPedidos}"
+				rowKey="#{pedido.idPedido}" paginator="true" rows="10"
+				rowSelectMode="add" paginatorPosition="bottom">
+				<f:facet name="header">
+					<div class="products-table-header">
+						<span style="font-weight: bold">PEDIDOS</span> <span
+							class="filter-container ui-input-icon-left"> <i
+							class="pi pi-search"></i> <p:inputText id="globalFilter"
+								onkeyup="PF('dtProducts').filter()" placeholder="Search" />
+						</span>
+					</div>
+				</f:facet>
+
+				<p:ajax event="rowSelect" update=":form:delete-products-button" />
+				<p:ajax event="rowUnselect" update=":form:delete-products-button" />
+				<p:ajax event="rowSelectCheckbox"
+					update=":form:delete-products-button" />
+				<p:ajax event="rowUnselectCheckbox"
+					update=":form:delete-products-button" />
+				<p:ajax event="toggleSelect" update=":form:delete-products-button" />
+
+				<p:column selectionMode="multiple" exportable="false"></p:column>
+
+				<p:column headerText="Code" sortBy="#{pedido.idPedido}">
+					<h:outputText value="#{pedido.idPedido}" />
+				</p:column>
+				<p:column headerText="Direccion" sortBy="#{pedido.direccion}">
+					<h:outputText value="#{pedido.direccion}" />
+				</p:column>
+				<p:column headerText="Imagen" exportable="false">
+					<img width="80" height="80" class="imgProduct"
+						src="https://www.iconpacks.net/icons/2/free-delivery-truck-icon-2049-thumb.png" />
+				</p:column>
+				<p:column headerText="Fecha" sortBy="#{pedido.fecha}">
+					<h:outputText value="#{pedido.fecha}" style="font-weight: 700">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Repartidor" sortBy="#{pedido.repartidor.nombreRepartidor}">
+					<h:outputText value="#{pedido.repartidor.nombreRepartidor}" style="font-weight: 700">
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Estado" sortBy="#{pedido.estado}">
+					<h:outputText value="Orden creada" style="font-weight: 700"
+						class="infoDialog" rendered="#{pedido.estado eq 0}">
+					</h:outputText>
+					<h:outputText value="Orden recibida" style="font-weight: 700"
+						class="infoDialog" rendered="#{pedido.estado eq 1}">
+					</h:outputText>
+					<h:outputText value="Orden en preparacion" style="font-weight: 700"
+						class="infoDialog" rendered="#{pedido.estado eq 2}">
+					</h:outputText>
+					<h:outputText value="Orden en camino" style="font-weight: 700"
+						class="infoDialog" rendered="#{pedido.estado eq 3}">
+					</h:outputText>
+					<h:outputText value="Orden finalizada" style="font-weight: 700"
+						class="infoDialog" rendered="#{pedido.estado eq 4}">
+					</h:outputText>
+					<h:outputText value="Orden lista para recoger"
+						style="font-weight: 700" class="infoDialog"
+						rendered="#{pedido.estado eq 5}">
+					</h:outputText>
+				</p:column>
+				<p:column exportable="false">
+					<p:commandButton icon="pi pi-pencil"
+						update=":form:manage-product-content"
+						oncomplete="PF('manageProductDialog').show()"
+						styleClass="ui-button-raised ui-button-success"
+						value="Actualizar Pedido" process="@this">
+						<f:setPropertyActionListener value="#{pedido}"
+							target="#{actualizarPedidoBean.selectedPedido}" />
+						<p:resetInput target=":form:manage-product-content" />
+					</p:commandButton>
+					<p:commandButton class="ui-button-warning rounded-button"
+						icon="pi pi-trash" process="@this"
+						oncomplete="PF('deleteProductDialog').show()">
+						<f:setPropertyActionListener value="#{pedido}"
+							target="#{actualizarPedidoBean.selectedPedido}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:dialog header="Etapas del pedido" showEffect="fade" modal="true"
+				widgetVar="manageProductDialog" responsive="true">
+				<p:outputPanel id="manage-product-content" class="ui-fluid">
+					<p:outputPanel
+						rendered="#{not empty actualizarPedidoBean.selectedPedido}">
+						<img width="80" height="80" class="imgProduct"
+							src="https://www.iconpacks.net/icons/2/free-delivery-truck-icon-2049-thumb.png" />
+						<!-- TITULO -->
+						<div style="text-align: center">
+							<h3 class="titulo">Estado Actual</h3>
+							<h:outputText value="Orden creada" style="font-weight: 700"
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 0}">
+							</h:outputText>
+							<h:outputText value="Orden recibida" style="font-weight: 700"
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 1}">
+							</h:outputText>
+							<h:outputText value="Orden en preparacion"
+								style="font-weight: 700" class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 2}">
+							</h:outputText>
+							<h:outputText value="Orden en camino" style="font-weight: 700"
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 3}">
+							</h:outputText>
+							<h:outputText value="Orden finalizada" style="font-weight: 700"
+								class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 4}">
+							</h:outputText>
+							<h:outputText value="Orden lista para recoger"
+								style="font-weight: 700" class="infoDialog"
+								rendered="#{actualizarPedidoBean.selectedPedido.estado eq 5}">
+							</h:outputText>
+						</div>
+						<!-- RADIO BUTTONS -->
+						<div class="p-field">
+							<h3 class="titulo">Nuevo estado</h3>
+							<p:selectOneRadio id="console"
+								value="#{actualizarPedidoBean.radioButtonValue}"
+								unselectable="true" layout="grid" columns="3"
+								styleClass="grid-radio">
+								<f:selectItem itemLabel="Orden creada" itemValue="0" />
+								<f:selectItem itemLabel="Orden recibida" itemValue="1" />
+								<f:selectItem itemLabel="Orden en preparacion" itemValue="2" />
+								<f:selectItem itemLabel="Orden en camino" itemValue="3" />
+								<f:selectItem itemLabel="Orden finalizada" itemValue="4" />
+								<f:selectItem itemLabel="Orden lista para recoger" itemValue="5" />
+							</p:selectOneRadio>
+						</div>
+						<!-- LISTA DESPLEGABLE DE REPARTIDORES -->
+						<div class="p-field p-col-12 p-md-4">
+							<h3 class="titulo">Seleccionar un repartidor</h3>
+							<p:selectOneMenu id="longItemLabel"
+								value="#{actualizarPedidoBean.repartidorComboBox}">
+								<f:selectItems value="#{actualizarPedidoBean.repartidoresDisponibles}"
+									var="repartidor" itemValue="#{repartidor.idRepartidor}" itemLabel="#{repartidor.nombreRepartidor}"/>
+							</p:selectOneMenu>
+						</div>
+					</p:outputPanel>
+				</p:outputPanel>
+
+				<f:facet name="footer">
+					<p:commandButton value="Save" icon="pi pi-check"
+						actionListener="#{actualizarPedidoBean.savePedido}"
+						update="manage-product-content"
+						process="manage-product-content @this" />
+					<p:commandButton value="Cancel" icon="pi pi-times"
+						onclick="PF('manageProductDialog').hide()"
+						class="ui-button-secondary" />
+				</f:facet>
+			</p:dialog>
+
+			<p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade"
+				width="300" message="Eliminar este pedido?" header="Confirm"
+				severity="warn">
+				<p:commandButton value="Yes" icon="pi pi-check" process="@this"
+					oncomplete="PF('deleteProductDialog').hide()" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-button-secondary" icon="pi pi-times"
+					onclick="PF('deleteProductDialog').hide()" />
+			</p:confirmDialog>
+
+			<p:confirmDialog global="true" showEffect="fade" width="300">
+				<p:commandButton value="Yes" type="button"
+					styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+				<p:commandButton value="No" type="button"
+					styleClass="ui-confirmdialog-no ui-button-secondary"
+					icon="pi pi-times" />
+			</p:confirmDialog>
+		</div>
+	</h:form>
+
+</h:body>
+</html>

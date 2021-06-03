@@ -14,23 +14,39 @@ import java.util.List;
 @NamedQuery(name="Repartidor.findAll", query="SELECT r FROM Repartidor r")
 public class Repartidor implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_repartidor")
 	private int idRepartidor;
+
+	@Column(name="foto_repartidor")
 	private String fotoRepartidor;
+
 	private BigDecimal latitude;
+
 	private BigDecimal longitude;
+
+	@Column(name="nombre_repartidor")
 	private String nombreRepartidor;
 	private String numero;
+
 	private String password;
+
+	//bi-directional many-to-one association to Pedido
+	//@OneToMany(mappedBy="repartidor")
+	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "repartidor", cascade = CascadeType.ALL)
 	private List<Pedido> pedidos;
+	//private Sucursal sucursal;
+
+	//bi-directional many-to-one association to Sucursal
+	@ManyToOne
+	@JoinColumn(name="Sucursal_id_sucursal")
 	private Sucursal sucursal;
 
 	public Repartidor() {
 	}
 
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_repartidor")
 	public int getIdRepartidor() {
 		return this.idRepartidor;
 	}
@@ -39,8 +55,6 @@ public class Repartidor implements Serializable {
 		this.idRepartidor = idRepartidor;
 	}
 
-
-	@Column(name="foto_repartidor")
 	public String getFotoRepartidor() {
 		return this.fotoRepartidor;
 	}
@@ -48,7 +62,6 @@ public class Repartidor implements Serializable {
 	public void setFotoRepartidor(String fotoRepartidor) {
 		this.fotoRepartidor = fotoRepartidor;
 	}
-
 
 	public BigDecimal getLatitude() {
 		return this.latitude;
@@ -58,7 +71,6 @@ public class Repartidor implements Serializable {
 		this.latitude = latitude;
 	}
 
-
 	public BigDecimal getLongitude() {
 		return this.longitude;
 	}
@@ -67,8 +79,6 @@ public class Repartidor implements Serializable {
 		this.longitude = longitude;
 	}
 
-
-	@Column(name="nombre_repartidor")
 	public String getNombreRepartidor() {
 		return this.nombreRepartidor;
 	}
@@ -86,7 +96,6 @@ public class Repartidor implements Serializable {
 		this.numero = numero;
 	}
 
-
 	public String getPassword() {
 		return this.password;
 	}
@@ -95,9 +104,6 @@ public class Repartidor implements Serializable {
 		this.password = password;
 	}
 
-
-	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="repartidor")
 	public List<Pedido> getPedidos() {
 		return this.pedidos;
 	}
@@ -120,10 +126,6 @@ public class Repartidor implements Serializable {
 		return pedido;
 	}
 
-
-	//bi-directional many-to-one association to Sucursal
-	@ManyToOne
-	@JoinColumn(name="Sucursal_id_sucursal")
 	public Sucursal getSucursal() {
 		return this.sucursal;
 	}
