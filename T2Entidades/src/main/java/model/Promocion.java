@@ -37,7 +37,7 @@ public class Promocion implements Serializable {
 	private String zonaValidez;
 
 	//bi-directional many-to-one association to Producto
-	@OneToMany(mappedBy="promocion")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="promocion")
 	private List<Producto> productos;
 
 	public Promocion() {

@@ -159,6 +159,7 @@ public class ServiceLocator {
 	
 	public LogicaPromocionRemote getLogicaPromocion(String servicio) {
 		LogicaPromocionRemote servicios = null;
+		System.out.println("Antes de Carga promociones");
 		if(servicio.equals("promocion")){
 			servicios = getLogicaPromocionConnect();
 		}

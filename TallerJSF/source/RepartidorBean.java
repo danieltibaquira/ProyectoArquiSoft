@@ -12,6 +12,7 @@ import logicaInterfaz.LogicaSucursalesRemote;
 import model.Producto;
 import model.Repartidor;
 import model.Sucursal;
+import net.bytebuddy.asm.Advice.This;
 
 public class RepartidorBean {
 	
@@ -19,7 +20,7 @@ public class RepartidorBean {
 	private Repartidor selectedRepartidor;
 	private List<Repartidor> selectedRepartidores;
 	private DRepartidorBean delegadoBean;
-	private String repartidorLocation = "";
+	private String repartidorLocation;
 	
 	
 	
@@ -27,6 +28,8 @@ public class RepartidorBean {
 		delegadoBean = new DRepartidorBean();
 		repartidores = new ArrayList<Repartidor>();
 		selectedRepartidores = new ArrayList<Repartidor>();
+		PrimeFaces.current().executeScript("getLocation()");
+
 	}
 	public List<Repartidor> getRepartidores() {
 		return repartidores;
@@ -55,14 +58,10 @@ public class RepartidorBean {
 	
 	public void openNew() {
 		this.selectedRepartidor = new Repartidor();
-		PrimeFaces.current().executeScript("getLocation()");
-		
-		System.out.println(selectedRepartidor.getLatitude());
 	}
 	
 	public void cargarRepartidores() {
 		System.out.println(delegadoBean.buscarRepartidores());
-		PrimeFaces.current().executeScript("getLocation()");
 		repartidores = delegadoBean.buscarRepartidores();
 	}
 	
@@ -84,7 +83,7 @@ public class RepartidorBean {
 			this.selectedRepartidor.setFotoRepartidor("https://source.unsplash.com/random/?postman");
 			this.selectedRepartidor.setPedidos(null);
 			Sucursal sea = new Sucursal();
-			sea.setIdSucursal(16);
+			sea.setIdSucursal(28);
 			this.selectedRepartidor.setSucursal(sea);
 			delegadoBean.createRepartidor(this.selectedRepartidor);
 			
@@ -114,21 +113,22 @@ public class RepartidorBean {
 		return "Eliminar";
 	}
 	
+	public String getLocationMessage() {
+		return "https://www.mapquest.com/embed/near-4.7316991999999995,-74.0655104?center=4.7316991999999995,-74.0655104&zoom=15&maptype=map";
+	}
+	
 	public boolean hasSelectedRepartidores() {
 
         return this.selectedRepartidores != null && !this.selectedRepartidores.isEmpty();
     }
 	
-	public void locat() {
+	public String locat() {
 		String param1 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("param1");
         String param2 = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("param2");
-		System.out.println(param1);
-		System.out.println(param2);
-		//this.selectedRepartidor.setLatitude(new BigDecimal(param1));
-		//this.selectedRepartidor.setLongitude(new BigDecimal(param2));
-		//this.saveRepartidor();
-		repartidorLocation = "https://www.mapquest.com/embed/near-"+param1+","+param2+"?center="+param1+","+param2+"&zoom=15&maptype=map";
-		System.out.println(repartidorLocation);
+
+		this.repartidorLocation = "https://www.mapquest.com/embed/near-"+param1+","+param2+"?center="+param1+","+param2+"&zoom=15&maptype=map";
+		System.out.println("Link en locat: " + repartidorLocation);
+		return this.repartidorLocation;
 
 	}
 	

@@ -33,6 +33,11 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
+		<managed-bean-name>repartidorBean</managed-bean-name>
+		<managed-bean-class>RepartidorBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
 		<managed-bean-name>carritoBean</managed-bean-name>
 		<managed-bean-class>CarritoBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -68,18 +73,17 @@
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>dProductoBean</managed-bean-name>
-		<managed-bean-class>DProductoBean</managed-bean-class>
+		<managed-bean-name>promocionBean</managed-bean-name>
+		<managed-bean-class>PromocionBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>productBean</property-name>
+			<value>#{productBean}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>repartidorBean</managed-bean-name>
-		<managed-bean-class>RepartidorBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-	</managed-bean>
-	<managed-bean>
-		<managed-bean-name>dRepartidorBean</managed-bean-name>
-		<managed-bean-class>DRepartidorBean</managed-bean-class>
+		<managed-bean-name>dPromocionBean</managed-bean-name>
+		<managed-bean-class>DPromocionBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>

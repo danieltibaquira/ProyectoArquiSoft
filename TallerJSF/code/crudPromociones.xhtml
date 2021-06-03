@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      > 
+<f:metadata>
+          <f:event type="preRenderView" listener="#{promocionBean.cargarPromociones()}"/>
+      </f:metadata>
+<h:head>
+	<link rel="stylesheet" href="crudPromociones.css"></link>
+		<link rel="stylesheet" href="home.css"></link>
+	
+</h:head> 
+<h:body>
+		<div id="header">
+			<h1 class="titulo">Sandwich</h1>
+			<h:button  outcome="signup" class="authButton" type="button" value="Registrarse" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			<h:button outcome="signin" class="authButton" type="button" value="Ingresar" icon="pi pi-check" rendered="#{delegadoBean.userFound eq null}"/>
+			<h:outputText style="color: white" value="#{delegadoBean.userFound.correo}" rendered="#{delegadoBean.userFound ne null}" /> 
+		</div>
+		
+		<h:form id="form">
+    <div class="card crud-demo">
+        <p:growl id="messages" showDetail="true"/>
+
+        <p:toolbar>
+            <p:toolbarGroup>
+                <p:commandButton value="New" icon="pi pi-plus" actionListener="#{promocionBean.openNew}"
+                                 update=":form:manage-promocion-content" oncomplete="PF('managePromocionDialog').show()"
+                                 styleClass="ui-button-success" style="margin-right: .5rem">
+                    <p:resetInput target=":form:manage-promocion-content"/>
+                </p:commandButton>
+                <p:commandButton id="delete-promocion-button" value="#{promocionBean.deleteButtonMessage}"
+                                 icon="pi pi-trash" actionListener="#{promocionBean.deleteSelectedPromociones}"
+                                 styleClass="ui-button-danger" disabled="#{!promocionBean.hasSelectedPromociones()}"
+                                 update="@this">
+                    <p:confirm header="Confirmacion" message="Desea borrar las promociones seleccionadas?"
+                               icon="pi pi-exclamation-triangle"/>
+                </p:commandButton>
+            </p:toolbarGroup>
+        </p:toolbar>
+
+       
+       
+       
+       
+       
+        <p:dataTable var="promocion" value="#{promocionBean.promociones}" rowKey="#{promocion.idPromocion}">
+            <f:facet name="header">
+                PROMOCIONES
+            </f:facet>
+            
+            
+            <p:ajax event="rowSelect" update=":form:delete-promocion-button"/>
+            <p:ajax event="rowUnselect" update=":form:delete-promocion-button"/>
+            <p:ajax event="rowSelectCheckbox" update=":form:delete-promocion-button"/>
+            <p:ajax event="rowUnselectCheckbox" update=":form:delete-promocion-button"/>
+            <p:ajax event="toggleSelect" update=":form:delete-promocion-button"/>
+
+            <p:column selectionMode="multiple" exportable="false"></p:column>
+            
+            
+            <p:column style="width:2rem">
+                <p:rowToggler/>
+            </p:column>
+
+            <p:column headerText="Nombre">
+                <h:outputText value="#{promocion.idPromocion}"/>
+            </p:column>
+
+            <p:column headerText="Imagen">
+                <p:graphicImage name="https://source.unsplash.com/random/?restaurant" styleClass="p-shadow-2" width="100"/>
+            </p:column>
+
+            <p:column headerText="Descuento">
+                <h:outputText value="#{promocion.descuento}%"/>
+            </p:column>
+
+            <p:column headerText="Ciudad">
+                <h:outputText value="#{promocion.ciudad}"/>
+            </p:column>
+            
+            <p:column headerText="Zona">
+                <h:outputText value="#{promocion.zonaValidez}"/>
+            </p:column>
+            
+            <p:column headerText="Tipo">
+                <h:outputText value="#{promocion.tipoPromocion}"/>
+            </p:column>
+            
+            <p:column headerText="Fecha Vencimiento">
+                <h:outputText value="#{promocion.fechaVencimiento}"/>
+            </p:column>
+
+            <p:rowExpansion>
+                <div class="promocion">
+                    <div class="promocion-list-item">
+                    <p:dataView var="producto" value="#{promocion.productos}" rows="12" lazy="true" 
+                    layout="grid" gridRowStyleClass="p-lg-6 p-xl-4" flex="true">
+                        <p:dataViewGridItem>
+			                <div class="product-grid-item card border-1">
+			                    <div class="product-grid-item-content">
+			                        <p:graphicImage name="https://source.unsplash.com/random/?restaurant" />
+			                        <div class="product-name">#{producto.nombreProducto}</div>
+			                        <div class="product-description">#{producto.descripcion}</div>
+			                    </div>
+			                    <div class="product-grid-item-bottom">
+			                        <h:outputText value="#{producto.precio}" styleClass="product-price">
+			                            <f:convertNumber currencySymbol="$" type="currency"/>
+			                        </h:outputText>
+			                    </div>
+			                </div>
+			            </p:dataViewGridItem>
+			           </p:dataView>
+                    </div>
+                </div>
+            </p:rowExpansion>
+        </p:dataTable>
+       
+       
+       
+       
+       
+       
+       
+       
+       
+
+        <p:dialog header="Promocion" showEffect="fade" modal="true" width="850" height="1000"
+                  widgetVar="managePromocionDialog" responsive="true">
+            <p:outputPanel id="manage-promocion-content" class="ui-fluid">
+                <p:outputPanel rendered="#{not empty promocionBean.selectedPromocion}">
+                <div style="display:flex; flex-direction:row; margin-bottom: 60px; ">
+                	<div style="display:flex; flex-direction:column; margin-right:20px">
+	                    <img  width="80" height="80" class="imgProduct" src="https://source.unsplash.com/random/?restaurant"/>
+	                    <div class="p-field">
+	                        <p:outputLabel for="name">Nombre</p:outputLabel>
+	                        <p:inputText id="name" value="Modificar BD" required="true"/>
+	                    </div>
+	                    <div class="p-field">
+	                        <p:outputLabel for="descripcion">Descripcion</p:outputLabel>
+	                        <p:inputText id="descripcion" value="#{promocionBean.selectedPromocion.descripcion}"/>
+	                    </div>
+	                    <div class="p-field">
+	                        <p:outputLabel for="ciudad">Ciudad</p:outputLabel>
+	                        <p:inputText id="ciudad" value="#{promocionBean.selectedPromocion.ciudad}"/>
+	                    </div>
+	                    <div class="p-field">
+	                        <p:outputLabel for="zona">Zona de Validez</p:outputLabel>
+	                        <p:inputText id="zona" value="#{promocionBean.selectedPromocion.zonaValidez}"/>
+	                    </div>
+	                    <div class="p-field">
+	                        <p:outputLabel for="tipo">Tipo</p:outputLabel>
+	                        <p:inputText id="tipo" value="#{promocionBean.selectedPromocion.tipoPromocion}"/>
+	                    </div>
+                    </div>
+                    <div>
+                    	<p>Fecha de vencimiento</p>
+                         <p:datePicker id="inline" value="#{promocionBean.selectedPromocion.fechaVencimiento}" inline="true"/>
+                    </div>
+                  </div>
+                    <div style="marginTop:20;">
+				        <p>Productos aplicables</p>
+				        <p:dataTable id="checkboxPromocionesProductos" var="product" value="#{productBean.productos}"
+				                     selection="#{productBean.selectedProducts}" rowKey="#{product.idProducto}"
+				                     style="margin-bottom:0" paginator="true" rows="5" selectionPageOnly="false">
+				            <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+				            <p:column headerText="Codigo">
+				                <h:outputText value="#{product.idProducto}" />
+				            </p:column>
+				            <p:column headerText="Nombre">
+				                <h:outputText value="#{product.nombreProducto}" />
+				            </p:column>
+				            <p:column headerText="Precio">
+				                <h:outputText value="#{product.precio}" />
+				            </p:column>
+				        </p:dataTable>
+				    </div>
+                </p:outputPanel>
+            </p:outputPanel>
+
+            <f:facet name="footer">
+                <p:commandButton value="Save" icon="pi pi-check" actionListener="#{promocionBean.savePromocion}"
+                                 update="manage-promocion-content" process="manage-promocion-content @this"/>
+                <p:commandButton value="Cancel" icon="pi pi-times" onclick="PF('managePromocionDialog').hide()"
+                                 class="ui-button-secondary"/>
+            </f:facet>
+        </p:dialog>
+
+        <p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade" width="300"
+                         message="Desea eliminar la promocion?" header="Confirmacion" severity="warn">
+            <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{promocionBean.deletePromocion}"
+                             process="@this" oncomplete="PF('deletePromocionDialog').hide()"/>
+            <p:commandButton value="No" type="button" styleClass="ui-button-secondary" icon="pi pi-times"
+                             onclick="PF('deletePromocionDialog').hide()"/>
+        </p:confirmDialog>
+
+        <p:confirmDialog global="true" showEffect="fade" width="300">
+            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-secondary"
+                             icon="pi pi-times"/>
+        </p:confirmDialog>
+    </div>
+</h:form>
+
+    </h:body>
+</html>

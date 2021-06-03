@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                                                        
+                                                            
+    
     
     
     
@@ -13,7 +14,8 @@
     
     
     <wb-module deploy-name="TallerJSF-1">
-                                                                                                                
+                                                                                                                        
+        
         
         
         
@@ -27,7 +29,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                                                                                
+                                                                                                                        
+        
         
         
         
@@ -41,7 +44,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/code" tag="defaultRootSource"/>
-                                                                                                                
+                                                                                                                        
+        
         
         
         
@@ -55,7 +59,8 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/source"/>
-                                                                                
+                                                                                        
+        
         
         
         
@@ -71,7 +76,8 @@
         <dependent-module archiveName="ProyectoNegociosClient-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ProyectoNegociosClient/ProyectoNegociosClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-                                                                                                                
+                                                                                                                        
+        
         
         
         
@@ -85,7 +91,8 @@
         
         
         <property name="java-output-path" value="/TallerJSF/source"/>
-                                                                        
+                                                                                
+        
         
         
         
@@ -94,7 +101,8 @@
         
         
         <property name="context-root" value="ProyectoJSF"/>
-                                                                                                            
+                                                                                                                    
+    
     
     
     
@@ -108,7 +116,8 @@
     
     
     </wb-module>
-                                                    
+                                                        
+
 
 
 
