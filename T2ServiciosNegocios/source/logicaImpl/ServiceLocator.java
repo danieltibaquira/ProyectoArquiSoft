@@ -18,14 +18,6 @@ public class ServiceLocator {
 	private String nombreEAR = "ProyectoEARServiciosDatos";
 	
 	private Context crearContexto() {
-		//AHHHHHHHHHHHHHHHH
-		/*Properties jndlProperties = new Properties();
-		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
-		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.wildfly.naming.client.WildFlyInitialContextFactory.class.getName());
-		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8680");
-		jndlProperties.put(Context.SECURITY_PRINCIPAL, "adminJohan");
-		jndlProperties.put(Context.SECURITY_CREDENTIALS, "123456");
-		jndlProperties.put("jboss.naning.client.ejb.context", true);*/
 		Properties jndlProperties = new Properties();
 		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");

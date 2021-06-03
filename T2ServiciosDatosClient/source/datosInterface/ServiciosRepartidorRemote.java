@@ -13,6 +13,4 @@ public interface ServiciosRepartidorRemote {
 	public Repartidor editRepartidor(Repartidor repartidor);
 	public List<Repartidor> getAllRepartidores();
 	public boolean deleteRepartidor(Integer id);
-	public Repartidor editRepartidor(Repartidor repartidor);
-
 }

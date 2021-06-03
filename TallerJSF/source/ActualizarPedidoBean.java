@@ -14,6 +14,7 @@ public class ActualizarPedidoBean {
 	private int idSucursal;
 	private Pedido pedido;
 	private DActualizarPedidoBean delegado;
+	private DelegadoBean delegado2;
 	private List<Pedido> pedidos;
 	private List<Pedido> selectedPedidos;
 	private Pedido selectedPedido;
@@ -116,12 +117,19 @@ public class ActualizarPedidoBean {
 		this.repartidorComboBox = repartidorComboBox;
 	}
 
+	public DelegadoBean getDelegado2() {
+		return delegado2;
+	}
+
+	public void setDelegado2(DelegadoBean delegado2) {
+		this.delegado2 = delegado2;
+	}
+
 	public String cargarPedidos() {
-		this.idSucursal = 28;
-		System.out.println("cargando Pedidos");
+		this.idSucursal = delegado2.getUserFound().getSucursals().get(0).getIdSucursal();
+		System.out.println("cargando Pedidos de la sucursal ID: " + this.idSucursal);
 		pedidos = delegado.buscarPedidosSucursal(idSucursal);
 		System.out.println("Cantidad pedidos sucursal: " + pedidos.size());
-		System.out.println("Direccion primer pedido: " + pedidos.get(0).getDireccion());
 		repartidor = new Repartidor();
 		this.cargarRepartidores();
 
