@@ -4,9 +4,9 @@
 		<jta-data-source>java:/ASproyectoAWS</jta-data-source>
 		<class>model.Pedido</class>
 		<class>model.Producto</class>
-		<class>model.Promocion</class>
 		<class>model.Repartidor</class>
 		<class>model.Sucursal</class>
 		<class>model.Usuario</class>
+		<class>model.Promocion</class>
 	</persistence-unit>
 </persistence>

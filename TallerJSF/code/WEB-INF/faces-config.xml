@@ -169,6 +169,16 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<display-name>loginRepartidor.xhtml</display-name>
+		<from-view-id>/loginRepartidor.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{repartidorBean.validarRepartidor()}</from-action>
+	        <from-outcome>Hecho</from-outcome>
+			<to-view-id>/homeRepartidor.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<display-name>carrito.xhtml</display-name>
 		<from-view-id>/carrito.xhtml</from-view-id>
 		<navigation-case>

@@ -39,6 +39,8 @@ public class Promocion implements Serializable {
 	//bi-directional many-to-one association to Producto
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="promocion")
 	private List<Producto> productos;
+	
+	private String nombre;
 
 	public Promocion() {
 	}
@@ -105,6 +107,14 @@ public class Promocion implements Serializable {
 
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Producto addProducto(Producto producto) {

@@ -16,4 +16,5 @@ public interface ServicosPedidoRemote {
 	public List<Pedido> getAllPedidos();
 	public List<Pedido> getPedidosUsuario(Usuario usuario);
 	public List<Pedido> getAllPedidosByIDSucursal(int idSucursal);
+	List<Pedido> getAllPedidosByIDRepartidor(int idRepartidor);
 }

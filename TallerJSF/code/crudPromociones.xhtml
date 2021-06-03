@@ -44,11 +44,8 @@
         </p:toolbar>
 
        
-       
-       
-       
-       
-        <p:dataTable var="promocion" value="#{promocionBean.promociones}" rowKey="#{promocion.idPromocion}">
+        <p:dataTable id="dt-promociones" widgetVar="dtPromociones" var="promocion" 
+        	value="#{promocionBean.promociones}" rowKey="#{promocion.idPromocion}" selection="#{promocionBean.selectedPromociones}">
             <f:facet name="header">
                 PROMOCIONES
             </f:facet>
@@ -63,18 +60,14 @@
             <p:column selectionMode="multiple" exportable="false"></p:column>
             
             
-            <p:column style="width:2rem">
+            <p:column headerText="Productos">
                 <p:rowToggler/>
             </p:column>
 
             <p:column headerText="Nombre">
-                <h:outputText value="#{promocion.idPromocion}"/>
+                <h:outputText value="#{promocion.nombre}"/>
             </p:column>
-
-            <p:column headerText="Imagen">
-                <p:graphicImage name="https://source.unsplash.com/random/?restaurant" styleClass="p-shadow-2" width="100"/>
-            </p:column>
-
+            
             <p:column headerText="Descuento">
                 <h:outputText value="#{promocion.descuento}%"/>
             </p:column>
@@ -103,7 +96,6 @@
                         <p:dataViewGridItem>
 			                <div class="product-grid-item card border-1">
 			                    <div class="product-grid-item-content">
-			                        <p:graphicImage name="https://source.unsplash.com/random/?restaurant" />
 			                        <div class="product-name">#{producto.nombreProducto}</div>
 			                        <div class="product-description">#{producto.descripcion}</div>
 			                    </div>
@@ -135,14 +127,18 @@
                 <p:outputPanel rendered="#{not empty promocionBean.selectedPromocion}">
                 <div style="display:flex; flex-direction:row; margin-bottom: 60px; ">
                 	<div style="display:flex; flex-direction:column; margin-right:20px">
-	                    <img  width="80" height="80" class="imgProduct" src="https://source.unsplash.com/random/?restaurant"/>
+	                    
 	                    <div class="p-field">
 	                        <p:outputLabel for="name">Nombre</p:outputLabel>
-	                        <p:inputText id="name" value="Modificar BD" required="true"/>
+	                        <p:inputText id="name" value="#{promocionBean.selectedPromocion.nombre}" required="true"/>
 	                    </div>
 	                    <div class="p-field">
 	                        <p:outputLabel for="descripcion">Descripcion</p:outputLabel>
 	                        <p:inputText id="descripcion" value="#{promocionBean.selectedPromocion.descripcion}"/>
+	                    </div>
+	                    <div class="p-field">
+	                        <p:outputLabel for="descuento">Descuento</p:outputLabel>
+	                        <p:inputText id="descuento" value="#{promocionBean.selectedPromocion.descuento}"/>
 	                    </div>
 	                    <div class="p-field">
 	                        <p:outputLabel for="ciudad">Ciudad</p:outputLabel>
@@ -190,7 +186,7 @@
             </f:facet>
         </p:dialog>
 
-        <p:confirmDialog widgetVar="deleteProductDialog" showEffect="fade" width="300"
+        <p:confirmDialog widgetVar="deletePromocionDialog" showEffect="fade" width="300"
                          message="Desea eliminar la promocion?" header="Confirmacion" severity="warn">
             <p:commandButton value="Yes" icon="pi pi-check" actionListener="#{promocionBean.deletePromocion}"
                              process="@this" oncomplete="PF('deletePromocionDialog').hide()"/>
