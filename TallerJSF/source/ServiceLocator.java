@@ -128,11 +128,7 @@ public class ServiceLocator {
 	
 	public LogicaRepartidorRemote getLogicaRepartidor(String servicio) {
 		LogicaRepartidorRemote servicios = null;
-<<<<<<< HEAD
-		if(servicio.equals("repartidor")){
-=======
 		if(servicio.equals("repartior")){
->>>>>>> johan
 			servicios = getLogicaRepartidorConnect();
 		}
 		return (LogicaRepartidorRemote) servicios;
@@ -213,7 +209,7 @@ public class ServiceLocator {
 		System.out.println(viewClassName);
 		LogicaPedidoRemote logicaPedido = null;
 		try {
-			logicaPedido = (LogicaPedidoRemote) ctx.lookup("ejb:ProyectoEARLogica/ProyectoServiciosNegocios/LogicaPedido!logicaInterfaz.LogicaPedidoRemote");
+			logicaPedido = (LogicaPedidoRemote) ctx.lookup("ejb:ProyectoEARServiciosDatos/ProyectoServiciosDatos/ServicosPedido!datosInterface.ServicosPedidoRemote");
 		} catch(NamingException e) {
 			e.printStackTrace();
 		}

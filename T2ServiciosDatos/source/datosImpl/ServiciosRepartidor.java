@@ -46,7 +46,7 @@ public class ServiciosRepartidor implements ServiciosRepartidorRemote {
 		}
 	}
 	
-	@Override
+	/*@Override
 	public Repartidor editRepartidor(Repartidor repartidor) {
 		try {
 			Repartidor nRepartidor= entityManager.find(Repartidor.class, repartidor.getIdRepartidor());
@@ -73,7 +73,7 @@ public class ServiciosRepartidor implements ServiciosRepartidorRemote {
 			System.out.println("error");
 			return null;
 		}
-	}
+	}*/
 
 	@Override
 	public Repartidor searchRepartidor(Repartidor repartidor) {

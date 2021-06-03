@@ -37,7 +37,7 @@ public class Repartidor implements Serializable {
 	//@OneToMany(mappedBy="repartidor")
 	@OneToMany(fetch = FetchType.EAGER, orphanRemoval = true, mappedBy = "repartidor", cascade = CascadeType.ALL)
 	private List<Pedido> pedidos;
-	private Sucursal sucursal;
+	//private Sucursal sucursal;
 
 	//bi-directional many-to-one association to Sucursal
 	@ManyToOne
@@ -47,10 +47,6 @@ public class Repartidor implements Serializable {
 	public Repartidor() {
 	}
 
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_repartidor")
 	public int getIdRepartidor() {
 		return this.idRepartidor;
 	}
