@@ -67,7 +67,8 @@ public class LogicaPedido implements LogicaPedidoRemote {
 		ServiceLocator sl = new ServiceLocator();
 		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
 		List<Pedido> pedidos = servicio.getAllPedidosByIDSucursal(idSucursal);
-	
+		return pedidos;
+	}
 	@Override
 	public List<Pedido> getAllPedidosByIDRepartidor(int idRepartidor) {
 		ServiceLocator sl = new ServiceLocator();

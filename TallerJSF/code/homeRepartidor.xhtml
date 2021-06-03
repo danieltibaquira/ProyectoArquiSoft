@@ -27,7 +27,8 @@
 	    <div class="card crud-demo">
 	        <p:growl id="messages" showDetail="true"/>
 	        
-	        <p:dataGrid value="#{repartidorBean.repartidorVal.pedidos}" var="pedido" layout="grid" columns="4">
+	        <p:dataGrid value="#{repartidorBean.repartidorVal.pedidos}" id="dt-pedidosR" widgetVar="dtPedidosR"
+	        var="pedido" layout="grid" columns="4">
 			<div class="productList" >
 			<div class="product">
 					<p style="font-size: 52; font-weight:700">Total pago: $#{pedido.precioTotal}</p>
@@ -41,8 +42,8 @@
                        <h:outputLabel value="Estado: Listo para recoger" rendered="#{pedido.estado == 5}" /> 
 					<div class="productBar">
 						
-						<p:commandButton type="submit" value="Entregar" action="#{pedido.estado}" >
-							<f:setPropertyActionListener target="#{carritoBean.producto}" value="#{product}" />
+						<p:commandButton type="submit" value="Entregar" action="#{repartidorBean.actualizarEstado}" >
+							<f:setPropertyActionListener target="#{repartidorBean.pedidoSelect}" value="#{pedido}" />
 						</p:commandButton>
 						
 					</div>

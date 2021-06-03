@@ -49,10 +49,20 @@
                         <h:outputLabel value="Estado: Entregado" rendered="#{pedido.estado == 4}" /> 
                         <h:outputLabel value="Estado: Listo para recoger" rendered="#{pedido.estado == 5}" /> 
                        <div class="text">Sucursal: Nueva granada</div>
+		                <p:commandButton icon="pi pi-map-marker" oncomplete="PF('manageLocationDialog').show()" rendered="#{pedido.estado == 3}" 
+		                                 styleClass="edit-button rounded-button ui-button-success" process="@this">
+		                </p:commandButton>
+			       
                     </div>
                 </div>
             </p:dataViewListItem>
         </p:dataView>
+        
+        <p:dialog header="Ubicacion" showEffect="fade" modal="true"
+			widgetVar="manageLocationDialog" responsive="true">
+			<iframe height="400" width="300"
+			src="#{dPedidoBean.locationMessage}"></iframe>
+		</p:dialog>
 		
 		
 </body> 

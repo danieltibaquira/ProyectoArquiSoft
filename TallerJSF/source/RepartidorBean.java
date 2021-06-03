@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.primefaces.PrimeFaces;
 
 import logicaInterfaz.LogicaSucursalesRemote;
+import model.Pedido;
 import model.Producto;
 import model.Repartidor;
 import model.Sucursal;
@@ -22,6 +23,8 @@ public class RepartidorBean {
 	private DRepartidorBean delegadoBean;
 	private String repartidorLocation;
 	private Repartidor repartidorVal;
+	private Pedido pedidoSelect;
+	private DActualizarPedidoBean dActualizarPedidoBean;
 	
 	
 	
@@ -68,11 +71,23 @@ public class RepartidorBean {
 		this.selectedRepartidor = new Repartidor();
 	}
 
+	public DActualizarPedidoBean getdActualizarPedidoBean() {
+		return dActualizarPedidoBean;
+	}
+	public void setdActualizarPedidoBean(DActualizarPedidoBean dActualizarPedidoBean) {
+		this.dActualizarPedidoBean = dActualizarPedidoBean;
+	}
 	public void cargarRepartidores() {
 		System.out.println(delegadoBean.buscarRepartidores());
 		repartidores = delegadoBean.buscarRepartidores();
 	}
 	
+	public Pedido getPedidoSelect() {
+		return pedidoSelect;
+	}
+	public void setPedidoSelect(Pedido pedidoSelect) {
+		this.pedidoSelect = pedidoSelect;
+	}
 	public String getRepartidorLocation() {
 		return repartidorLocation;
 	}
@@ -138,6 +153,17 @@ public class RepartidorBean {
 		System.out.println("Link en locat: " + repartidorLocation);
 		return this.repartidorLocation;
 
+	}
+	
+	public void actualizarEstado() {
+		pedidoSelect.setEstado(4);
+		repartidorVal.setPedidos(null);
+		pedidoSelect.setRepartidor(null);
+		pedidoSelect.setProductos(null);
+		pedidoSelect.setSucursal(null);
+		pedidoSelect.setUsuario(null);
+		dActualizarPedidoBean.updatePedido(pedidoSelect);
+		PrimeFaces.current().ajax().update("form:messages", "form:dt-pedidosR");
 	}
 	
 	public void deleteSelectedRepartidores() {

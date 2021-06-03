@@ -50,4 +50,8 @@ public class DPedidoBean implements Serializable {
 		pedidos = serviciosPedido.getPedidosUsuario(delegado.getUserFound());
 		//System.out.println(pedidos.get(0).getIdPedido());
 	}
+	
+	public String getLocationMessage() {
+		return "https://www.mapquest.com/embed/near-4.7316991999999995,-74.0655104?center=4.7316991999999995,-74.0655104&zoom=15&maptype=map";
+	}
 }

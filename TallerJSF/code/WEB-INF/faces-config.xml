@@ -40,6 +40,10 @@
 		<managed-bean-name>repartidorBean</managed-bean-name>
 		<managed-bean-class>RepartidorBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dActualizarPedidoBean</property-name>
+			<value>#{dActualizarPedidoBean}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>carritoBean</managed-bean-name>
