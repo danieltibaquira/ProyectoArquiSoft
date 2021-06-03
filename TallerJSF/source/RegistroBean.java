@@ -33,7 +33,8 @@ public class RegistroBean {
 		System.out.println("Validando usuario");
 		user = delegado.validateUser(user);
 		if(user != null) {
-			if(user.getRol()==1) return "Admin";
+			if(user.getRol() == 2) return "AdminAdmin";
+			else if(user.getRol()==1) return "Admin";
 			else return "Exito";
 		}else {
 			return "";
