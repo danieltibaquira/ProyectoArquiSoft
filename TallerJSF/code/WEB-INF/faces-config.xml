@@ -91,6 +91,12 @@
 			<to-view-id>/home.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-action>#{registroBean.validarUsuario()}</from-action>
+	        <from-outcome>Admin</from-outcome>
+			<to-view-id>/sucursalHome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<display-name>pagar.xhtml</display-name>
@@ -122,7 +128,7 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
-			<from-action>#{carritoBean.confirmarPedido()}</from-action>
+			<from-action>#{carritoBean.enviarPedido()}</from-action>
 	        <from-outcome>Pagar</from-outcome>
 			<to-view-id>/pagar.xhtml</to-view-id>
 			<redirect />

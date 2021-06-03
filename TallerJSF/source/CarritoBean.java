@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import model.Pedido;
 import model.Producto;
 
-public class CarritoBean implements Serializable {
+public class CarritoBean {
 
 	private Producto producto;
 	private DPedidoBean dcarrito;
 	private Pedido pedido;
 	private DelegadoBean delegado;
+	
+	private String tipoPago;
+	private String tipoEntrega;
+	
 	public CarritoBean() {
 		super();
 	}
@@ -47,7 +51,23 @@ public class CarritoBean implements Serializable {
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
-	
+
+	public String getTipoPago() {
+		return tipoPago;
+	}
+
+	public void setTipoPago(String tipoPago) {
+		System.out.println("entre");
+		this.tipoPago = tipoPago;
+	}
+
+	public String getTipoEntrega() {
+		return tipoEntrega;
+	}
+
+	public void setTipoEntrega(String tipoEntrega) {
+		this.tipoEntrega = tipoEntrega;
+	}
 
 	public DelegadoBean getDelegado() {
 		return delegado;
@@ -57,18 +77,26 @@ public class CarritoBean implements Serializable {
 		this.delegado = delegado;
 	}
 
+	public String enviarPedido() {
+		return "Pagar";
+	}
+	
 	public String confirmarPedido() {
 		if(delegado.getUserFound()==null) {
 			return "Autenticarse";
-		}else {;
+		}else {
+			System.out.println("entrando");
 			pedido.setUsuario(delegado.getUserFound());
-			//delegado.getUserFound().addPedido(pedido);
-			return "Pagar";
+			pedido.setTipoPago(Integer.parseInt(tipoPago));
+			pedido.setTipoEntrega(Integer.parseInt(tipoEntrega));
+			return null;
 		}
 	}
 	
 	public void vaciarCarrito() {
 		pedido = new Pedido();
+		pedido.setProductos(new ArrayList<Producto>());
+		pedido.setPrecioTotal(new BigDecimal(0));
 	}
 	
 	public void eliminarProducto() throws IOException {

@@ -38,6 +38,12 @@ public class DelegadoBean {
 		userFound = servicioUsuario.validar(user.getUsername(), user.getContrasena());
 		if(userFound != null) { 
 			userFound.setPedidos(null);
+			if(userFound.getRol()==1) {
+				System.out.println("El usuario es admin");
+				System.out.println("Sucursal " + userFound.getSucursals().get(0).getNombreSucursal());
+			}else{
+				userFound.setSucursals(null);
+			}
 			//userFound.setPedidos(new ArrayList<Pedido>());
 			return userFound;
 		}else {
