@@ -86,7 +86,8 @@ public class ServicosPedido implements ServicosPedidoRemote {
 				query.setParameter("fecha", pedido.getFecha());
 				query.setParameter("precioTotal", pedido.getPrecioTotal());
 				query.setParameter("tipoPago", pedido.getTipoPago());
-				System.out.println("Creados los parametros");
+				System.out.println("Creados los parametros Pedido");
+				entityManager.flush();
 				query.executeUpdate();
 				System.out.println("Ejecutado el query");
 				return pedido;

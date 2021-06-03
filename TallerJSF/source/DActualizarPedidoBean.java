@@ -21,6 +21,10 @@ public class DActualizarPedidoBean {
 		return servicioPedidos.updatePedido(pedido);
 	}
 	
+	public Repartidor updateRepartidor(Repartidor repartidor) {
+		return servicioRepartidor.editRepartidor(repartidor);
+	}
+	
 	public List<Pedido> buscarPedidosSucursal(int idSucursal) {
 		System.out.println("buscar pedidos por sucursal");
 		System.out.println(servicioPedidos.getAllPedidosByIDSucursal(idSucursal).size());

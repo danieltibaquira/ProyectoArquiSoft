@@ -4,6 +4,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.hibernate.Hibernate;
 import org.primefaces.PrimeFaces;
 
 import model.Pedido;
@@ -17,9 +18,10 @@ public class ActualizarPedidoBean {
 	private List<Pedido> selectedPedidos;
 	private Pedido selectedPedido;
 	private String radioButtonValue;
-	
+
 	private Repartidor repartidor;
 	private List<Repartidor> repartidoresDisponibles;
+	private int repartidorComboBox;
 
 	public ActualizarPedidoBean() {
 		// TODO Auto-generated constructor stub
@@ -106,18 +108,26 @@ public class ActualizarPedidoBean {
 		this.repartidoresDisponibles = repartidoresDisponibles;
 	}
 
+	public int getRepartidorComboBox() {
+		return repartidorComboBox;
+	}
+
+	public void setRepartidorComboBox(int repartidorComboBox) {
+		this.repartidorComboBox = repartidorComboBox;
+	}
+
 	public String cargarPedidos() {
 		this.idSucursal = 28;
 		System.out.println("cargando Pedidos");
 		pedidos = delegado.buscarPedidosSucursal(idSucursal);
 		System.out.println("Cantidad pedidos sucursal: " + pedidos.size());
 		System.out.println("Direccion primer pedido: " + pedidos.get(0).getDireccion());
-		
+		repartidor = new Repartidor();
 		this.cargarRepartidores();
-		
+
 		return "<h:button  outcome=\"signup\" class=\"authButton\" type=\"button\" value=\"Registrarse\" icon=\"pi pi-check\" ></h:button>";
 	}
-	
+
 	public void cargarRepartidores() {
 		repartidoresDisponibles = delegado.buscarRepartidores();
 		System.out.println("Nombre del primer repartidor: " + repartidoresDisponibles.get(0).getNombreRepartidor());
@@ -136,30 +146,53 @@ public class ActualizarPedidoBean {
 	}
 
 	public void savePedido() {
-		//Logica para actualizar pedidos
+		// Logica para actualizar pedidos
 		int nuevoValorPedido = -1;
-		nuevoValorPedido = Integer.parseInt(radioButtonValue); 
-		System.out.println("RADIO BUTTON VALUE!!!!! "+radioButtonValue);
+		nuevoValorPedido = Integer.parseInt(radioButtonValue);
+		
+		//Preparar pedido
 		
 		this.selectedPedido.setEstado(nuevoValorPedido);
-		if(this.repartidor != null) {
-			this.selectedPedido.setRepartidor(this.repartidor);
-			this.saveRepartidor();
-		}
-		else
-			this.selectedPedido.setRepartidor(null);
+		this.selectedPedido.setRepartidor(this.repartidor);
 		this.selectedPedido.setProductos(null);
 		this.selectedPedido.setSucursal(null);
 		this.selectedPedido.setUsuario(null);
 		
+		for (Repartidor iter : this.repartidoresDisponibles) {
+			if (iter.getIdRepartidor() == this.repartidorComboBox) {
+				System.out.println("Repartidor asociado");
+				this.repartidor = iter;
+			}
+		}
+
+		if (this.repartidor != null) {
+			this.selectedPedido.setRepartidor(this.repartidor);
+			System.out.println("Se esta tratando de asignar un repartidor");
+			this.saveRepartidor();
+			System.out.println("Se le asigno un repartidor al pedido");
+		} else
+			this.selectedPedido.setRepartidor(null);
+
 		delegado.updatePedido(this.selectedPedido);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Estado del pedido actualizado correctamente"));
+
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage("Estado del pedido actualizado correctamente"));
 		PrimeFaces.current().executeScript("PF('manageProductDialog').hide()");
 		PrimeFaces.current().ajax().update("form:messages", "form:dt-pedidos");
 	}
-	
+
 	public void saveRepartidor() {
-		
+		Hibernate.initialize(repartidor.getPedidos());
+		System.out.println("Nombre repartidor: " + this.repartidor.getNombreRepartidor());
+
+		if (this.repartidor.getPedidos() != null) {
+			this.repartidor.setPedidos(new ArrayList<Pedido>());
+		}
+		this.repartidor.getPedidos().add(selectedPedido);
+		this.repartidor.setSucursal(null);
+		this.delegado.updateRepartidor(repartidor);
+		System.out.println("Se actualizo al repartidor");
+		this.repartidor = new Repartidor();
 	}
 
 }
