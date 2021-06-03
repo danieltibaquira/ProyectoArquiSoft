@@ -8,11 +8,21 @@ public class DRepartidorBean {
 	
 	ServiceLocator sl = new ServiceLocator();
 	LogicaRepartidorRemote servicioRepartidor = sl.getLogicaRepartidor("repartidor");
+	Repartidor repFound;
 	
 	public DRepartidorBean() {
 		super();
+		
 	}
 	
+	public Repartidor getRepFound() {
+		return repFound;
+	}
+
+	public void setRepFound(Repartidor repFound) {
+		this.repFound = repFound;
+	}
+
 	public List<Repartidor> buscarRepartidores(){
 		return servicioRepartidor.getAllRepartidores();
 	}
@@ -31,4 +41,14 @@ public class DRepartidorBean {
 		//return (product);
 	}
 	
+	
+	public Repartidor validateDel(Repartidor repartidor) {
+		repFound = servicioRepartidor.searchRepartidor(repartidor);
+		if(repFound != null) {
+			return repFound;
+		}else {
+			System.out.print("Revise usuario y contraseña");
+			return null;
+		}
+	}
 }

@@ -81,5 +81,12 @@ public class ServicosPedido implements ServicosPedidoRemote {
 			return resultList;
 		}
 	}
+	
+	
+	@Override
+	public List<Pedido> getAllPedidosByIDRepartidor(int idRepartidor){
+		List<Pedido> pedidos = entityManager.createQuery("SELECT p FROM Pedido p WHERE Repartidor_id_repartidor=:id_repartidor", Pedido.class).setParameter("id_sucursal", idRepartidor).getResultList();
+		return pedidos;
+	}
 
 }

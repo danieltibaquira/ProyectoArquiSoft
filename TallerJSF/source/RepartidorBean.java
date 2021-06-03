@@ -21,6 +21,7 @@ public class RepartidorBean {
 	private List<Repartidor> selectedRepartidores;
 	private DRepartidorBean delegadoBean;
 	private String repartidorLocation;
+	private Repartidor repartidorVal;
 	
 	
 	
@@ -28,6 +29,7 @@ public class RepartidorBean {
 		delegadoBean = new DRepartidorBean();
 		repartidores = new ArrayList<Repartidor>();
 		selectedRepartidores = new ArrayList<Repartidor>();
+		repartidorVal = new Repartidor();
 		PrimeFaces.current().executeScript("getLocation()");
 
 	}
@@ -56,10 +58,16 @@ public class RepartidorBean {
 		this.delegadoBean = delegadoBean;
 	}
 	
+	public Repartidor getRepartidorVal() {
+		return repartidorVal;
+	}
+	public void setRepartidorVal(Repartidor repartidorVal) {
+		this.repartidorVal = repartidorVal;
+	}
 	public void openNew() {
 		this.selectedRepartidor = new Repartidor();
 	}
-	
+
 	public void cargarRepartidores() {
 		System.out.println(delegadoBean.buscarRepartidores());
 		repartidores = delegadoBean.buscarRepartidores();
@@ -142,5 +150,15 @@ public class RepartidorBean {
         PrimeFaces.current().ajax().update("form:messages", "form:dt-repartidores");
         PrimeFaces.current().executeScript("PF('dtRepartidores').clearFilters()");
     }
+	
+	public String validarRepartidor() {
+		
+		repartidorVal = delegadoBean.validateDel(repartidorVal);
+		if(repartidorVal != null) {
+			return "Hecho";
+		}else {
+			return "";
+		}
+	}
 
 }

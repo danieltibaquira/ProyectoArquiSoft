@@ -77,9 +77,9 @@ public class ServiciosRepartidor implements ServiciosRepartidorRemote {
 
 	@Override
 	public Repartidor searchRepartidor(Repartidor repartidor) {
-		String consulta = "SELECT u FROM Repartidor u WHERE u.nombre_repartidor=:nombre_repartidor";
+		String consulta = "SELECT u FROM Repartidor u WHERE u.numero=:nombreRepartidor";
 		TypedQuery<Repartidor> query = entityManager.createQuery(consulta, Repartidor.class);
-		query.setParameter("nombre_repartidor", repartidor.getNombreRepartidor());
+		query.setParameter("nombreRepartidor", repartidor.getNumero());
 		query.setMaxResults(1);
 		List<Repartidor> resultList = query.getResultList();
 

@@ -35,7 +35,7 @@ public class Repartidor implements Serializable {
 	private String password;
 
 	//bi-directional many-to-one association to Pedido
-	@OneToMany(mappedBy="repartidor")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="repartidor")
 	private List<Pedido> pedidos = new ArrayList<>();
 
 	//bi-directional many-to-one association to Sucursal
