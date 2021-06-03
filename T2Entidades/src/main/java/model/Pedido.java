@@ -117,7 +117,6 @@ public class Pedido implements Serializable {
 		this.tipoEntrega = tipoEntrega;
 	}
 
-<<<<<<< HEAD
 	public int getTipoPago() {
 		return this.tipoPago;
 	}
@@ -126,8 +125,6 @@ public class Pedido implements Serializable {
 		this.tipoPago = tipoPago;
 	}
 
-=======
->>>>>>> johan
 	public Repartidor getRepartidor() {
 		return this.repartidor;
 	}

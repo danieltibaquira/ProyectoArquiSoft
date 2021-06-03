@@ -2,3 +2,7 @@
 T2ServiciosDatosClient/.settings/org.eclipse.wst.common.project.facet.core.xml
 T2Entidades/.settings/org.eclipse.wst.common.project.facet.core.xml
 TallerJSF/.classpath
+TallerJSF/.classpath
+TallerJSF/.project
+TallerJSF/.metadata/code/WEB-INF/faces-config.pageflow
+TallerJSF/source/ServiceLocator.java

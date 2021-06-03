@@ -24,9 +24,9 @@ public class ServiceLocator {
 		jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.naming.java.javaURLContextFactory");
 		//jndlProperties.put(Context.INITIAL_CONTEXT_FACTORY, org.jboss.naming.remote.client.InitialContextFactory.class.getName());
-		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8080");
-		jndlProperties.put(Context.SECURITY_PRINCIPAL, "daniel");
-		jndlProperties.put(Context.SECURITY_CREDENTIALS, "pablo2015");
+		jndlProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8480");
+		jndlProperties.put(Context.SECURITY_PRINCIPAL, "adminJohan");
+		jndlProperties.put(Context.SECURITY_CREDENTIALS, "123456");
 		jndlProperties.put("jboss.naming.client.ejb.context", true);
 		
 		Context ctx = null;
@@ -128,7 +128,11 @@ public class ServiceLocator {
 	
 	public LogicaRepartidorRemote getLogicaRepartidor(String servicio) {
 		LogicaRepartidorRemote servicios = null;
+<<<<<<< HEAD
 		if(servicio.equals("repartidor")){
+=======
+		if(servicio.equals("repartior")){
+>>>>>>> johan
 			servicios = getLogicaRepartidorConnect();
 		}
 		return (LogicaRepartidorRemote) servicios;
