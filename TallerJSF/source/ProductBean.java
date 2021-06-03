@@ -26,7 +26,7 @@ public class ProductBean implements Serializable {
 	private String id;
 	private List<Producto> productosProm;
 	private List<Producto> productosSinProm;
-	
+	private SucursalBean sucursalBean;
 
 	public String getId() {
 		return id;
@@ -36,13 +36,20 @@ public class ProductBean implements Serializable {
 		this.id = id;
 	}
 
+	public SucursalBean getSucursalBean() {
+		return sucursalBean;
+	}
+
+	public void setSucursalBean(SucursalBean sucursalBean) {
+		this.sucursalBean = sucursalBean;
+	}
+
 	public ProductBean() {
 		productos = new ArrayList<Producto>();
 		delegadoBean = new DProductoBean();
 		arrayProdutos = new Producto[0];
 		productosProm = new ArrayList<Producto>();
 		productosSinProm = new ArrayList<Producto>();
-
 	}
 
 	public List<Producto> getProductos() {
@@ -127,6 +134,7 @@ public class ProductBean implements Serializable {
 				productosSinProm.add(p);
 			}else {
 				float descuento =  (float)p.getPromocion().getDescuento()/100;
+				p.getPromocion().setProductos(null);
 				System.out.println("Desceeunto" + descuento);
 				System.out.println(new BigDecimal(descuento));
 				System.out.println(p.getPrecio().multiply(new BigDecimal(descuento) ));

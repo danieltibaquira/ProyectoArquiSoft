@@ -77,8 +77,6 @@ public class SucursalBean {
 	public String cargarSucursales() {
 		System.out.println("cargando sucursales");
 		sucursales = delegado.buscarSucursales();
-		System.out.println(sucursales.size());
-		System.out.println(sucursales.get(0).getNombreSucursal());
 		return "<h:button  outcome=\"signup\" class=\"authButton\" type=\"button\" value=\"Registrarse\" icon=\"pi pi-check\" ></h:button>";
 	}
 	

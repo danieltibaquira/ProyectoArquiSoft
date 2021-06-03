@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -9,8 +10,11 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.Hibernate;
+
 import model.Pedido;
 import model.Producto;
+import model.Sucursal;
 
 public class CarritoBean {
 
@@ -18,9 +22,13 @@ public class CarritoBean {
 	private DPedidoBean dcarrito;
 	private Pedido pedido;
 	private DelegadoBean delegado;
+	private SucursalBean sucursalBean;
 	
 	private String tipoPago;
 	private String tipoEntrega;
+	
+	private String idSucursal;
+	private Sucursal sucursal;
 	
 	public CarritoBean() {
 		super();
@@ -57,7 +65,6 @@ public class CarritoBean {
 	}
 
 	public void setTipoPago(String tipoPago) {
-		System.out.println("entre");
 		this.tipoPago = tipoPago;
 	}
 
@@ -76,19 +83,53 @@ public class CarritoBean {
 	public void setDelegado(DelegadoBean delegado) {
 		this.delegado = delegado;
 	}
+	
+	public String getIdSucursal() {
+		return idSucursal;
+	}
+
+	public void setIdSucursal(String idSucursal) {
+		this.idSucursal = idSucursal;
+	}
+
+	public Sucursal getSucursal() {
+		return sucursal;
+	}
+
+	public void setSucursal(Sucursal sucursal) {
+		this.sucursal = sucursal;
+	}
+	
+	public SucursalBean getSucursalBean() {
+		return sucursalBean;
+	}
+
+	public void setSucursalBean(SucursalBean sucursalBean) {
+		this.sucursalBean = sucursalBean;
+	}
 
 	public String enviarPedido() {
+		for(Sucursal s: sucursalBean.getSucursales()) {
+			if(s.getIdSucursal() == Integer.parseInt(idSucursal)) {
+				sucursal = s;
+			}
+		}
+		pedido.setSucursal(sucursal);
+		sucursal.setPedidos(null);
+		sucursal.setRepartidors(null);
+		sucursal.setUsuario(null);
 		return "Pagar";
 	}
 	
+
 	public String confirmarPedido() {
 		if(delegado.getUserFound()==null) {
 			return "Autenticarse";
 		}else {
-			System.out.println("entrando");
 			pedido.setUsuario(delegado.getUserFound());
 			pedido.setTipoPago(Integer.parseInt(tipoPago));
 			pedido.setTipoEntrega(Integer.parseInt(tipoEntrega));
+			System.out.println("AYUDA" + tipoPago);
 			return null;
 		}
 	}
@@ -107,7 +148,6 @@ public class CarritoBean {
 	}
 	
 	public void agregarProducto() throws IOException {
-		System.out.println("agreagando producto");
 		if(pedido == null) {
 			pedido = new Pedido();
 			pedido.setProductos(new ArrayList<Producto>());

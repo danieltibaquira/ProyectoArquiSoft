@@ -31,6 +31,10 @@
 		<managed-bean-name>productBean</managed-bean-name>
 		<managed-bean-class>ProductBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>sucursalBean</property-name>
+			<value>#{SucursalBean}</value>
+		</managed-property>
 	</managed-bean>
 	
 	<managed-bean>
@@ -49,6 +53,10 @@
 		<managed-property>
 			<property-name>delegado</property-name>
 			<value>#{delegadoBean}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sucursalBean</property-name>
+			<value>#{sucursalBean}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
