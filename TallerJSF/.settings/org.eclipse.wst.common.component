@@ -46,9 +46,6 @@
         <dependent-module archiveName="ProyectoNegociosClient-1.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/ProyectoNegociosClient/ProyectoNegociosClient">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jboss-modules.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/E:/wildfly-17.0.1.Final/jboss-modules.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
                                                                                                         
         
         

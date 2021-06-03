@@ -10,7 +10,7 @@ import model.Sucursal;
 public class DActualizarPedidoBean {
 	ServiceLocator sl = new ServiceLocator();
 	LogicaPedidoRemote servicioPedidos = sl.getLogicaPedido("pedido");
-	LogicaRepartidorRemote servicioRepartidor = sl.getLogicaRepartidor("repartior");
+	LogicaRepartidorRemote servicioRepartidor = sl.getLogicaRepartidor("repartidor");
 	
 	public DActualizarPedidoBean()
 	{
