@@ -99,7 +99,6 @@ public class ProductBean implements Serializable {
 		productos = delegadoBean.buscarProductos();
 		System.out.println(productos.size());
 		System.out.println(productos.get(0).getNombreProducto());
-		PrimeFaces.current().executeScript("getLocation()");
 		return "<h:button  outcome=\"signup\" class=\"authButton\" type=\"button\" value=\"Registrarse\" icon=\"pi pi-check\" ></h:button>";
 	}
 	

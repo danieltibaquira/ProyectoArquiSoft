@@ -41,6 +41,14 @@ public class LogicaPedido implements LogicaPedidoRemote {
 	}
 
 	@Override
+	public Pedido updatePedido(Pedido pedido) {
+		ServiceLocator sl = new ServiceLocator();
+		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
+		Pedido pedidolDB = servicio.updatePedido(pedido);
+		return pedidolDB;
+	}
+	
+	@Override
 	public List<Pedido> getAllPedidos() {
 		ServiceLocator sl = new ServiceLocator();
 		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
@@ -53,6 +61,11 @@ public class LogicaPedido implements LogicaPedidoRemote {
 		ServiceLocator sl = new ServiceLocator();
 		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
 		List<Pedido> pedidos = servicio.getPedidosUsuario(usuario);
+	}
+	public List<Pedido> getAllPedidosByIDSucursal(int idSucursal) {
+		ServiceLocator sl = new ServiceLocator();
+		ServicosPedidoRemote servicio = sl.getServicioPedido("pedido");
+		List<Pedido> pedidos = servicio.getAllPedidosByIDSucursal(idSucursal);
 		return pedidos;
 	}
 

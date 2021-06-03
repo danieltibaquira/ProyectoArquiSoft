@@ -112,5 +112,35 @@ public class ServiciosRepartidor implements ServiciosRepartidorRemote {
 			return false;
 		}
 	}
+	
+	@Override
+	public Repartidor editRepartidor(Repartidor repartidor) {
+		try {
+			Repartidor nRepartidor= entityManager.find(Repartidor.class, repartidor.getIdRepartidor());
+			if (nRepartidor == null) {
+				System.out.println("No hay repartidor");
+				return repartidor;
+			} else {
+				System.out.println("Preparando Query ");
+				String consulta = "UPDATE Repartidor SET nombre_repartidor=:nombre_repartidor, numero=:numero, latitude=:latitude, longitude=:longitude, pedidos=:pedidos WHERE id_repartidor=:id_repartidor";
+				Query query = entityManager.createQuery(consulta);
+				System.out.println("Query creado ");
+				query.setParameter("id_repartidor", repartidor.getIdRepartidor());
+				query.setParameter("pedidos", repartidor.getPedidos());
+				query.setParameter("nombre_repartidor", repartidor.getNombreRepartidor());
+				query.setParameter("numero", repartidor.getNumero());
+				query.setParameter("latitude", repartidor.getLatitude());
+				query.setParameter("longitude", repartidor.getLongitude());
+				System.out.println("Creados los parametros Repartidor");
+				entityManager.flush();
+				query.executeUpdate();
+				System.out.println("Ejecutado el query");
+				return repartidor;
+			}
+		} catch (Exception e) {
+			System.out.println("error");
+			return null;
+		}
+	}
 
 }

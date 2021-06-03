@@ -38,7 +38,7 @@ public class Pedido implements Serializable {
 	private int tipoPago;
 
 	//bi-directional many-to-one association to Repartidor
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="Repartidor_id_repartidor")
 	private Repartidor repartidor;
 
@@ -117,6 +117,7 @@ public class Pedido implements Serializable {
 		this.tipoEntrega = tipoEntrega;
 	}
 
+<<<<<<< HEAD
 	public int getTipoPago() {
 		return this.tipoPago;
 	}
@@ -125,6 +126,8 @@ public class Pedido implements Serializable {
 		this.tipoPago = tipoPago;
 	}
 
+=======
+>>>>>>> johan
 	public Repartidor getRepartidor() {
 		return this.repartidor;
 	}

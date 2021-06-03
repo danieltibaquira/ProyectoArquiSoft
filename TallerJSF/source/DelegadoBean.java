@@ -1,4 +1,3 @@
-//import javax.annotation.ManagedBean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
@@ -11,9 +10,7 @@ import java.util.List;
 
 import logicaInterfaz.LogicaUsuariosRemote;
 import logicaInterfaz.logicaProductosRemote;
-import model.Pedido;
-import model.Producto;
-import model.Usuario;
+import model.*;
 
 @ManagedBean(eager = true)
 @SessionScoped
@@ -35,6 +32,12 @@ public class DelegadoBean {
 		super();
 	}
 	public Usuario validateUser(Usuario user) {
+		if(userFound == null) {
+			System.out.println("usuario vacio");
+		}else {
+			System.out.println("usuario lleno");
+			System.out.println(userFound.getApellidoUsuario());
+		}
 		userFound = servicioUsuario.validar(user.getUsername(), user.getContrasena());
 		if(userFound != null) { 
 			userFound.setPedidos(null);
