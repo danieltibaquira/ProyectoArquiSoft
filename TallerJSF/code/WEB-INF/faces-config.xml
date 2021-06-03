@@ -14,7 +14,7 @@
 		<managed-bean-class>RegistroBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-		<property-name>delegado</property-name>
+			<property-name>delegado</property-name>
 			<value>#{delegadoBean}</value>
 		</managed-property>
 	</managed-bean>
@@ -32,6 +32,7 @@
 		<managed-bean-class>ProductBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	
 	<managed-bean>
 		<managed-bean-name>repartidorBean</managed-bean-name>
 		<managed-bean-class>RepartidorBean</managed-bean-class>
