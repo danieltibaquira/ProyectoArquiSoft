@@ -1,5 +1,6 @@
 package logicaImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -8,6 +9,7 @@ import javax.ejb.Stateless;
 
 import datosInterface.ServiciosUsuarioRemote;
 import logicaInterfaz.LogicaUsuariosRemote;
+import model.Sucursal;
 import model.Usuario;
 
 /**
@@ -45,10 +47,15 @@ public class LogicaUsuarios implements LogicaUsuariosRemote {
 		ServiceLocator sl = new ServiceLocator();
 		ServiciosUsuarioRemote servicio = sl.getServicio("usuario");
 		Usuario user = servicio.validar(username, password);
-		//if(user!=null) {
-			//correoConfirmacion(user.getCorreo());
-		//}
-		return user;
+		
+		if(user.getRol()==1) {
+			Sucursal sucursal = servicio.buscarSucursal(user);
+			user.setSucursals(new ArrayList<Sucursal>());
+			user.addSucursal(sucursal);
+			return user;
+		}else {
+			return user;
+		}
 	}
 
 

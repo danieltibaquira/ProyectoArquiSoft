@@ -41,7 +41,7 @@ public class Sucursal implements Serializable {
 	@OneToMany(mappedBy="sucursal")
 	private List<Repartidor> repartidors;
 
-	//uni-directional many-to-one association to Usuario
+	//bi-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="Usuario_id_usuario")
 	private Usuario usuario;
