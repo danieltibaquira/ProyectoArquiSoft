@@ -31,6 +31,14 @@ public class LogicaPromocion implements LogicaPromocionRemote {
 	}
 
 	@Override
+	public Promocion editPromocion(Promocion promocion) {
+		ServiceLocator sl = new ServiceLocator();
+		ServiciosPromocionRemote servicio = sl.getServicioPromocion("promocion");
+		Promocion promocionDB = servicio.editPromocion(promocion);
+		return promocionDB;
+	}
+	
+	@Override
 	public Promocion searchPromocion(Promocion promocion) {
 		ServiceLocator sl = new ServiceLocator();
 		ServiciosPromocionRemote servicio = sl.getServicioPromocion("promocion");
