@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,9 @@ public class ProductBean implements Serializable {
 	private Producto arrayProdutos[];
 	private Producto producto;
 	private String id;
+	private List<Producto> productosProm;
+	private List<Producto> productosSinProm;
+	
 
 	public String getId() {
 		return id;
@@ -36,6 +40,9 @@ public class ProductBean implements Serializable {
 		productos = new ArrayList<Producto>();
 		delegadoBean = new DProductoBean();
 		arrayProdutos = new Producto[0];
+		productosProm = new ArrayList<Producto>();
+		productosSinProm = new ArrayList<Producto>();
+
 	}
 
 	public List<Producto> getProductos() {
@@ -86,6 +93,22 @@ public class ProductBean implements Serializable {
 		this.selectedProducts = selectedProducts;
 	}
 
+	public List<Producto> getProductosProm() {
+		return productosProm;
+	}
+
+	public void setProductosProm(List<Producto> productosProm) {
+		this.productosProm = productosProm;
+	}
+
+	public List<Producto> getProductosSinProm() {
+		return productosSinProm;
+	}
+
+	public void setProductosSinProm(List<Producto> productosSinProm) {
+		this.productosSinProm = productosSinProm;
+	}
+
 	public String detalleProducto() {
 		FacesContext fc = FacesContext.getCurrentInstance();
 		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
@@ -96,9 +119,22 @@ public class ProductBean implements Serializable {
 
 	public String cargarProductos() {
 		System.out.println("cargando productos");
+		productosSinProm.clear();
+		productosProm.clear();
 		productos = delegadoBean.buscarProductos();
-		System.out.println(productos.size());
-		System.out.println(productos.get(0).getNombreProducto());
+		for(Producto p: productos) {
+			if(p.getPromocion()==null) {
+				productosSinProm.add(p);
+			}else {
+				float descuento =  (float)p.getPromocion().getDescuento()/100;
+				System.out.println("Desceeunto" + descuento);
+				System.out.println(new BigDecimal(descuento));
+				System.out.println(p.getPrecio().multiply(new BigDecimal(descuento) ));
+				p.setPrecio(p.getPrecio().subtract( p.getPrecio().multiply(new BigDecimal(Float.toString(descuento)) )));
+				productosProm.add(p);
+			}
+		}
+		PrimeFaces.current().executeScript("getLocation()");
 		return "<h:button  outcome=\"signup\" class=\"authButton\" type=\"button\" value=\"Registrarse\" icon=\"pi pi-check\" ></h:button>";
 	}
 	

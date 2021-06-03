@@ -3,7 +3,6 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.mail.internet.NewsAddress;
 
 import org.primefaces.PrimeFaces;
 
